@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './components/pages/main-page/main-page.component';
 import { TaskPageComponent } from './components/pages/tasks-page/task-page.component';
+import {FormControl, Validators} from '@angular/forms';
 
 
 @NgModule({
@@ -15,9 +16,11 @@ import { TaskPageComponent } from './components/pages/tasks-page/task-page.compo
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormControl,
+    Validators,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
