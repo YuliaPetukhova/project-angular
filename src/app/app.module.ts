@@ -13,7 +13,7 @@ import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
+
  
 @NgModule({
   declarations: [
@@ -34,9 +34,7 @@ import { RouterModule } from '@angular/router';
     MatDialogModule,
     BrowserAnimationsModule,
     BrowserModule,
-    RouterModule.forRoot([
-      {path: 'modal', component: ModalComponent}
-      ])
+    
     ],
   providers: [],
   bootstrap: [AppComponent],

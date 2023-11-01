@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./task-page.component.css']
 })
 export class TaskPageComponent {
-
+  title = 'Household';
 }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from '../../modal/modal/modal.component';
 
 @Component({
   selector: 'app-main-page',
@@ -7,4 +9,14 @@ import { Component } from '@angular/core';
 })
 export class MainPageComponent {
 
+  title = 'Household';
+
+  constructor(private matDialog: MatDialog){}
+
+  openDialog(): void{
+    this.matDialog.open(ModalComponent,{
+      width: '325px',
+    })
+
+  }
 }
