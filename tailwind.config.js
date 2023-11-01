@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'page-pattern': "url('../src/img/foto.jpg')",
+        'page-pattern': "url('../src/img/main-page.jpg')",
       }
     },
   },
