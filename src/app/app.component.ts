@@ -16,7 +16,7 @@ export class AppComponent {
 
   openDialog(): void{
     this.matDialog.open(ModalComponent,{
-      width: '350px',
+      width: '325px',
     })
 
   }

@@ -17,13 +17,14 @@ import { RouterModule } from '@angular/router';
  
 @NgModule({
   declarations: [
+    AppComponent,
     MainPageComponent,
     TaskPageComponent,
     ModalComponent,
     
   ],
   imports: [
-    AppComponent,
+    
     AppRoutingModule,
     MatButtonModule,
     MatIconModule,
@@ -33,9 +34,9 @@ import { RouterModule } from '@angular/router';
     MatDialogModule,
     BrowserAnimationsModule,
     BrowserModule,
-    // RouterModule.forRoot([
-    //   {path: 'modal', component: ModalComponent}
-    //   ])
+    RouterModule.forRoot([
+      {path: 'modal', component: ModalComponent}
+      ])
     ],
   providers: [],
   bootstrap: [AppComponent],
