@@ -16,6 +16,7 @@ import {FormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSelectModule} from '@angular/material/select';
+import {MatMenuModule} from '@angular/material/menu';
 
 
  
@@ -23,12 +24,12 @@ import {MatSelectModule} from '@angular/material/select';
   declarations: [
     AppComponent,
     MainPageComponent,
-    TaskPageComponent,
     ModalComponent,
     NewTaskModalComponent,
     
   ],
   imports: [
+    TaskPageComponent,
     AppRoutingModule,
     MatButtonModule,
     MatIconModule,
@@ -39,6 +40,7 @@ import {MatSelectModule} from '@angular/material/select';
     BrowserAnimationsModule,
     BrowserModule,
     MatSelectModule,
+    MatMenuModule
     ],
   providers: [],
   bootstrap: [AppComponent],
