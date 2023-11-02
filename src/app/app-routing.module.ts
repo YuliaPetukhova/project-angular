@@ -7,7 +7,7 @@ import { TaskPageComponent } from './components/pages/tasks-page/task-page.compo
 
 
 const routes: Routes = [
-  { path: 'home', component: MainPageComponent},
+  { path: '', component: MainPageComponent},
   { path: 'modal', component: ModalComponent},
   { path: 'catalog', component: TaskPageComponent},
 ];

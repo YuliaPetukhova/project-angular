@@ -17,9 +17,13 @@
         <mat-icon> format_list_numbered</mat-icon>
     </button>
 
-    <button class="mr-3" mat-mini-fab color="accent" aria-label="Example icon button with a menu icon">
-        <mat-icon>add</mat-icon>
-    </button>
+    <mat-dialog-actions>
+        <button class="mr-3" mat-mini-fab color="accent" aria-label="Example icon button with a menu icon"
+            (click)="openDialog()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </mat-dialog-actions> 
+   
 
     <button class="mr-3" mat-raised-button  aria-label="Example icon button with a menu icon">
         <mat-icon>playlist_add_check</mat-icon>
