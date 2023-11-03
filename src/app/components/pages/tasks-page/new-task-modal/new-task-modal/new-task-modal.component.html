@@ -11,13 +11,27 @@
 
 <div mat-dialog-content>
 
-    <mat-form-field >
-        <mat-label>Группа задач</mat-label>
-        <mat-select>
-        <mat-option value="one">Домашние дела</mat-option>
-        <mat-option value="two">Странные дела</mat-option>
-        </mat-select>
-    </mat-form-field>
+        <!-- <mat-label></mat-label> -->
+        <mat-form-field>
+    <mat-select placeholder="Группа задач">
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="New group" #itemName>
+        </mat-form-field>
+
+        <button  mat-raised-button color="primary" (click)="add(itemName.value); itemName.value=''">
+            Добавить</button>
+
+        <mat-option *ngFor="let group of groups" [value]="group.value">
+        {{ group.viewValue }}
+
+        </mat-option>
+
+            <!-- <mat-option value="one">Домашние дела</mat-option>
+            <mat-option value="two">Странные дела</mat-option> -->
+        
+    </mat-select>
+</mat-form-field>
 
     <mat-form-field>
         <mat-label>Текст задачи</mat-label>

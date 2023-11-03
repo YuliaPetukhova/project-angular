@@ -8,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class NewTaskModalComponent {
 
+    groups = [
+        {value: 'group-0', viewValue: 'Домашние дела'},
+        {value: 'group-1', viewValue: 'Странные дела'},
+      ];
+    
+      add (newValue: string): void {
+        newValue = newValue.trim();
+        if(!newValue) {return;}
+        this.groups.push({value: '','viewValue':newValue});
+      }
 }

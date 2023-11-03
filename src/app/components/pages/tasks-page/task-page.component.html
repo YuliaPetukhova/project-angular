@@ -19,17 +19,16 @@
         <mat-icon> format_list_numbered</mat-icon>
     </button> -->
 
-    <button class="mr-3" mat-raised-button aria-label="Example icon button with a menu icon" 
-      [matMenuTriggerFor]="aboveMenu">
+<button class="mr-3" mat-raised-button aria-label="Example icon button with a menu icon" 
+        [matMenuTriggerFor]="aboveMenu">
     <mat-icon> format_list_numbered</mat-icon>
 </button>
     <mat-menu #aboveMenu="matMenu" yPosition="above">
         <button mat-menu-item>Посуда</button>
         <button mat-menu-item>Мусор</button>
-</mat-menu>
+    </mat-menu>
 
-
-    <mat-dialog-actions>
+    <mat-dialog-actions style="flex-direction: column; padding: 0;">
         <button class="mr-3" mat-mini-fab color="accent" aria-label="Example icon button with a menu icon"
             (click)="openDialog()">
             <mat-icon>add</mat-icon>
