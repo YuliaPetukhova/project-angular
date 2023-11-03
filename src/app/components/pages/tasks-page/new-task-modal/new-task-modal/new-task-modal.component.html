@@ -19,7 +19,7 @@
             <input matInput placeholder="New group" #itemName>
         </mat-form-field>
 
-        <button  mat-raised-button color="primary" (click)="add(itemName.value); itemName.value=''">
+        <button mat-raised-button color="primary" (click)="add(itemName.value); itemName.value=''">
             Добавить</button>
 
         <mat-option *ngFor="let group of groups" [value]="group.value">
