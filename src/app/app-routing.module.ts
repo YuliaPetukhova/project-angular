@@ -5,20 +5,16 @@ import { MainPageComponent } from './components/pages/main-page/main-page.compon
 import { ModalComponent } from './components/modal/modal/modal.component';
 import { TaskPageComponent } from './components/pages/tasks-page/task-page.component';
 
-
 const routes: Routes = [
-  { path: '', component: MainPageComponent},
-  { path: 'modal', component: ModalComponent},
-  { path: 'catalog', component: TaskPageComponent},
+  { path: '', component: MainPageComponent },
+  { path: 'modal', component: ModalComponent },
+  { path: 'catalog', component: TaskPageComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
-
-
+export class AppRoutingModule {}
 
 // import { ProductPageComponent } from './pages/product-page/product-page.component';
-

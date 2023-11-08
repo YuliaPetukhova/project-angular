@@ -5,18 +5,14 @@ import { ModalComponent } from '../../modal/modal/modal.component';
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.css']
+  styleUrls: ['./main-page.component.css'],
 })
 export class MainPageComponent {
-
   title = 'Household';
 
-  constructor(private matDialog: MatDialog){}
+  constructor(private matDialog: MatDialog) {}
 
-  openDialog(): void{
-    this.matDialog.open(ModalComponent,{
-      
-    })
-
+  openDialog(): void {
+    this.matDialog.open(ModalComponent, {});
   }
 }

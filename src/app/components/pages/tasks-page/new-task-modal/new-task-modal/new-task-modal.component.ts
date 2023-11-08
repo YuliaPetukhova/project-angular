@@ -1,21 +1,29 @@
-import { Component } from '@angular/core';
-
+import { Component, Inject, Optional } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-task-modal',
   templateUrl: './new-task-modal.component.html',
-  styleUrls: ['./new-task-modal.component.sass']
+  styleUrls: ['./new-task-modal.component.sass'],
 })
 export class NewTaskModalComponent {
+  public groups: any;
 
-    groups = [
-        {value: 'group-0', viewValue: 'Домашние дела'},
-        {value: 'group-1', viewValue: 'Странные дела'},
-      ];
-    
-      add (newValue: string): void {
-        newValue = newValue.trim();
-        if(!newValue) {return;}
-        this.groups.push({value: '','viewValue':newValue});
-      }
+  constructor(
+    public dialogRef: MatDialogRef<NewTaskModalComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: { groups: any }
+  ) {
+    dialogRef.disableClose = true;
+  }
+  doAction() {
+    this.dialogRef.close({ data: this.data.groups });
+  }
+
+  add(newValue: string): void {
+    newValue = newValue.trim();
+    if (!newValue) {
+      return;
+    }
+    this.data.groups.unshift({ value: '', viewValue: newValue });
+  }
 }
