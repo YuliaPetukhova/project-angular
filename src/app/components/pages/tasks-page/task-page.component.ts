@@ -1,15 +1,12 @@
-import { Component, Inject, Optional } from '@angular/core';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 import { NewTaskModalComponent } from './new-task-modal/new-task-modal/new-task-modal.component';
+import * as angular from 'angular';
 
 @Component({
   selector: 'app-task-page',
@@ -34,7 +31,15 @@ export class TaskPageComponent {
     });
 
     dialog.afterClosed().subscribe((result) => {
-      this.groups = result.data;
+      if (
+        result &&
+        angular.isArray(result.data) &&
+        result.data.length > this.groups.length
+      ) {
+        this.groups = result.data;
+      }
+      // console.log(result.data);
+      // this.groups = result.data;
     });
   }
 }

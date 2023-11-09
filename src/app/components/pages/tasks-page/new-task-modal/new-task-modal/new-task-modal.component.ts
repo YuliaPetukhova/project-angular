@@ -1,5 +1,7 @@
 import { Component, Inject, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { TaskPageComponent } from '../../task-page.component';
+import { Dialog } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-new-task-modal',
@@ -18,6 +20,7 @@ export class NewTaskModalComponent {
   doAction() {
     this.dialogRef.close({ data: this.data.groups });
   }
+
 
   add(newValue: string): void {
     newValue = newValue.trim();
