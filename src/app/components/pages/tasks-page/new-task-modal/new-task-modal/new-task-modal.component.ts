@@ -8,25 +8,28 @@ import { Dialog } from '@angular/cdk/dialog';
   templateUrl: './new-task-modal.component.html',
   styleUrls: ['./new-task-modal.component.sass'],
 })
+
 export class NewTaskModalComponent {
-  public groups: any;
+  public taskGroups: any;
 
   constructor(
     public dialogRef: MatDialogRef<NewTaskModalComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: { groups: any }
   ) {
-    dialogRef.disableClose = true;
-  }
-  doAction() {
-    this.dialogRef.close({ data: this.data.groups });
+    this.taskGroups = window.structuredClone(data).groups;
   }
 
+  doAction() {
+    this.dialogRef.close({ data: this.taskGroups });
+  }
 
   add(newValue: string): void {
     newValue = newValue.trim();
+
     if (!newValue) {
       return;
     }
-    this.data.groups.unshift({ value: '', viewValue: newValue });
+
+    this.taskGroups.unshift({ value: '', viewValue: newValue });
   }
 }

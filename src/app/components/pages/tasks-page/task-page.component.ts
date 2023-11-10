@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 import { NewTaskModalComponent } from './new-task-modal/new-task-modal/new-task-modal.component';
-import * as angular from 'angular';
+import { isArray } from 'angular';
 
 @Component({
   selector: 'app-task-page',
@@ -16,7 +16,7 @@ import * as angular from 'angular';
   imports: [MatButtonModule, MatMenuModule, MatIconModule, MatDialogModule],
 })
 export class TaskPageComponent {
-  private groups = [
+  public groups = [
     { value: 'group-0', viewValue: 'Домашние дела' },
     { value: 'group-1', viewValue: 'Странные дела' },
   ];
@@ -31,15 +31,9 @@ export class TaskPageComponent {
     });
 
     dialog.afterClosed().subscribe((result) => {
-      if (
-        result &&
-        angular.isArray(result.data) &&
-        result.data.length > this.groups.length
-      ) {
+      if (result && result.data && result.data.length > this.groups.length) {
         this.groups = result.data;
       }
-      // console.log(result.data);
-      // this.groups = result.data;
     });
   }
 }

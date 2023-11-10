@@ -17,13 +17,12 @@
       <button
         mat-raised-button
         color="primary"
-        (click)="add(itemName.value); itemName.value = ''"
-      >
+        (click)="add(itemName.value); itemName.value = ''">
         Добавить
       </button>
 
-      <mat-option *ngFor="let group of data.groups" [value]="group.value">
-        {{ group.viewValue }}
+      <mat-option *ngFor="let taskGroup of taskGroups" [value]="taskGroup.value">
+        {{ taskGroup.viewValue }}
       </mat-option>
     </mat-select>
   </mat-form-field>

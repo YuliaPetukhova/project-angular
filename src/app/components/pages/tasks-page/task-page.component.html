@@ -1,46 +1,50 @@
 <Ul class="flex flex-wrap">
-    <li href="/" class="text-lg cursor-pointer text-black font-bold pl-10 pr-6"
-        >Баллы/Целевые
-    </li>
+  <li href="/" class="text-lg cursor-pointer text-black font-bold pl-10 pr-6">
+    Баллы/Целевые
+  </li>
 
-    <li href="/" class="text-lg cursor-pointer text-black pr-6"
-    >Имя
-    </li>
+  <li href="/" class="text-lg cursor-pointer text-black pr-6">Имя</li>
 
-    <li href="/">
-        <mat-icon>settings</mat-icon>
-    </li>
+  <li href="/">
+    <mat-icon>settings</mat-icon>
+  </li>
 </Ul>
 
-
-
 <div class="flex flex-wrap fixed bottom-5 justify-items-center pl-14 m-1 pr-2">
-    <!-- <button class="mr-3" mat-raised-button aria-label="Example icon button with a menu icon">
+  <!-- <button class="mr-3" mat-raised-button aria-label="Example icon button with a menu icon">
         <mat-icon> format_list_numbered</mat-icon>
     </button> -->
 
-<button class="mr-3" mat-raised-button aria-label="Example icon button with a menu icon" 
-        [matMenuTriggerFor]="aboveMenu">
+  <button
+    class="mr-3"
+    mat-raised-button
+    aria-label="Example icon button with a menu icon"
+    [matMenuTriggerFor]="aboveMenu"
+  >
     <mat-icon> format_list_numbered</mat-icon>
-</button>
-    <mat-menu #aboveMenu="matMenu" yPosition="above">
-        <button mat-menu-item>Посуда</button>
-        <button mat-menu-item>Мусор</button>
-    </mat-menu>
+  </button>
+  <mat-menu #aboveMenu="matMenu" yPosition="above">
+    <button mat-menu-item>Посуда</button>
+    <button mat-menu-item>Мусор</button>
+  </mat-menu>
 
-    <mat-dialog-actions style="flex-direction: column; padding: 0;">
-        <button class="mr-3" mat-mini-fab color="accent" aria-label="Example icon button with a menu icon"
-            (click)="openDialog()">
-            <mat-icon>add</mat-icon>
-        </button>
-    </mat-dialog-actions> 
-   
-
-    <button class="mr-3" mat-raised-button  aria-label="Example icon button with a menu icon">
-        <mat-icon>playlist_add_check</mat-icon>
+  <mat-dialog-actions style="flex-direction: column; padding: 0">
+    <button
+      class="mr-3"
+      mat-mini-fab
+      color="accent"
+      aria-label="Example icon button with a menu icon"
+      (click)="openDialog()"
+    >
+      <mat-icon>add</mat-icon>
     </button>
+  </mat-dialog-actions>
 
+  <button
+    class="mr-3"
+    mat-raised-button
+    aria-label="Example icon button with a menu icon"
+  >
+    <mat-icon>playlist_add_check</mat-icon>
+  </button>
 </div>
-
-  
-  
