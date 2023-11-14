@@ -16,5 +16,3 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-
-// import { ProductPageComponent } from './pages/product-page/product-page.component';

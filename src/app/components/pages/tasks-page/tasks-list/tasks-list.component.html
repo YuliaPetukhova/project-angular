@@ -1,9 +1,10 @@
-<div class="py-4 px-6 border rounded flex flex-col mb-2">
-    <!-- <mat-checkbox class="text-right">Сделано</mat-checkbox> -->
-    <h1 class="text-lg text-left mb-2">20.01.2024</h1>
-    <p class="text-left text-sm">Price: <span class="text-xl">40</span></p>
-    <p class="text-left text-lg">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime fugiat,
-      voluptas obcaecati.
-    </p>
-  </div>
+<!-- <div *ngFor="let task of tasks">
+  
+</div> -->
+
+<!-- <app-task-item *ngFor="let task of tasks"></app-task-item> -->
+<div *ngFor="let task of tasks"> 
+  <app-task-item [task]="task"></app-task-item>
+</div> 
+
+<!-- <app-tasks-list [task]="task"></app-tasks-list> -->

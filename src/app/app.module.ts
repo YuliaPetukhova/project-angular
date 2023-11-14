@@ -17,7 +17,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
-import { TasksListComponent } from './components/pages/tasks-page/tasks-list/tasks-list.component';
+// import { TaskItemComponent } from './components/pages/tasks-page/tasks-list/task-item/task-item/task-item.component';
+// import { TasksListComponent } from './components/pages/tasks-page/tasks-list/tasks-list.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { TasksListComponent } from './components/pages/tasks-page/tasks-list/tas
     MainPageComponent,
     ModalComponent,
     NewTaskModalComponent,
-    TasksListComponent,
+    // TasksListComponent,
   ],
   imports: [
     TaskPageComponent,

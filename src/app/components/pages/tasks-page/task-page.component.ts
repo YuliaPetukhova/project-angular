@@ -15,10 +15,10 @@ import { tasks as data } from 'src/app/data/tasks';
   templateUrl: './task-page.component.html',
   styleUrls: ['./task-page.component.css'],
   standalone: true,
-  imports: [MatButtonModule, MatMenuModule, MatIconModule, MatDialogModule],
+  imports: [MatButtonModule, MatMenuModule, MatIconModule, MatDialogModule, TasksListComponent],
 })
 export class TaskPageComponent {
-  // tasks: ITask[] = data
+  tasks: ITask[] = data;
 
   public groups = [
     { value: 'group-0', viewValue: 'Домашние дела' },

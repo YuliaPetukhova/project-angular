@@ -1,9 +1,9 @@
-import { UrlCreationOptions } from "@angular/router"
+import { UrlCreationOptions } from '@angular/router';
 
-export interface ITask{
-    id?: number
-    date: number
-    price: number
-    description: string
-    category: string
+export interface ITask {
+  id?: number;
+  date: string;
+  price: number;
+  description: string;
+  category: string;
 }
