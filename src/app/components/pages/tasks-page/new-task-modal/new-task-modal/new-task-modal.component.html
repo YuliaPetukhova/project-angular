@@ -1,5 +1,9 @@
-
-<button type="button" mat-icon-button mat-dialog-close="" style="float: right; margin: 1px">
+<button
+  type="button"
+  mat-icon-button
+  mat-dialog-close=""
+  style="float: right; margin: 1px"
+>
   <mat-icon> close</mat-icon>
 </button>
 
@@ -17,14 +21,22 @@
       <button
         mat-raised-button
         color="primary"
-        (click)="add(itemName.value); itemName.value = ''">
+        (click)="add(itemName.value); itemName.value = ''"
+      >
         Добавить
       </button>
 
-      <mat-option *ngFor="let taskGroup of taskGroups" [value]="taskGroup.value">
+      <mat-option
+        *ngFor="let taskGroup of taskGroups"
+        [value]="taskGroup.value"
+      >
         {{ taskGroup.viewValue }}
       </mat-option>
     </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Количество баллов" />
   </mat-form-field>
 
   <mat-form-field>
