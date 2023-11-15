@@ -17,6 +17,7 @@ import { MatMenuModule } from '@angular/material/menu';
 
 import { TaskPageComponent } from '../../task-page.component';
 import { Dialog } from '@angular/cdk/dialog';
+import { TasksService } from 'src/app/services/tasks.service';
 
 @Component({
   selector: 'app-new-task-modal',
@@ -27,6 +28,7 @@ export class NewTaskModalComponent {
   public taskGroups: any;
 
   constructor(
+    private tasksService: TasksService,
     public dialogRef: MatDialogRef<NewTaskModalComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: { groups: any }
   ) {
@@ -34,7 +36,24 @@ export class NewTaskModalComponent {
   }
 
   doAction() {
-    this.dialogRef.close({ data: this.taskGroups });
+	this.tasksService.getAll().subscribe((result) => {
+		console.log(result)
+	  })
+	// let re = this.tasksService.getAll();
+	// console.log(re)
+    // this.tasksService.create({
+    //   id: 3,
+    //   text: 'Your perfect pack for everyday',
+    //   taskGroupId: 1,
+    //   createdAt: '02/11/23',
+    //   doneAt: '05/11/23',
+    //   deletedAt: '06/11/23',
+    //   price: 300,
+    // }).subscribe(()=>{
+	// 	this.dialogRef.close();
+	// });
+
+    // this.dialogRef.close({ data: this.taskGroups });
   }
 
   add(newValue: string): void {
