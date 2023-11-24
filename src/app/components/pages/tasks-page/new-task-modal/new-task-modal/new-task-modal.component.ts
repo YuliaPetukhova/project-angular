@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit, Optional, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
-// import { BrowserModule } from '@angular/platform-browser';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
@@ -29,7 +28,7 @@ import { ITask } from 'src/app/models/task';
 @Component({
   selector: 'app-new-task-modal',
   templateUrl: './new-task-modal.component.html',
-  styleUrls: ['./new-task-modal.component.sass'],
+  styleUrls: ['./new-task-modal.component.сss'],
 })
 export class NewTaskModalComponent implements OnInit {
   public taskGroups: any;
@@ -51,12 +50,7 @@ export class NewTaskModalComponent implements OnInit {
     text: new FormControl<string>('', [Validators.required]),
   });
 
-  // @ViewChild('testForm') someNewNameFrom: NgForm | null = null;
   onSubmit() {
-    console.log('working');
-    // console.log(this.someNewNameFrom);
-    console.log(this.myForm.value);
-
     let formData: ITask = {
       text: this.myForm.value.text as string,
       taskGroupId: this.myForm.value.taskGroup ?? 1,
@@ -68,39 +62,11 @@ export class NewTaskModalComponent implements OnInit {
 
     this.tasksService.create(formData).subscribe((result) => {
       this.dialogRef.close();
-      console.log("result99")
-      console.log(result)
+      this.data.tasks.push(result);
     });
 
     this.dialogRef.close({ data: this.taskGroups });
-    console.log('this.data.tasks');
-    console.log(this.data.tasks);
-    
   }
-
-  // doAction() {
-  // this.tasksService.getAll().subscribe((result) => {
-  // 	console.log(result)
-  //   })
-  // let re = this.tasksService.getAll();
-  // console.log(re)
-  // this.tasksService.create(
-
-  //   {
-  //   id: 5,
-  //   text: 'hanuka',
-  //   taskGroupId: 1,
-  //   createdAt: '02/11/23',
-  //   doneAt: '05/11/23',
-  //   deletedAt: '06/11/23',
-  //   price: 300,
-  // }
-  // ).subscribe(()=>{
-
-  // this.dialogRef.close();
-  // });
-  // this.dialogRef.close({ data: this.taskGroups });
-  // }
 
   add(newValue: string): void {
     newValue = newValue.trim();

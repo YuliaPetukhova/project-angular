@@ -45,7 +45,7 @@ export class TaskPageComponent {
     const dialog = this.matDialog.open(NewTaskModalComponent, {
       data: {
         groups: this.groups,
-        tasks: this.tasks
+        tasks: this.tasks,
       },
     });
 
