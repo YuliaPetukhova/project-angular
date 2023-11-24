@@ -28,7 +28,7 @@ import { ITask } from 'src/app/models/task';
 @Component({
   selector: 'app-new-task-modal',
   templateUrl: './new-task-modal.component.html',
-  styleUrls: ['./new-task-modal.component.сss'],
+  styleUrls: ['./new-task-modal.component.css'],
 })
 export class NewTaskModalComponent implements OnInit {
   public taskGroups: any;
