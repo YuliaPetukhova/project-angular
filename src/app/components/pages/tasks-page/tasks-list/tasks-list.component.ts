@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ITask } from 'src/app/models/task';
-import { tasks as data } from 'src/app/data/tasks';
 import { TaskItemComponent } from './task-item/task-item/task-item.component';
 
 @Component({
@@ -15,5 +14,4 @@ import { TaskItemComponent } from './task-item/task-item/task-item.component';
 })
 export class TasksListComponent {
   @Input() tasks: ITask[];
-  // tasks: ITask[] = data
 }

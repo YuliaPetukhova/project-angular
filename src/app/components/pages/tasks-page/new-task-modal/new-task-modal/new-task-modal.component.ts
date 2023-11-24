@@ -1,27 +1,8 @@
-import { Component, Inject, OnInit, Optional, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { CommonModule } from '@angular/common';
 
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import {
-  FormControl,
-  FormGroupDirective,
-  FormGroup,
-  NgForm,
-  Validators,
-} from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSelectModule } from '@angular/material/select';
-import { MatMenuModule } from '@angular/material/menu';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { TaskPageComponent } from '../../task-page.component';
-import { Dialog } from '@angular/cdk/dialog';
 import { TasksService } from 'src/app/services/tasks.service';
 import { ITask } from 'src/app/models/task';
 

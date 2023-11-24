@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
@@ -8,7 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { NewTaskModalComponent } from './new-task-modal/new-task-modal/new-task-modal.component';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { ITask } from 'src/app/models/task';
-import { tasks as data } from 'src/app/data/tasks';
 import { TasksService } from 'src/app/services/tasks.service';
 
 @Component({
