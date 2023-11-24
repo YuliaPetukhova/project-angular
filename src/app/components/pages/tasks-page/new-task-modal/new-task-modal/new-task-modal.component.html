@@ -11,42 +11,71 @@
   <h1>Создать задачу</h1>
 </header>
 
-<div mat-dialog-content>
-  <mat-form-field>
-    <mat-select placeholder="Группа задач">
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="New group" #itemName />
-      </mat-form-field>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-select placeholder="Группа задач">
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            placeholder="New group"
+            type="text"
+            formControlName="taskGroup"
+            #itemName
+          />
+        </mat-form-field>
 
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="add(itemName.value); itemName.value = ''"
+        >
+          Добавить
+        </button>
+
+        <mat-option
+          *ngFor="let taskGroup of taskGroups"
+          [value]="taskGroup.value"
+        >
+          {{ taskGroup.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        placeholder="Количество баллов"
+        formControlName="point"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Текст задачи</mat-label>
+      <textarea matInput type="text" formControlName="text"></textarea>
+    </mat-form-field>
+
+    <mat-dialog-actions>
       <button
+        type="submit"
         mat-raised-button
         color="primary"
-        (click)="add(itemName.value); itemName.value = ''"
+        (click)="onSubmit()"
       >
-        Добавить
+        Создать
       </button>
-
-      <mat-option
-        *ngFor="let taskGroup of taskGroups"
-        [value]="taskGroup.value"
-      >
-        {{ taskGroup.viewValue }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput placeholder="Количество баллов" />
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Текст задачи</mat-label>
-    <textarea matInput></textarea>
-  </mat-form-field>
-</div>
-
-<div mat-dialog-actions>
-  <button mat-raised-button color="primary" (click)="doAction()">
+    </mat-dialog-actions>
+  </div>
+</form>
+<!-- <div mat-dialog-actions>
+  <button
+    type="submit"
+    form="myform"
+    mat-raised-button
+    color="primary"
+    (click)="doAction()"
+  >
     Создать
   </button>
-</div>
+</div> -->
