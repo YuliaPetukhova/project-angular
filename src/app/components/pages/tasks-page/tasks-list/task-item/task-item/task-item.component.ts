@@ -6,7 +6,7 @@ import { ITask } from 'src/app/models/task';
 @Component({
   selector: 'app-task-item',
   templateUrl: './task-item.component.html',
-  styleUrls: ['./task-item.component.sass'],
+  styleUrls: ['./task-item.component.css'],
   standalone: true,
   imports: [MatCheckboxModule, CommonModule],
 })

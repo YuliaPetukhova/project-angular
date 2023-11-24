@@ -11,7 +11,7 @@
   <h1>Создать задачу</h1>
 </header>
 
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="myFormTask" (ngSubmit)="onSubmit()">
   <div mat-dialog-content>
     <mat-form-field>
       <mat-select placeholder="Группа задач">
@@ -28,7 +28,7 @@
         <button
           mat-raised-button
           color="primary"
-          (click)="add(itemName.value); itemName.value = ''"
+          (click)="addNewTaskGroup(itemName.value); itemName.value = ''"
         >
           Добавить
         </button>

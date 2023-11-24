@@ -8,7 +8,7 @@ import { TaskItemComponent } from './task-item/task-item/task-item.component';
 @Component({
   selector: 'app-tasks-list',
   templateUrl: './tasks-list.component.html',
-  styleUrls: ['./tasks-list.component.sass'],
+  styleUrls: ['./tasks-list.component.css'],
   standalone: true,
   imports: [MatCheckboxModule, CommonModule, TaskItemComponent],
 })

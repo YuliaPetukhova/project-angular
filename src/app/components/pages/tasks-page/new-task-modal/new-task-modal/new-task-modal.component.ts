@@ -25,7 +25,7 @@ export class NewTaskModalComponent implements OnInit {
   }
   ngOnInit(): void {}
 
-  myForm = new FormGroup({
+  myFormTask = new FormGroup({
     taskGroup: new FormControl<number>(0, [Validators.required]),
     point: new FormControl('', [Validators.required, Validators.minLength(2)]),
     text: new FormControl<string>('', [Validators.required]),
@@ -33,8 +33,8 @@ export class NewTaskModalComponent implements OnInit {
 
   onSubmit() {
     let formData: ITask = {
-      text: this.myForm.value.text as string,
-      taskGroupId: this.myForm.value.taskGroup ?? 1,
+      text: this.myFormTask.value.text as string,
+      taskGroupId: this.myFormTask.value.taskGroup ?? 1,
       createdAt: '',
       doneAt: '',
       deletedAt: '',
@@ -49,7 +49,7 @@ export class NewTaskModalComponent implements OnInit {
     this.dialogRef.close({ data: this.taskGroups });
   }
 
-  add(newValue: string): void {
+  addNewTaskGroup(newValue: string): void {
     newValue = newValue.trim();
 
     if (!newValue) {
