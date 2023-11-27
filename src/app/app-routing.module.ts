@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { MainPageComponent } from './components/pages/main-page/main-page.component';
 import { ModalComponent } from './components/modal/modal/modal.component';
 import { TaskPageComponent } from './components/pages/tasks-page/task-page.component';

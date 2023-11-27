@@ -2,11 +2,9 @@ import { Injectable } from '@angular/core';
 import { ITask } from '../models/task';
 import {
   HttpClient,
-  HttpErrorResponse,
   HttpParams,
 } from '@angular/common/http';
-import { Observable, catchError, tap, throwError } from 'rxjs';
-import { delay, retry } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -21,9 +19,6 @@ export class TasksService {
         params: new HttpParams().append('limit', 5),
       }
     );
-  }
-  static use(arg0: any) {
-    throw new Error('Method not implemented.');
   }
 
   create(task: ITask): Observable<ITask> {
