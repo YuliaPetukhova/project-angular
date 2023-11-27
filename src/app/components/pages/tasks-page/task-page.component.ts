@@ -5,10 +5,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-import { NewTaskModalComponent } from './new-task-modal/new-task-modal/new-task-modal.component';
+// import { NewTaskModalComponent } from './new-task-modal/new-task-modal/new-task-modal.component';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { ITask } from 'src/app/models/task';
 import { TasksService } from 'src/app/services/tasks.service';
+import { TaskFormComponent } from './task-form/task-form/task-form.component';
 
 @Component({
   selector: 'app-task-page',
@@ -41,7 +42,7 @@ export class TaskPageComponent {
   }
 
   openDialog(): void {
-    const dialog = this.matDialog.open(NewTaskModalComponent, {
+    const dialog = this.matDialog.open(TaskFormComponent, {
       data: {
         groups: this.groups,
         tasks: this.tasks,

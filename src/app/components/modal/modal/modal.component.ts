@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.sass'],
+  styleUrls: ['./modal.component.css'],
 })
 export class ModalComponent {
   constructor(private matDialog: MatDialog) {}
