@@ -8,6 +8,7 @@ import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { ITask } from 'src/app/models/task';
 import { TasksService } from 'src/app/services/tasks.service';
 import { TaskFormComponent } from './task-form/task-form.component';
+import { IGroups } from 'src/app/models/groups';
 
 @Component({
   selector: 'app-catalog',
@@ -24,18 +25,12 @@ import { TaskFormComponent } from './task-form/task-form.component';
 })
 export class CatalogComponent {
   tasks: ITask[];
+  groups: IGroups [];
 
-  public groups = [
-    { value: 'group-0', viewValue: 'Домашние дела' },
-    { value: 'group-1', viewValue: 'Странные дела' },
-  ];
-
-  constructor(
-    private matDialog: MatDialog,
-    private tasksService: TasksService
-  ) {
+  constructor(private matDialog: MatDialog, tasksService: TasksService) {
     tasksService.getAll().subscribe((result) => {
       this.tasks = result.tasks;
+      this.groups = result.groups;
     });
   }
 

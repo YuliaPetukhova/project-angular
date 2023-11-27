@@ -1,8 +1,6 @@
 import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
 import { TasksService } from 'src/app/services/tasks.service';
 import { ITask } from 'src/app/models/task';
 
@@ -12,14 +10,14 @@ import { ITask } from 'src/app/models/task';
   styleUrls: ['./task-form.component.css']
 })
 export class TaskFormComponent implements OnInit {
-	public taskGroups: any;
+	taskGroups: any;
   
 	constructor(
 	  private tasksService: TasksService,
-	  public dialogRef: MatDialogRef<TaskFormComponent>,
+	  private dialogRef: MatDialogRef<TaskFormComponent>,
 	  @Optional()
 	  @Inject(MAT_DIALOG_DATA)
-	  public data: { groups: any; tasks: any }
+	  private data: { groups: any; tasks: any }
 	) {
 	  this.taskGroups = window.structuredClone(data).groups;
 	}
@@ -32,17 +30,13 @@ export class TaskFormComponent implements OnInit {
 	});
   
 	onSubmit() {
-	  let formData: ITask = {
+	  this.tasksService.create({
 		text: this.myFormTask.value.text as string,
 		taskGroupId: this.myFormTask.value.taskGroup ?? 1,
 		createdAt: '',
 		doneAt: '',
 		deletedAt: '',
-		price: 100,
-	  };
-  
-	  this.tasksService.create(formData).subscribe((result) => {
-		this.dialogRef.close();
+	  }).subscribe((result) => {
 		this.data.tasks.push(result);
 	  });
   

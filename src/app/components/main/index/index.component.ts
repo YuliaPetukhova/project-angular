@@ -12,7 +12,9 @@ export class IndexComponent {
 
   constructor(private matDialog: MatDialog) {}
 
-  openDialog(): void {
-    this.matDialog.open(LoginFormComponent, {});
+  openLoginForm(): void {
+    this.matDialog.open(LoginFormComponent, {
+      width: '325px',
+    });
   }
 }

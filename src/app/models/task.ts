@@ -5,5 +5,4 @@ export interface ITask {
   createdAt: string;
   doneAt: string;
   deletedAt: string;
-  price: number;
 }
