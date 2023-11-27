@@ -4,17 +4,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
-// import { NewTaskModalComponent } from './new-task-modal/new-task-modal/new-task-modal.component';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { ITask } from 'src/app/models/task';
 import { TasksService } from 'src/app/services/tasks.service';
-import { TaskFormComponent } from './task-form/task-form/task-form.component';
+import { TaskFormComponent } from './task-form/task-form.component';
 
 @Component({
-  selector: 'app-task-page',
-  templateUrl: './task-page.component.html',
-  styleUrls: ['./task-page.component.css'],
+  selector: 'app-catalog',
+  templateUrl: './catalog.component.html',
+  styleUrls: ['./catalog.component.css'],
   standalone: true,
   imports: [
     MatButtonModule,
@@ -24,7 +22,7 @@ import { TaskFormComponent } from './task-form/task-form/task-form.component';
     TasksListComponent,
   ],
 })
-export class TaskPageComponent {
+export class CatalogComponent {
   tasks: ITask[];
 
   public groups = [
