@@ -16,7 +16,7 @@ export class TasksService {
     return this.http.get<ITask[]>(
       'https://gist.githubusercontent.com/YuliaPetukhova/21340a2637e4a4f0bc6c3fcc7f2c3b75/raw/2771c5bac5003c18ae3e1d7d202c0a669ca41b71/tasks.json',
       {
-        params: new HttpParams().append('limit', 5),
+        params: new HttpParams().append('limit', 3),
       }
     );
   }

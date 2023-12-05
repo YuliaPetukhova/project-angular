@@ -7,7 +7,7 @@
   <mat-icon> close</mat-icon>
 </button>
 
-<header class="p-5">
+<header class="p-4">
   <h1>Создать задачу</h1>
 </header>
 
@@ -34,7 +34,7 @@
         </button>
 
         <mat-option
-          *ngFor="let taskGroup of taskGroups"
+          *ngFor="let taskGroup of taskGroups; trackBy: trackByFn"
           [value]="taskGroup.value"
         >
           {{ taskGroup.viewValue }}

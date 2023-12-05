@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, Optional } from '@angular/core';
+import { Component, Inject, OnInit, Optional, ChangeDetectionStrategy  } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TasksService } from 'src/app/services/tasks.service';
@@ -7,7 +7,8 @@ import { ITask } from 'src/app/models/task';
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
-  styleUrls: ['./task-form.component.css']
+  styleUrls: ['./task-form.component.css'],
+//   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskFormComponent implements OnInit {
 	taskGroups: any;
@@ -25,9 +26,12 @@ export class TaskFormComponent implements OnInit {
   
 	myFormTask = new FormGroup({
 	  taskGroup: new FormControl<number>(0, [Validators.required]),
-	  point: new FormControl('', [Validators.required, Validators.minLength(2)]),
 	  text: new FormControl<string>('', [Validators.required]),
 	});
+
+	trackByFn(index, taskGroup: ITask) {   
+		return taskGroup.id;
+	}
   
 	onSubmit() {
 	  this.tasksService.create({
