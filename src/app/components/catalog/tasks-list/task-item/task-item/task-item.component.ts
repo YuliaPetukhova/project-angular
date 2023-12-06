@@ -12,4 +12,22 @@ import { ITask } from 'src/app/models/task';
 })
 export class TaskItemComponent {
   @Input() task: ITask;
+
+  // editedTask: Task;
+	// statusMessage: string;
+	// editTask(task: Task) {
+    //     this.editedTask = new Task(
+		//     task.id,
+		//     task.createdAt,
+		//     task.taskGroupId,
+    //         task.text
+    //     );
+    // }
+
+	// deleteTask(task: Task) {
+    //     this.serv.deleteTask(task.id).subscribe((data) => {
+    //         (this.statusMessage = 'Данные успешно удалены'),
+    //             this.loadTask();
+    //     });
+    // }
 }
