@@ -1,9 +1,20 @@
+<div>{{ statusMessage }}</div>
 <div class="py-4 px-6 border rounded flex flex-col mb-2">
   <td>
-    <input type="button" value="Изменить" class="btn btn-default" />
+    <input
+      type="button"
+      value="Изменить"
+      style="color: blueviolet;"
+      (click)="editTask()"
+    />
   </td>
   <td>
-    <input type="button" value="Удалить" class="btn btn-danger" />
+    <input
+      type="button"
+      value="Удалить"
+      style="color: red;"
+      (click)="deleteTask()"
+    />
   </td>
 
   <!-- <mat-checkbox class="text-right">Сделано</mat-checkbox> -->
