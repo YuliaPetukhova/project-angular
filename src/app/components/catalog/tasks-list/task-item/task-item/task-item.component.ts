@@ -36,9 +36,9 @@ export class TaskItemComponent {
     this.onEdit.emit(task);
   }
 
-  constructor(private serv: TasksService) {
-    this.tasks = [];
-  }
+  // constructor(private serv: TasksService) {
+  //   this.tasks = [];
+  // }
 
   editedTask: ITask;
   tasks: Array<ITask>;
