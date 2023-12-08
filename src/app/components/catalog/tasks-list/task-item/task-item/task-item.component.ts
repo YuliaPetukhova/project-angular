@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {
+  EventEmitter,
+  OnInit,
+  Output,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { Component, Input } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ITask } from 'src/app/models/task';
@@ -12,7 +18,7 @@ import { TasksService } from 'src/app/services/tasks.service';
   standalone: true,
   imports: [MatCheckboxModule, CommonModule],
 })
-export class TaskItemComponent implements OnInit {
+export class TaskItemComponent {
   @ViewChild('readOnlyTemplate', { static: false })
   readOnlyTemplate: TemplateRef<any>;
   @ViewChild('editTemplate', { static: false })
@@ -20,11 +26,18 @@ export class TaskItemComponent implements OnInit {
 
   @Input() task: ITask;
 
-  constructor(private serv: TasksService) {
-    this.tasks = new Array<ITask>();
+  @Output() onDelete = new EventEmitter<ITask>();
+  deleteTask(task: ITask) {
+    this.onDelete.emit(task);
   }
-  ngOnInit(){
-    this.loadTasks();
+
+  @Output() onEdit = new EventEmitter<ITask>();
+  editTask(task: ITask) {
+    this.onEdit.emit(task);
+  }
+
+  constructor(private serv: TasksService) {
+    this.tasks = [];
   }
 
   editedTask: ITask;
@@ -32,64 +45,51 @@ export class TaskItemComponent implements OnInit {
   statusMessage: string;
   isNewRecord: boolean;
 
-  editTask() {
-    this.editedTask = {
-      id: 0,
-      text: 'this.myFormTask.value.text as string',
-      taskGroupId: 1,
-      createdAt: '',
-      doneAt: '',
-      deletedAt: '',
-    };
-    // this.editedTask = new ITask(
-    // task.id,
-    // task.createdAt,
-    // task.taskGroupId,
-    //     task.text
-    // );
-  }
+  // editTask(task: ITask) {
+  //   this.editedTask = {
+  //     id: 0,
+  //     text: 'this.myFormTask.value.text as string',
+  //     taskGroupId: 1,
+  //     createdAt: '',
+  //     doneAt: '',
+  //     deletedAt: '',
+  //   };
+  //   // this.editedTask = new ITask(
+  //   // task.id,
+  //   // task.createdAt,
+  //   // task.taskGroupId,
+  //   //     task.text
+  //   // );
+  // }
+  // сохраняем пользователя
+  // saveTask() {
+  //   if (this.isNewRecord) {
+  //     // добавляем пользователя
+  //     this.serv.create(this.editedTask).subscribe((data) => {
+  //       // (this.statusMessage = 'Данные успешно добавлены'), this.loadTasks();
+  //     });
+  //     this.isNewRecord = false;
+  //     // this.editedTask = null;
+  //   } else {
+  //     // изменяем пользователя
+  //     this.serv
+  //       .updateTask(this.editedTask.id as number, this.editedTask)
+  //       .subscribe((data) => {
+  //         (this.statusMessage = 'Данные успешно обновлены'), this.serv.getAll();
+  //       });
+  //     // this.editedTask = null;
+  //   }
+  // }
 
-  private loadTasks() {
-    this.serv.getAll().subscribe((data) => {
-        this.tasks = data;
-    });
-}
-// сохраняем пользователя
-saveTask() {
-    if (this.isNewRecord) {
-        // добавляем пользователя
-        this.serv
-            .create(this.editedTask)
-            .subscribe((data) => {
-                (this.statusMessage =
-                    'Данные успешно добавлены'),
-                    this.loadTasks();
-            });
-        this.isNewRecord = false;
-        // this.editedTask = null;
-    } else {
-        // изменяем пользователя
-        this.serv
-            .updateTask(
-                this.editedTask.id as number,
-                this.editedTask
-            )
-            .subscribe((data) => {
-                (this.statusMessage =
-                    'Данные успешно обновлены'),
-                    this.serv.getAll();
-            });
-        // this.editedTask = null;
-    }
-}
-
-deleteTask() {
-    this.serv.deleteTask(this.task.id as number).subscribe((data) => {
-		// const key = this.tasks.filter(task => {
-			// return task.id === this.task.id;
-		// });
-		// this.tasks.removeByKey(key);splice
-      (this.statusMessage = 'Данные успешно удалены'),  this.loadTasks();
-    });
-  }
+  // deleteTask(task: ITask) {
+  //   this.serv.deleteTask(this.task.id as number).subscribe((data) => {
+  //     console.log(this.tasks);
+  //     const key = this.tasks.filter((task) => {
+  //       return task.id === this.task.id;
+  //     });
+  //     console.log(key);
+  //     // this.tasks.removeByKey(key);splice
+  //     // (this.statusMessage = 'Данные успешно удалены'), this.loadTasks();
+  //   });
+  // }
 }

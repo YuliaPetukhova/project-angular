@@ -13,4 +13,11 @@ import { TaskItemComponent } from './task-item/task-item/task-item.component';
 })
 export class TasksListComponent {
   @Input() tasks: ITask[];
+  onDelete(task: ITask) {
+    console.log(task);
+  }
+
+  onEdit(task: ITask) {
+    console.log(task);
+  }
 }
