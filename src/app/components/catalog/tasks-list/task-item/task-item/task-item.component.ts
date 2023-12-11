@@ -80,16 +80,4 @@ export class TaskItemComponent {
   //     // this.editedTask = null;
   //   }
   // }
-
-  // deleteTask(task: ITask) {
-  //   this.serv.deleteTask(this.task.id as number).subscribe((data) => {
-  //     console.log(this.tasks);
-  //     const key = this.tasks.filter((task) => {
-  //       return task.id === this.task.id;
-  //     });
-  //     console.log(key);
-  //     // this.tasks.removeByKey(key);splice
-  //     // (this.statusMessage = 'Данные успешно удалены'), this.loadTasks();
-  //   });
-  // }
 }

@@ -15,33 +15,17 @@ import { TasksService } from 'src/app/services/tasks.service';
 export class TasksListComponent {
   editedTask: ITask;
   @Input() tasks: ITask[];
-  @Input() task: ITask;
 
-  constructor(private serv: TasksService) {
-    // this.tasks = [];
-  }
+  constructor(private serv: TasksService) {}
 
   onDelete(task: ITask) {
-    console.log(this.task);
-    this.serv.deleteTask(this.task.id as number).subscribe((data) => {
-      console.log(this.task);
-      const key = this.tasks.filter((task) => {
-        return task.id === this.task.id;
-      });
-      console.log(key);
-    //   this.tasks.splice(key);
-    //   (this.statusMessage = 'Данные успешно удалены'), this.loadTasks();
+    this.serv.deleteTask(task.id as number).subscribe((data) => {
+      this.tasks.splice(
+        this.tasks.findIndex((filteredTask) => filteredTask.id === task.id),
+        1
+      );
     });
   }
 
-  onEdit(task: ITask) {
-    // this.editedTask = {
-    //   id: 0,
-    //   text: 'this.myFormTask.value.text as string',
-    //   taskGroupId: 1,
-    //   createdAt: '',
-    //   doneAt: '',
-    //   deletedAt: '',
-    // };
-  }
+  onEdit(task: ITask) {}
 }
