@@ -15,7 +15,7 @@ export class TasksService {
 
   getAll(): Observable<any> {
     return this.http.get<ITask[]>(this.urlAllTasks, {
-      params: new HttpParams().append('limit', 3),
+      // params: new HttpParams().append('limit', 3),
     });
   }
 
@@ -23,11 +23,9 @@ export class TasksService {
     return this.http.get<ITask>(this.urlNewTask);
   }
 
-  updateTask(id: number, task: ITask) {
-    const urlParams = new HttpParams().set('id', id.toString());
-    return this.http.put(this.urlNewTask, task, {
-      params: urlParams,
-    });
+  updateTask(task: ITask): Observable<ITask> {
+    // const urlParams = new HttpParams().set('id', id.toString());
+    return this.http.get<ITask>(this.urlNewTask);
   }
   deleteTask(id: number) {
     return this.http.get<ITask>(this.urlNewTask);

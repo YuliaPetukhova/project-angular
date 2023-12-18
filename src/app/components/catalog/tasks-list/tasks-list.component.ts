@@ -4,6 +4,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ITask } from 'src/app/models/task';
 import { TaskItemComponent } from './task-item/task-item/task-item.component';
 import { TasksService } from 'src/app/services/tasks.service';
+import { IGroups } from 'src/app/models/groups';
+import { TaskFormComponent } from '../task-form/task-form.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-tasks-list',
@@ -14,9 +17,10 @@ import { TasksService } from 'src/app/services/tasks.service';
 })
 export class TasksListComponent {
   editedTask: ITask;
+  @Input() groups: IGroups[];
   @Input() tasks: ITask[];
 
-  constructor(private serv: TasksService) {}
+  constructor(private serv: TasksService, private matDialog: MatDialog) {}
 
   onDelete(task: ITask) {
     this.serv.deleteTask(task.id as number).subscribe((data) => {
@@ -27,5 +31,34 @@ export class TasksListComponent {
     });
   }
 
-  onEdit(task: ITask) {}
+  onEdit(task: ITask) {
+    const dialog = this.matDialog.open(TaskFormComponent, {
+      data: {
+        groups: this.groups,
+        tasks: this.tasks,
+        currentTask: task,
+      },
+    });
+
+    dialog.afterClosed().subscribe((result) => {
+      if (result && result.data && result.data.length > this.groups.length) {
+        this.groups = result.data;
+      }
+    });
+
+    // this.serv.updateTask(task).subscribe((newTask) => {
+    //   // this.tasks.replace(task, newTask); js array replace element
+    //   // const taskIndex = this.tasks.findIndex((filteredTask) => filteredTask.id === task.id);
+    //   // this.tasks[taskIndex] = newTask;
+    // }
+    // )
+    // this.editedTask = {
+    //     id: 0,
+    //     text: 'this.myFormTask.value.text as string',
+    //     taskGroupId: 1,
+    //     createdAt: '',
+    //     doneAt: '',
+    //     deletedAt: '',
+    //   };
+  }
 }
