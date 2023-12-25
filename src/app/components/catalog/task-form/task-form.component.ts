@@ -12,22 +12,34 @@ import { ITask } from 'src/app/models/task';
 })
 export class TaskFormComponent implements OnInit {
 	taskGroups: any;
-  
+    myFormTask: FormGroup;
+	selected: '1';
+	isEditForm: boolean;
+	isCreateForm: boolean;
+
 	constructor(
 	  private tasksService: TasksService,
 	  private dialogRef: MatDialogRef<TaskFormComponent>,
 	  @Optional()
 	  @Inject(MAT_DIALOG_DATA)
-	  private data: { groups: any; tasks: any }
+	  private data: { groups: any; tasks: any; currentTask: ITask}
 	) {
 	  this.taskGroups = window.structuredClone(data).groups;
+	  this.isEditForm = !!data.currentTask;
+	  this.isCreateForm = !this.isEditForm;
+
+	this.myFormTask = new FormGroup({
+		taskGroup: new FormControl<number>(data.currentTask?.taskGroupId, [Validators.required]),
+		// taskGroup: new FormControl<number>(data.currentTask?.taskGroupId, [Validators.required]),
+		text: new FormControl<string>(data.currentTask?.text, [Validators.required]),
+	  });
 	}
 	ngOnInit(): void {}
   
-	myFormTask = new FormGroup({
-	  taskGroup: new FormControl<number>(0, [Validators.required]),
-	  text: new FormControl<string>('', [Validators.required]),
-	});
+	// myFormTask = new FormGroup({
+	//   taskGroup: new FormControl<number>(this.currentTask.taskGroupId ?? 0, [Validators.required]),
+	//   text: new FormControl<string>('', [Validators.required]),
+	// });
 
 	trackByFn(index, taskGroup: ITask) {   
 		return taskGroup.id;

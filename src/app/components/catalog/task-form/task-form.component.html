@@ -48,7 +48,8 @@
     </mat-form-field>
 
     <mat-dialog-actions>
-      <button type="submit" mat-raised-button color="primary">Создать</button>
+      <button [hidden]="isEditForm" type="submit" mat-raised-button color="primary">Создать</button>
+      <button [hidden]="isCreateForm" type="submit" mat-raised-button color="primary">Изменить</button>
     </mat-dialog-actions>
   </div>
 </form>
