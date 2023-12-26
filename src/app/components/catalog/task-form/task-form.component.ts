@@ -8,12 +8,10 @@ import { ITask } from 'src/app/models/task';
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.css'],
-//   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskFormComponent implements OnInit {
 	taskGroups: any;
     myFormTask: FormGroup;
-	selected: '1';
 	isEditForm: boolean;
 	isCreateForm: boolean;
 
