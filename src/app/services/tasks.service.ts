@@ -7,28 +7,31 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class TasksService {
-  private urlAllTasks =
-    'https://gist.githubusercontent.com/YuliaPetukhova/21340a2637e4a4f0bc6c3fcc7f2c3b75/raw/2771c5bac5003c18ae3e1d7d202c0a669ca41b71/tasks.json';
-  private urlNewTask =
-    'https://gist.githubusercontent.com/YuliaPetukhova/f787a9fee9a088f4a52a6d52451a5d25/raw/42b4035b51de8b5a3bcec1d79458a2963a72a390/new.json';
+  private urlAllTasks = 'http://localhost/api/v1/family-task/task-group/groups';
+  private urlNewTask = 'http://localhost/api/v1/family-task/task/create';
+  private urlUpdateTask = 'http://localhost/api/v1/family-task/task/update/text/id';
+  private urlDeleteTask = 'http://localhost/api/v1/family-task/task/delete/id';
+  private urlCreateTitleGroup = 'http://localhost/api/v1/family-task/task-group/create';
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<any> {
     return this.http.get<ITask[]>(this.urlAllTasks, {
-      // params: new HttpParams().append('limit', 3),
     });
   }
 
   create(task: ITask): Observable<ITask> {
-    return this.http.get<ITask>(this.urlNewTask);
+    return this.http.post<ITask>(this.urlNewTask, task);
+  }
+
+  createGroupTitle(task: ITask): Observable<ITask>{
+    return this.http.post<ITask>(this.urlCreateTitleGroup, task);
   }
 
   updateTask(task: ITask): Observable<ITask> {
-    // const urlParams = new HttpParams().set('id', id.toString());
-    return this.http.get<ITask>(this.urlNewTask);
+    return this.http.post<ITask>(this.urlUpdateTask, task);
   }
   deleteTask(id: number) {
-    return this.http.get<ITask>(this.urlNewTask);
+    return this.http.delete<ITask>(this.urlDeleteTask);
   }
 }
 
