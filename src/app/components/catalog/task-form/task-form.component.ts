@@ -64,6 +64,6 @@ export class TaskFormComponent implements OnInit {
 		return;
 	  }
   
-	  this.taskGroups.unshift({ value: '', viewValue: newValue });
+	  this.taskGroups.unshift({ id: '', title: newValue });
 	}
   }

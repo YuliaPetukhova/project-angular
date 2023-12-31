@@ -29,8 +29,8 @@ export class CatalogComponent {
 
   constructor(private matDialog: MatDialog, tasksService: TasksService) {
     tasksService.getAll().subscribe((result) => {
-      this.tasks = result.tasks;
-      this.groups = result.groups;
+      this.tasks = result.groups;
+      this.groups = result.groupTitles;
     });
   }
 

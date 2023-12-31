@@ -28,16 +28,16 @@
         <button
           mat-raised-button
           color="primary"
-          (click)="addNewTaskGroup(itemName.value); itemName.value = ''"
+          (click)="addNewTaskGroup(itemName.id); itemName.id = ''"
         >
           Добавить
         </button>
 
         <mat-option
           *ngFor="let taskGroup of taskGroups; trackBy: trackByFn"
-          [value]="taskGroup.value"
+          [value]="taskGroup.id"
         >
-          {{ taskGroup.viewValue }}
+          {{ taskGroup.title }}
         </mat-option>
       </mat-select>
     </mat-form-field>

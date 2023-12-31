@@ -1,5 +1,5 @@
 export interface IGroups {
-    value: string;
-    viewValue: string;
+    id: string;
+    title: string;
   }
   
