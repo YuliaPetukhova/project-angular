@@ -16,13 +16,12 @@ import { TaskFormComponent } from './components/catalog/task-form/task-form.comp
 import { LoginFormComponent } from './components/main/login-form/login-form.component';
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { IndexComponent } from './components/main/index/index.component';
-
 @NgModule({
   declarations: [
     AppComponent,
     TaskFormComponent,
     LoginFormComponent,
-    IndexComponent,
+    IndexComponent
   ],
   imports: [
     CatalogComponent,

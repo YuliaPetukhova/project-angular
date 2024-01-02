@@ -9,6 +9,7 @@ import { ITask } from 'src/app/models/task';
 import { TasksService } from 'src/app/services/tasks.service';
 import { TaskFormComponent } from './task-form/task-form.component';
 import { IGroups } from 'src/app/models/groups';
+import { BottomMenuComponent} from "./bottom-menu/bottom-menu.component";
 
 @Component({
   selector: 'app-catalog',
@@ -21,6 +22,7 @@ import { IGroups } from 'src/app/models/groups';
     MatIconModule,
     MatDialogModule,
     TasksListComponent,
+    BottomMenuComponent
   ],
 })
 export class CatalogComponent {
