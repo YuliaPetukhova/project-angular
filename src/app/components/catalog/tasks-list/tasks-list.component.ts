@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ITask } from 'src/app/models/task';
+import { ITask } from 'src/app/models/ITask';
 import { TaskItemComponent } from './task-item/task-item/task-item.component';
 import { TasksService } from 'src/app/services/tasks.service';
-import { IGroups } from 'src/app/models/groups';
+import { IGroupTitle } from 'src/app/models/IGroupTitle';
 import { TaskFormComponent } from '../task-form/task-form.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -17,7 +17,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class TasksListComponent {
   editedTask: ITask;
-  @Input() groups: IGroups[];
+  @Input() groups: IGroupTitle[];
   @Input() tasks: ITask[];
 
   constructor(private serv: TasksService, private matDialog: MatDialog) {}

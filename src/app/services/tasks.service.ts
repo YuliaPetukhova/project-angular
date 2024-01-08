@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ITask } from '../models/task';
+import { ITask } from '../models/ITask';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 

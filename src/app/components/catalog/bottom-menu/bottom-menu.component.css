@@ -55,3 +55,7 @@ input.inputText:focus{
   display: flex;
   justify-content: space-between;
 }
+
+.menu-groups-title{
+  width: 100% !important;
+}

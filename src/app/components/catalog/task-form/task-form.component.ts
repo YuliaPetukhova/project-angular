@@ -2,7 +2,7 @@ import { Component, Inject, OnInit, Optional, ChangeDetectionStrategy  } from '@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TasksService } from 'src/app/services/tasks.service';
-import { ITask } from 'src/app/models/task';
+import { ITask } from 'src/app/models/ITask';
 
 @Component({
   selector: 'app-task-form',

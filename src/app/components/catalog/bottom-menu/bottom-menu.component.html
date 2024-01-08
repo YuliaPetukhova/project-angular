@@ -17,18 +17,26 @@
       <mat-icon>close</mat-icon>
     </button>
     <button
+      mat-button [matMenuTriggerFor]="menu"
       class="button-class"
       aria-label="Меню"
       [hidden]="hideMenuBtn"
-    >Menu
+    >Меню
     </button>
+    <mat-menu
+      #menu="matMenu"
+      yPosition="above"
+    >
+      <button mat-menu-item class="menu-groups-title" *ngFor="let groupTitle of groupTitles">{{groupTitle.title}}</button>
+    </mat-menu>
+
   </div>
 
   <div
     [hidden]="hideTaskBtns"
     class="bottom-menu__btns"
   >
-    <button class="icon-btn">
+    <button class="icon-btn"  mat-button [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
     </button>
     <button class="icon-btn">

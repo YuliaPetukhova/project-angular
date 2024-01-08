@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import {ITask} from "../../../models/ITask";
+import {IGroupTitle} from "../../../models/IGroupTitle";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-bottom-menu',
@@ -9,7 +13,9 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule,
+    CommonModule
   ],
 })
 
@@ -18,6 +24,8 @@ export class BottomMenuComponent {
   placeholderAddTask: string = "Добавить задачу";
   hideTaskBtns: boolean = true;
   hideDeleteBtn: boolean = true;
+
+  @Input() groupTitles!: IGroupTitle[];
 
   onFocus() {
     this.hideMenuBtn = true;
