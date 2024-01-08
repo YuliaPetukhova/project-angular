@@ -1,15 +1,44 @@
-<div class="flex flex-wrap fixed bottom-16 justify-items-center m-1">
-  <button
-    class="my-class"
-    mat-raised-button
-    aria-label="Add task"
-  >Add task
-  </button>
+<div class="bottom-menu" [class.bottom-menu-in-use]="!hideDeleteBtn">
+  <div class="bottom-menu__header">
+    <input
+      class="inputText"
+      type="text"
+      [placeholder]="placeholderAddTask"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      (input)="onChange($event.target)"
+      [class.inputText-in-use]="!hideDeleteBtn"
+    />
+    <button
+      class="deleteBtn"
+      (click)="clearInput($event.target)"
+      [hidden]="hideDeleteBtn"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <button
+      class="button-class"
+      aria-label="Меню"
+      [hidden]="hideMenuBtn"
+    >Menu
+    </button>
+  </div>
 
-  <button
-    class="my-class"
-    mat-raised-button
-    aria-label="Menu"
-  >Menu
-  </button>
+  <div
+    [hidden]="hideTaskBtns"
+    class="bottom-menu__btns"
+  >
+    <button class="icon-btn">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <button class="icon-btn">
+      <mat-icon>calendar_today</mat-icon>
+    </button>
+    <button class="icon-btn">
+      <mat-icon>cached</mat-icon>
+    </button>
+    <button class="icon-btn">
+      <mat-icon>check</mat-icon>
+    </button>
+  </div>
 </div>

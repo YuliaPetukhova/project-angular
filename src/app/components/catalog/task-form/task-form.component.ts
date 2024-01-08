@@ -11,7 +11,7 @@ import { ITask } from 'src/app/models/task';
 })
 export class TaskFormComponent implements OnInit {
 	taskGroups: any;
-    myFormTask: FormGroup;
+  myFormTask: FormGroup;
 	isEditForm: boolean;
 	isCreateForm: boolean;
 
@@ -33,16 +33,16 @@ export class TaskFormComponent implements OnInit {
 	  });
 	}
 	ngOnInit(): void {}
-  
+
 	// myFormTask = new FormGroup({
 	//   taskGroup: new FormControl<number>(this.currentTask.taskGroupId ?? 0, [Validators.required]),
 	//   text: new FormControl<string>('', [Validators.required]),
 	// });
 
-	trackByFn(index, taskGroup: ITask) {   
+	trackByFn(index, taskGroup: ITask) {
 		return taskGroup.id;
 	}
-  
+
 	onSubmit() {
 	  this.tasksService.create({
 		text: this.myFormTask.value.text as string,
@@ -53,17 +53,17 @@ export class TaskFormComponent implements OnInit {
 	  }).subscribe((result) => {
 		this.data.tasks.push(result);
 	  });
-  
+
 	  this.dialogRef.close({ data: this.taskGroups });
 	}
-  
+
 	addNewTaskGroup(newValue: string): void {
 	  newValue = newValue.trim();
-  
+
 	  if (!newValue) {
 		return;
 	  }
-  
+
 	  this.taskGroups.unshift({ id: '', title: newValue });
 	}
   }

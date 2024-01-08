@@ -1,5 +1,57 @@
-.my-class{
-  width: 155px!important;
-  min-width: unset!important;
-  background-color: lavenderblush;
+.bottom-menu{
+  display: flex;
+  flex-wrap: wrap;
+  position: fixed;
+  bottom: 0;
+  justify-items: center;
+  border: 1px #f61c65;
+  border-top-style: solid;
+  width: 100%;
+  height: 40px;
+}
+
+.bottom-menu-in-use {
+  bottom: 31px;
+}
+
+.button-class{
+  width: 30%;
+  min-width: unset;
+  background-color: #f61c65;
+  color: white;
+}
+
+.inputText{
+  width: 70%;
+  padding: 0px 10px;
+  line-height: 39px;
+}
+
+.inputText-in-use {
+  width: 90%;
+}
+
+input.inputText:focus{
+  width: 90%;
+}
+.deleteBtn:focus{
+  width: 10%;
+}
+
+.bottom-menu__btns, .bottom-menu__header{
+  width: 100%;
+}
+.icon-btn{
+  flex-grow: 1;
+}
+
+.bottom-menu__header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom-menu__btns {
+  border-top: #f61c65 solid 1px;
+  display: flex;
+  justify-content: space-between;
 }
