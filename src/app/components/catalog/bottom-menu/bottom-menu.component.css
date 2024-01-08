@@ -18,13 +18,14 @@
   width: 30%;
   min-width: unset;
   background-color: #f61c65;
-  color: white;
+  color: white!important;
 }
 
 .inputText{
   width: 70%;
   padding: 0px 10px;
   line-height: 39px;
+  outline: none;
 }
 
 .inputText-in-use {
@@ -40,6 +41,7 @@ input.inputText:focus{
 
 .bottom-menu__btns, .bottom-menu__header{
   width: 100%;
+  background-color: white!important;
 }
 .icon-btn{
   flex-grow: 1;
@@ -54,6 +56,7 @@ input.inputText:focus{
   border-top: #f61c65 solid 1px;
   display: flex;
   justify-content: space-between;
+  padding-top: 2px;
 }
 
 .menu-groups-title{

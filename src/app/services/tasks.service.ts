@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ITask } from '../models/ITask';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {ICatalog} from "../models/ICatalog";
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +15,8 @@ export class TasksService {
   private urlCreateTitleGroup = 'http://localhost/api/v1/family-task/task-group/create';
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<any> {
-    return this.http.get<ITask[]>(this.urlAllTasks);
+  getAll(): Observable<ICatalog> {
+    return this.http.get<ICatalog>(this.urlAllTasks);
   }
 
   create(task: ITask): Observable<ITask> {
