@@ -1,12 +1,12 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ITask } from 'src/app/models/ITask';
-import { TaskItemComponent } from './task-item/task-item/task-item.component';
-import { TasksService } from 'src/app/services/tasks.service';
-import { IGroupTitle } from 'src/app/models/IGroupTitle';
-import { TaskFormComponent } from '../task-form/task-form.component';
-import { MatDialog } from '@angular/material/dialog';
+import {Component, Input, OnChanges} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {ITask} from 'src/app/models/ITask';
+import {TaskItemComponent} from './task-item/task-item/task-item.component';
+import {TasksService} from 'src/app/services/tasks.service';
+import {MatDialog} from '@angular/material/dialog';
+import {IGroup} from "../../../models/IGroup";
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-tasks-list',
@@ -15,12 +15,25 @@ import { MatDialog } from '@angular/material/dialog';
   standalone: true,
   imports: [MatCheckboxModule, CommonModule, TaskItemComponent],
 })
-export class TasksListComponent {
-  editedTask: ITask;
-  @Input() groups: IGroupTitle[];
-  @Input() tasks: ITask[];
 
-  constructor(private serv: TasksService, private matDialog: MatDialog) {}
+export class TasksListComponent implements OnChanges {
+  editedTask: ITask;
+  @Input() tasks: ITask[];
+  @Input() groups: IGroup[];
+  currentGroup: IGroup;
+
+  ngOnChanges(changes) {
+    if (changes.groups && changes.groups.currentValue) {
+      this.route.params.subscribe(params => {
+        this.tasks = changes.groups.currentValue.find((group => {
+          return group.id == params['id'];
+        })).tasks;
+      })
+    }
+  }
+
+  constructor(private serv: TasksService, private matDialog: MatDialog, private route: ActivatedRoute) {
+  }
 
   onDelete(task: ITask) {
     this.serv.deleteTask(task.id as number).subscribe((data) => {
@@ -31,34 +44,34 @@ export class TasksListComponent {
     });
   }
 
-  onEdit(task: ITask) {
-    const dialog = this.matDialog.open(TaskFormComponent, {
-      data: {
-        groups: this.groups,
-        tasks: this.tasks,
-        currentTask: task,
-      },
-    });
+  // onEdit(task: ITask) {
+  //   const dialog = this.matDialog.open(TaskFormComponent, {
+  //     data: {
+  //       groups: this.groups,
+  //       tasks: this.tasks,
+  //       currentTask: task,
+  //     },
+  //   });
+  //
+  //   dialog.afterClosed().subscribe((result) => {
+  //     if (result && result.data && result.data.length > this.groups.length) {
+  //       this.groups = result.data;
+  //     }
+  //   });
 
-    dialog.afterClosed().subscribe((result) => {
-      if (result && result.data && result.data.length > this.groups.length) {
-        this.groups = result.data;
-      }
-    });
-
-    // this.serv.updateTask(task).subscribe((newTask) => {
-    //   // this.tasks.replace(task, newTask); js array replace element
-    //   // const taskIndex = this.tasks.findIndex((filteredTask) => filteredTask.id === task.id);
-    //   // this.tasks[taskIndex] = newTask;
-    // }
-    // )
-    // this.editedTask = {
-    //     id: 0,
-    //     text: 'this.myFormTask.value.text as string',
-    //     taskGroupId: 1,
-    //     createdAt: '',
-    //     doneAt: '',
-    //     deletedAt: '',
-    //   };
-  }
+  // this.serv.updateTask(task).subscribe((newTask) => {
+  //   // this.tasks.replace(task, newTask); js array replace element
+  //   // const taskIndex = this.tasks.findIndex((filteredTask) => filteredTask.id === task.id);
+  //   // this.tasks[taskIndex] = newTask;
+  // }
+  // )
+  // this.editedTask = {
+  //     id: 0,
+  //     text: 'this.myFormTask.value.text as string',
+  //     taskGroupId: 1,
+  //     createdAt: '',
+  //     doneAt: '',
+  //     deletedAt: '',
+  //   };
+  // }
 }

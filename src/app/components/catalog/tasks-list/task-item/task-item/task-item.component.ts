@@ -1,15 +1,7 @@
-import { CommonModule } from '@angular/common';
-import {
-  EventEmitter,
-  OnInit,
-  Output,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
-import { Component, Input } from '@angular/core';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ITask } from 'src/app/models/ITask';
-import { TasksService } from 'src/app/services/tasks.service';
+import {CommonModule} from '@angular/common';
+import {Component, EventEmitter, Input, Output, TemplateRef, ViewChild,} from '@angular/core';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {ITask} from 'src/app/models/ITask';
 
 @Component({
   selector: 'app-task-item',

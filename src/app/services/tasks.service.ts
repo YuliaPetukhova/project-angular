@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
-import { ITask } from '../models/ITask';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {ITask} from '../models/ITask';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import {ICatalog} from "../models/ICatalog";
+import {IGroup} from "../models/IGroup";
+
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +15,9 @@ export class TasksService {
   private urlUpdateTask = 'http://localhost/api/v1/family-task/task/update/text/id';
   private urlDeleteTask = 'http://localhost/api/v1/family-task/task/delete/';
   private urlCreateTitleGroup = 'http://localhost/api/v1/family-task/task-group/create';
+  private error: any;
   constructor(private http: HttpClient) {}
+
 
   getAll(): Observable<ICatalog> {
     return this.http.get<ICatalog>(this.urlAllTasks);
