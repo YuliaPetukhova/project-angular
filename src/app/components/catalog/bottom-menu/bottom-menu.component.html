@@ -14,7 +14,10 @@
       (click)="clearInput($event.target)"
       [hidden]="hideDeleteBtn"
     >
-      <mat-icon>close</mat-icon>
+      <span class="material-symbols-outlined">
+        close
+      </span>
+      <!--      <mat-icon>close</mat-icon>-->
     </button>
     <button
       [matMenuTriggerFor]="menu"
@@ -28,7 +31,7 @@
       #menu="matMenu"
       yPosition="above"
     >
-      <button class="menu-groups-title" *ngFor="let groupTitle of groupTitles">{{groupTitle.title}}</button>
+      <button class="menu-groups-title" *ngFor="let groupTitle of groupTitles">{{ groupTitle.title }}</button>
     </mat-menu>
 
   </div>
@@ -38,16 +41,33 @@
     class="bottom-menu__btns"
   >
     <button class="icon-btn" [matMenuTriggerFor]="menu">
-      <mat-icon>menu</mat-icon>
+<!--      <mat-icon>menu</mat-icon>-->
+      <span class="material-symbols-outlined">
+        menu
+      </span>
     </button>
     <button class="icon-btn">
-      <mat-icon>calendar_today</mat-icon>
+      <span class="material-symbols-outlined">
+        calendar_month
+      </span>
+<!--      <mat-icon>calendar</mat-icon>-->
     </button>
     <button class="icon-btn">
-      <mat-icon>cached</mat-icon>
+      <span class="material-symbols-outlined">
+        autorenew
+      </span>
     </button>
     <button class="icon-btn">
-      <mat-icon>check</mat-icon>
+      <span class="material-symbols-outlined">
+        money
+      </span>
+<!--      <mat-icon>cach</mat-icon>-->
+    </button>
+    <button class="icon-btn">
+      <span class="material-symbols-outlined">
+        check_circle
+      </span>
+      <!--      <mat-icon>check</mat-icon>-->
     </button>
   </div>
 </div>
