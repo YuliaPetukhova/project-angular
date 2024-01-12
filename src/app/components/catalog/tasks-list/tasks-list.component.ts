@@ -7,6 +7,7 @@ import {TasksService} from 'src/app/services/tasks.service';
 import {MatDialog} from '@angular/material/dialog';
 import {IGroup} from "../../../models/IGroup";
 import {ActivatedRoute} from '@angular/router';
+import {IGroupTitle} from "../../../models/IGroupTitle";
 
 @Component({
   selector: 'app-tasks-list',
@@ -25,9 +26,9 @@ export class TasksListComponent implements OnChanges {
   ngOnChanges(changes) {
     if (changes.groups && changes.groups.currentValue) {
       this.route.params.subscribe(params => {
-        this.tasks = changes.groups.currentValue.find((group => {
+        this.currentGroup = changes.groups.currentValue.find((group => {
           return group.id == params['id'];
-        })).tasks;
+        }));
       })
     }
   }

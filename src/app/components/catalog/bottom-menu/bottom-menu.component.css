@@ -15,7 +15,7 @@
 }
 
 .button-class{
-  width: 30%;
+  width: 30% !important;
   min-width: unset;
   background-color: #f61c65;
   color: white!important;
@@ -61,4 +61,18 @@ input.inputText:focus{
 
 .menu-groups-title{
   width: 100% !important;
+  border-block: 1px solid #f61c65;
+  margin-top: -1px;
+  padding: 4px 4px;
+}
+
+.cdk-overlay-connected-position-bounding-box {
+  left: 0 !important;
+}
+@media only screen and (max-width: 1500px) {
+  .title-group {
+    max-width: unset !important;
+    width: 100vw;
+    padding: 0 0;
+  }
 }

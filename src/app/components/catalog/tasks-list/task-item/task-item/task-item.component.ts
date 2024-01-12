@@ -2,6 +2,7 @@ import {CommonModule} from '@angular/common';
 import {Component, EventEmitter, Input, Output, TemplateRef, ViewChild,} from '@angular/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {ITask} from 'src/app/models/ITask';
+import {IGroup} from "../../../../../models/IGroup";
 
 @Component({
   selector: 'app-task-item',
@@ -17,6 +18,7 @@ export class TaskItemComponent {
   editTemplate: TemplateRef<any>;
 
   @Input() task: ITask;
+  @Input() group: IGroup;
 
   @Output() onDelete = new EventEmitter<ITask>();
   deleteTask(task: ITask) {

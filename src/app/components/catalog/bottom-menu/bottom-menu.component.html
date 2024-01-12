@@ -24,10 +24,11 @@
     >Меню
     </button>
     <mat-menu
+      class="title-group"
       #menu="matMenu"
       yPosition="above"
     >
-      <button mat-menu-item class="menu-groups-title" *ngFor="let groupTitle of groupTitles">{{groupTitle.title}}</button>
+      <button class="menu-groups-title" *ngFor="let groupTitle of groupTitles">{{groupTitle.title}}</button>
     </mat-menu>
 
   </div>
