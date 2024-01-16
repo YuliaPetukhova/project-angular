@@ -1,4 +1,4 @@
-<app-tasks-list [groups]="groups"></app-tasks-list>
+<app-tasks-list [currentGroup]="currentGroup"></app-tasks-list>
 
 
 <!--<div class="flex flex-wrap fixed bottom-1 justify-items-center pl-14 m-1 pr-2">-->
@@ -38,5 +38,7 @@
 
 <app-bottom-menu
 [groupTitles]="groupTitles"
+(menuClick)="changeCurrentGroup($event)"
+
 >
 </app-bottom-menu>

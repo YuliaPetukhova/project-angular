@@ -19,18 +19,12 @@ import {IGroupTitle} from "../../../models/IGroupTitle";
 
 export class TasksListComponent implements OnChanges {
   editedTask: ITask;
-  @Input() tasks: ITask[];
-  @Input() groups: IGroup[];
-  currentGroup: IGroup;
+  tasks: ITask[];
+  // @Input() groups: IGroup[];
+  @Input() currentGroup: IGroup;
 
   ngOnChanges(changes) {
-    if (changes.groups && changes.groups.currentValue) {
-      this.route.params.subscribe(params => {
-        this.currentGroup = changes.groups.currentValue.find((group => {
-          return group.id == params['id'];
-        }));
-      })
-    }
+    console.log(changes)
   }
 
   constructor(private serv: TasksService, private matDialog: MatDialog, private route: ActivatedRoute) {

@@ -31,10 +31,18 @@
       #menu="matMenu"
       yPosition="above"
     >
-      <button class="menu-groups-title" *ngFor="let groupTitle of groupTitles">{{ groupTitle.title }}</button>
+<!--      $target.data('creature')-->
+      <div *ngFor="let groupTitle of groupTitles">
+        <button
+          (click)="changeCurrentGroup(groupTitle)"
+          class="menu-groups-title"
+          [attr.data-groupid]="groupTitle.id"
+        >
+          {{groupTitle.title}}
+        </button>
+      </div>
     </mat-menu>
 
-  </div>
 
   <div
     [hidden]="hideTaskBtns"
@@ -57,12 +65,10 @@
         autorenew
       </span>
     </button>
-    <button class="icon-btn">
-      <span class="material-symbols-outlined">
-        money
-      </span>
+      <input class="input-btn"
+             type="text"
+      />
 <!--      <mat-icon>cach</mat-icon>-->
-    </button>
     <button class="icon-btn">
       <span class="material-symbols-outlined">
         check_circle

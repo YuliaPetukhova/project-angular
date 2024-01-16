@@ -1,12 +1,15 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {Component, Input, ViewEncapsulation, EventEmitter,Output} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {IGroupTitle} from "../../../models/IGroupTitle";
-import {CommonModule} from '@angular/common';
+import {CommonModule, Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import {ITask} from "../../../models/ITask";
+import {TasksService} from "../../../services/tasks.service";
 
 @Component({
   selector: 'app-bottom-menu',
+  // providers: [Location, {provide: LocationStrategy, useClass: PathLocationStrategy}],
   templateUrl: './bottom-menu.component.html',
   styleUrls: ['./bottom-menu.component.css'],
   standalone: true,
@@ -15,6 +18,9 @@ import {CommonModule} from '@angular/common';
     MatIconModule,
     MatMenuModule,
     CommonModule,
+    // Location,
+    // LocationStrategy,
+    // PathLocationStrategy
   ],
   encapsulation: ViewEncapsulation.None
 })
@@ -26,6 +32,11 @@ export class BottomMenuComponent {
   hideDeleteBtn: boolean = true;
 
   @Input() groupTitles!: IGroupTitle[];
+
+  @Output() menuClick = new EventEmitter<IGroupTitle>();
+  changeCurrentGroup(groupTitle: IGroupTitle) {
+    this.menuClick.emit(groupTitle)
+  }
 
   onFocus() {
     this.hideMenuBtn = true;

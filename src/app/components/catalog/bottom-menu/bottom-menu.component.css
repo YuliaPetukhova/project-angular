@@ -46,6 +46,12 @@ input.inputText:focus{
 .icon-btn{
   flex-grow: 1;
 }
+.input-btn{
+  outline: none;
+  width: 20%;
+  border: #f61c65 1px solid;
+  margin-bottom: 4px;
+}
 
 .bottom-menu__header{
   display: flex;
@@ -61,11 +67,15 @@ input.inputText:focus{
 
 .menu-groups-title{
   width: 100% !important;
-  border-block: 1px solid #f61c65;
+  border-top: 1px solid #f61c65;
   margin-top: -1px;
-  padding: 4px 4px;
+  padding: 4px 0!important;
 }
-
+.mat-mdc-menu-content {
+  margin: 0;
+  padding: 0!important;
+  list-style-type: none;
+}
 .cdk-overlay-connected-position-bounding-box {
   left: 0 !important;
 }
@@ -73,6 +83,6 @@ input.inputText:focus{
   .title-group {
     max-width: unset !important;
     width: 100vw;
-    padding: 0 0;
+    padding: 0 0!important;
   }
 }
