@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
@@ -41,28 +41,17 @@ export class CatalogComponent {
             return group.id == params['id'];
           })) as IGroup);
         })
-
       }
     );
   }
-  //
-  // changeCurrentGroup() {
-  //   console.log(id);
-  // }
-  changeCurrentGroup(groupTitle: IGroupTitle) {
-    console.log(groupTitle.id);
-    const urlTitle = "/catalog/" + groupTitle.id;
-    history.pushState(this.currentGroup.id, "", urlTitle);
 
-    this.route.params.subscribe(params => {
-      this.currentGroup = (this.groups.find((group => {
-        return group.id == params['id'];
-      })) as IGroup);
-    })
-    //   1
-    // push state используя полученный айди
-    // 2
-    // переиспользовать без дублтирования кода фильтр из конструктора
+  changeCurrentGroup(groupTitle: IGroupTitle) {
+    const url = "/catalog/" + groupTitle.id;
+    history.pushState('currentGroup', "", url);
+
+    this.currentGroup = (this.groups.find((group => {
+      return group.id == groupTitle.id;
+    })) as IGroup);
   }
 
   // openDialog(): void {

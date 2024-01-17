@@ -1,4 +1,4 @@
 export interface IGroupTitle {
-    id: string;
+    id: number;
     title: string;
   }
