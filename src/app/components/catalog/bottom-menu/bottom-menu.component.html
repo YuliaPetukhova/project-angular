@@ -41,34 +41,49 @@
       </div>
     </mat-menu>
 
+  </div>
 
-    <div
-      [hidden]="hideTaskBtns"
-      class="bottom-menu__btns"
-    >
-      <button class="icon-btn" [matMenuTriggerFor]="menu">
+  <div
+    [hidden]="hideTaskBtns"
+    class="bottom-menu__btns"
+  >
+    <button class="icon-btn" [matMenuTriggerFor]="menuCreateTask">
         <span class="material-symbols-outlined">
         menu
       </span>
-      </button>
-      <button class="icon-btn">
+    </button>
+    <mat-menu
+      class="title-group"
+      #menuCreateTask="matMenu"
+      yPosition="above"
+    >
+      <div *ngFor="let groupTitle of groupTitles">
+        <button
+          class="menu-groups-title"
+          [attr.data-groupid]="groupTitle.id"
+        >
+          {{ groupTitle.title }}
+        </button>
+      </div>
+    </mat-menu>
+
+    <button class="icon-btn">
       <span class="material-symbols-outlined">
         calendar_month
       </span>
-      </button>
-      <button class="icon-btn">
+    </button>
+    <button class="icon-btn">
       <span class="material-symbols-outlined">
         autorenew
       </span>
-      </button>
-      <input class="input-btn"
-             type="text"
-      />
-      <button class="icon-btn">
+    </button>
+    <input class="input-btn"
+           type="text"
+    />
+    <button class="icon-btn">
       <span class="material-symbols-outlined">
         check_circle
       </span>
-      </button>
-    </div>
+    </button>
   </div>
 </div>

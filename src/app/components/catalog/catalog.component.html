@@ -1,41 +1,5 @@
 <app-tasks-list [currentGroup]="currentGroup"></app-tasks-list>
 
-
-<!--<div class="flex flex-wrap fixed bottom-1 justify-items-center pl-14 m-1 pr-2">-->
-<!--  <button-->
-<!--    class="mr-3"-->
-<!--    mat-raised-button-->
-<!--    aria-label="Menu icon"-->
-<!--    [matMenuTriggerFor]="aboveMenu"-->
-<!--  >-->
-<!--    <mat-icon> format_list_numbered</mat-icon>-->
-<!--  </button>-->
-<!--  <mat-menu #aboveMenu="matMenu" yPosition="above">-->
-<!--    <button mat-menu-item>Посуда</button>-->
-<!--    <button mat-menu-item>Мусор</button>-->
-<!--  </mat-menu>-->
-
-<!--  <mat-dialog-actions style="flex-direction: column; padding: 0">-->
-<!--    <button-->
-<!--      class="mr-3"-->
-<!--      mat-mini-fab-->
-<!--      color="accent"-->
-<!--      aria-label="Open dialog"-->
-<!--      (click)="openDialog()"-->
-<!--    >-->
-<!--      <mat-icon>add</mat-icon>-->
-<!--    </button>-->
-<!--  </mat-dialog-actions>-->
-
-<!--  <button-->
-<!--    class="mr-3"-->
-<!--    mat-raised-button-->
-<!--    aria-label="Menu check-list"-->
-<!--  >-->
-<!--    <mat-icon>playlist_add_check</mat-icon>-->
-<!--  </button>-->
-<!--</div>-->
-
 <app-bottom-menu
   [groupTitles]="groupTitles"
   (menuClick)="changeCurrentGroup($event)"

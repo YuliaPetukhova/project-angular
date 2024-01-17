@@ -30,6 +30,8 @@ export class CatalogComponent {
   groups: IGroup[];
   groupTitles: IGroupTitle[];
   currentGroup: IGroup;
+  URL = "/catalog/";
+  DATA = 'currentGroup';
 
   constructor(private matDialog: MatDialog, tasksService: TasksService, private route: ActivatedRoute) {
     tasksService.getAll().subscribe((result) => {
@@ -46,8 +48,8 @@ export class CatalogComponent {
   }
 
   changeCurrentGroup(groupTitle: IGroupTitle) {
-    const url = "/catalog/" + groupTitle.id;
-    history.pushState('currentGroup', "", url);
+    const url = this.URL + groupTitle.id;
+    history.pushState(this.DATA, "", url);
 
     this.currentGroup = (this.groups.find((group => {
       return group.id == groupTitle.id;

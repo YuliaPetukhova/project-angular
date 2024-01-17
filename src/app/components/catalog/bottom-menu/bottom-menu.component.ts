@@ -14,20 +14,28 @@ import {CommonModule} from '@angular/common';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    CommonModule
+    CommonModule,
   ],
   encapsulation: ViewEncapsulation.None
 })
 
 export class BottomMenuComponent {
   hideMenuBtn: boolean = false;
-  placeholderAddTask: string = "Добавить задачу";
+  placeholderAddTask: string = "";
   hideTaskBtns: boolean = true;
   hideDeleteBtn: boolean = true;
+  ENTER_TEXT = "Введите текст";
+  ADD_TASK = "Добавить задачу";
+  daysSelected: any[] = [];
+  event: any;
+
 
   @Input() groupTitles!: IGroupTitle[];
-
   @Output() menuClick = new EventEmitter<IGroupTitle>();
+
+  constructor() {
+    this.placeholderAddTask = this.ADD_TASK;
+  }
 
   changeCurrentGroup(groupTitle: IGroupTitle) {
     this.menuClick.emit(groupTitle)
@@ -35,13 +43,13 @@ export class BottomMenuComponent {
 
   onFocus() {
     this.hideMenuBtn = true;
-    this.placeholderAddTask = "Введите текст";
+    this.placeholderAddTask = this.ENTER_TEXT;
   }
 
   onBlur() {
     if (this.hideTaskBtns) {
       this.hideMenuBtn = false;
-      this.placeholderAddTask = "Добавить задачу";
+      this.placeholderAddTask = this.ADD_TASK;
     }
   }
 
@@ -56,4 +64,5 @@ export class BottomMenuComponent {
     this.hideTaskBtns = this.hideDeleteBtn = true;
     this.onBlur();
   }
+
 }
