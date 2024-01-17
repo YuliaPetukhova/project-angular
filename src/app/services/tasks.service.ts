@@ -3,8 +3,6 @@ import {ITask} from '../models/ITask';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ICatalog} from "../models/ICatalog";
-import {IGroup} from "../models/IGroup";
-
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +14,9 @@ export class TasksService {
   private urlDeleteTask = 'http://localhost/api/v1/family-task/task/delete/';
   private urlCreateTitleGroup = 'http://localhost/api/v1/family-task/task-group/create';
   private error: any;
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient) {
+  }
 
 
   getAll(): Observable<ICatalog> {
@@ -30,13 +30,14 @@ export class TasksService {
     });
   }
 
-  createGroupTitle(task: ITask): Observable<ITask>{
+  createGroupTitle(task: ITask): Observable<ITask> {
     return this.http.post<ITask>(this.urlCreateTitleGroup, task);
   }
 
   updateTask(task: ITask): Observable<ITask> {
     return this.http.post<ITask>(this.urlUpdateTask, task);
   }
+
   deleteTask(id: number) {
     return this.http.delete<ITask>(this.urlDeleteTask + id);
   }

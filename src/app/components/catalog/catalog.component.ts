@@ -54,18 +54,4 @@ export class CatalogComponent {
     })) as IGroup);
   }
 
-  // openDialog(): void {
-  //   const dialog = this.matDialog.open(TaskFormComponent, {
-  //     data: {
-  //       groups: this.groupTitles,
-  //       tasks: this.tasks,
-  //     },
-  //   });
-
-  // dialog.afterClosed().subscribe((result) => {
-  //   if (result && result.data && result.data.length > this.groupTitles.length) {
-  //     this.groupTitles = result.data;
-  //   }
-  // });
-  // }
 }

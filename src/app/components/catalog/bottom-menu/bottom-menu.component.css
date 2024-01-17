@@ -1,4 +1,4 @@
-.bottom-menu{
+.bottom-menu {
   display: flex;
   flex-wrap: wrap;
   position: fixed;
@@ -14,14 +14,14 @@
   bottom: 31px;
 }
 
-.button-class{
+.button-class {
   width: 30% !important;
   min-width: unset;
   background-color: #f61c65;
-  color: white!important;
+  color: white !important;
 }
 
-.inputText{
+.inputText {
   width: 70%;
   padding: 0px 10px;
   line-height: 39px;
@@ -32,28 +32,31 @@
   width: 90%;
 }
 
-input.inputText:focus{
+input.inputText:focus {
   width: 90%;
 }
-.deleteBtn:focus{
+
+.deleteBtn:focus {
   width: 10%;
 }
 
-.bottom-menu__btns, .bottom-menu__header{
+.bottom-menu__btns, .bottom-menu__header {
   width: 100%;
-  background-color: white!important;
+  background-color: white !important;
 }
-.icon-btn{
+
+.icon-btn {
   flex-grow: 1;
 }
-.input-btn{
+
+.input-btn {
   outline: none;
   width: 20%;
   border: #f61c65 1px solid;
   margin-bottom: 4px;
 }
 
-.bottom-menu__header{
+.bottom-menu__header {
   display: flex;
   justify-content: space-between;
 }
@@ -65,24 +68,27 @@ input.inputText:focus{
   padding-top: 2px;
 }
 
-.menu-groups-title{
+.menu-groups-title {
   width: 100% !important;
   border-top: 1px solid #f61c65;
   margin-top: -1px;
-  padding: 4px 0!important;
+  padding: 4px 0 !important;
 }
+
 .mat-mdc-menu-content {
   margin: 0;
-  padding: 0!important;
+  padding: 0 !important;
   list-style-type: none;
 }
+
 .cdk-overlay-connected-position-bounding-box {
   left: 0 !important;
 }
+
 @media only screen and (max-width: 1500px) {
   .title-group {
     max-width: unset !important;
     width: 100vw;
-    padding: 0 0!important;
+    padding: 0 0 !important;
   }
 }

@@ -12,27 +12,25 @@ import {IGroup} from "../../../../../models/IGroup";
   imports: [MatCheckboxModule, CommonModule],
 })
 export class TaskItemComponent {
-  @ViewChild('readOnlyTemplate', { static: false })
+  @ViewChild('readOnlyTemplate', {static: false})
   readOnlyTemplate: TemplateRef<any>;
-  @ViewChild('editTemplate', { static: false })
+  @ViewChild('editTemplate', {static: false})
   editTemplate: TemplateRef<any>;
 
   @Input() task: ITask;
   @Input() group: IGroup;
 
   @Output() onDelete = new EventEmitter<ITask>();
+
   deleteTask(task: ITask) {
     this.onDelete.emit(task);
   }
 
   @Output() onEdit = new EventEmitter<ITask>();
+
   editTask(task: ITask) {
     this.onEdit.emit(task);
   }
-
-  // constructor(private serv: TasksService) {
-  //   this.tasks = [];
-  // }
 
   editedTask: ITask;
   tasks: Array<ITask>;

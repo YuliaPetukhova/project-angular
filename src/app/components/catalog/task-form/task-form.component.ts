@@ -10,10 +10,10 @@ import {ITask} from 'src/app/models/ITask';
   styleUrls: ['./task-form.component.css'],
 })
 export class TaskFormComponent implements OnInit {
-	taskGroups: any;
+  taskGroups: any;
   myFormTask: FormGroup;
-	isEditForm: boolean;
-	isCreateForm: boolean;
+  isEditForm: boolean;
+  isCreateForm: boolean;
 
   constructor(
     private tasksService: TasksService,

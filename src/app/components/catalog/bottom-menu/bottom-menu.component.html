@@ -17,7 +17,6 @@
       <span class="material-symbols-outlined">
         close
       </span>
-      <!--      <mat-icon>close</mat-icon>-->
     </button>
     <button
       [matMenuTriggerFor]="menu"
@@ -31,49 +30,45 @@
       #menu="matMenu"
       yPosition="above"
     >
-<!--      $target.data('creature')-->
       <div *ngFor="let groupTitle of groupTitles">
         <button
           (click)="changeCurrentGroup(groupTitle)"
           class="menu-groups-title"
           [attr.data-groupid]="groupTitle.id"
         >
-          {{groupTitle.title}}
+          {{ groupTitle.title }}
         </button>
       </div>
     </mat-menu>
 
 
-  <div
-    [hidden]="hideTaskBtns"
-    class="bottom-menu__btns"
-  >
-    <button class="icon-btn" [matMenuTriggerFor]="menu">
-<!--      <mat-icon>menu</mat-icon>-->
-      <span class="material-symbols-outlined">
+    <div
+      [hidden]="hideTaskBtns"
+      class="bottom-menu__btns"
+    >
+      <button class="icon-btn" [matMenuTriggerFor]="menu">
+        <span class="material-symbols-outlined">
         menu
       </span>
-    </button>
-    <button class="icon-btn">
+      </button>
+      <button class="icon-btn">
       <span class="material-symbols-outlined">
         calendar_month
       </span>
-<!--      <mat-icon>calendar</mat-icon>-->
-    </button>
-    <button class="icon-btn">
+      </button>
+      <button class="icon-btn">
       <span class="material-symbols-outlined">
         autorenew
       </span>
-    </button>
+      </button>
       <input class="input-btn"
              type="text"
       />
-<!--      <mat-icon>cach</mat-icon>-->
-    <button class="icon-btn">
+      <button class="icon-btn">
       <span class="material-symbols-outlined">
         check_circle
       </span>
-      <!--      <mat-icon>check</mat-icon>-->
-    </button>
+      </button>
+    </div>
   </div>
 </div>

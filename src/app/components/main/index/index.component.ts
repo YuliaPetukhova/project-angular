@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { LoginFormComponent } from '../login-form/login-form.component';
+import {Component} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {LoginFormComponent} from '../login-form/login-form.component';
 
 @Component({
   selector: 'app-index',
@@ -10,7 +10,8 @@ import { LoginFormComponent } from '../login-form/login-form.component';
 export class IndexComponent {
   title = 'Household';
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(private matDialog: MatDialog) {
+  }
 
   openLoginForm(): void {
     this.matDialog.open(LoginFormComponent, {

@@ -7,7 +7,6 @@ import {TasksService} from 'src/app/services/tasks.service';
 import {MatDialog} from '@angular/material/dialog';
 import {IGroup} from "../../../models/IGroup";
 import {ActivatedRoute} from '@angular/router';
-import {IGroupTitle} from "../../../models/IGroupTitle";
 
 @Component({
   selector: 'app-tasks-list',
@@ -20,14 +19,12 @@ import {IGroupTitle} from "../../../models/IGroupTitle";
 export class TasksListComponent implements OnChanges {
   editedTask: ITask;
   tasks: ITask[];
-  // @Input() groups: IGroup[];
   @Input() currentGroup: IGroup;
 
   ngOnChanges(changes) {
-    console.log(changes)
   }
 
-  constructor(private serv: TasksService, private matDialog: MatDialog, private route: ActivatedRoute) {
+  constructor(private serv: TasksService) {
   }
 
   onDelete(task: ITask) {
