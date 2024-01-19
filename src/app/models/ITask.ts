@@ -5,4 +5,5 @@ export interface ITask {
   id?: number;
   taskGroupId: number;
   text: string;
+  price: number;
 }

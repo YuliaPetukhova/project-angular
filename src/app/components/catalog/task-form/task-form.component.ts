@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit, Optional, ChangeDetectionStrategy} from '@angular/core';
+import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {TasksService} from 'src/app/services/tasks.service';
@@ -52,6 +52,7 @@ export class TaskFormComponent implements OnInit {
       createdAt: '',
       doneAt: '',
       deletedAt: '',
+      price: this.myFormTask.value.price as number,
     }).subscribe((result) => {
       this.data.tasks.push(result);
     });

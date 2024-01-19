@@ -4,9 +4,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {ITask} from 'src/app/models/ITask';
 import {TaskItemComponent} from './task-item/task-item/task-item.component';
 import {TasksService} from 'src/app/services/tasks.service';
-import {MatDialog} from '@angular/material/dialog';
 import {IGroup} from "../../../models/IGroup";
-import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-tasks-list',

@@ -1,9 +1,21 @@
-import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation,
+  Inject,
+  Optional
+} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {IGroupTitle} from "../../../models/IGroupTitle";
 import {CommonModule} from '@angular/common';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ITask} from "../../../models/ITask";
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-bottom-menu',
@@ -15,6 +27,8 @@ import {CommonModule} from '@angular/common';
     MatIconModule,
     MatMenuModule,
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   encapsulation: ViewEncapsulation.None
 })
@@ -26,15 +40,32 @@ export class BottomMenuComponent {
   hideDeleteBtn: boolean = true;
   ENTER_TEXT = "Введите текст";
   ADD_TASK = "Добавить задачу";
-  daysSelected: any[] = [];
-  event: any;
+  myFormTask: FormGroup;
+  task: ITask;
 
 
   @Input() groupTitles!: IGroupTitle[];
   @Output() menuClick = new EventEmitter<IGroupTitle>();
+  @Output() createTask = new EventEmitter<FormGroup>();
 
-  constructor() {
+  constructor(
+    @Optional()
+    @Inject(MAT_DIALOG_DATA)
+    private data: { groups: any; tasks: any; currentTask: ITask }) {
     this.placeholderAddTask = this.ADD_TASK;
+
+    this.myFormTask = new FormGroup({
+        taskGroup: new FormControl<number>(1),
+        text: new FormControl<string>(''),
+        price: new FormControl<number>(5)
+      }
+    );
+
+  }
+
+  onSubmit(task) {
+    console.log(task)
+    this.createTask.emit(this.myFormTask);
   }
 
   changeCurrentGroup(groupTitle: IGroupTitle) {

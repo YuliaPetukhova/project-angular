@@ -1,5 +1,4 @@
 .bottom-menu {
-  display: flex;
   flex-wrap: wrap;
   position: fixed;
   bottom: 0;
@@ -53,6 +52,11 @@ input.inputText:focus {
   outline: none;
   width: 20%;
   border: #f61c65 1px solid;
+  margin-bottom: 4px;
+}
+.select-group{
+  outline: none;
+  width: 20%;
   margin-bottom: 4px;
 }
 

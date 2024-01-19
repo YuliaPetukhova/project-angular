@@ -1,89 +1,84 @@
 <div class="bottom-menu" [class.bottom-menu-in-use]="!hideDeleteBtn">
-  <div class="bottom-menu__header">
-    <input
-      class="inputText"
-      type="text"
-      [placeholder]="placeholderAddTask"
-      (focus)="onFocus()"
-      (blur)="onBlur()"
-      (input)="onChange($event.target)"
-      [class.inputText-in-use]="!hideDeleteBtn"
-    />
-    <button
-      class="deleteBtn"
-      (click)="clearInput($event.target)"
-      [hidden]="hideDeleteBtn"
-    >
-      <span class="material-symbols-outlined">
-        close
-      </span>
-    </button>
-    <button
-      [matMenuTriggerFor]="menu"
-      class="button-class"
-      aria-label="Меню"
-      [hidden]="hideMenuBtn"
-    >Меню
-    </button>
-    <mat-menu
-      class="title-group"
-      #menu="matMenu"
-      yPosition="above"
-    >
-      <div *ngFor="let groupTitle of groupTitles">
-        <button
-          (click)="changeCurrentGroup(groupTitle)"
-          class="menu-groups-title"
-          [attr.data-groupid]="groupTitle.id"
-        >
-          {{ groupTitle.title }}
-        </button>
-      </div>
-    </mat-menu>
-
-  </div>
-
-  <div
-    [hidden]="hideTaskBtns"
-    class="bottom-menu__btns"
-  >
-    <button class="icon-btn" [matMenuTriggerFor]="menuCreateTask">
+  <form [formGroup]="myFormTask" (ngSubmit)="onSubmit(task)">
+    <div class="bottom-menu__header">
+      <input
+        class="inputText"
+        type="text"
+        formControlName="text"
+        [placeholder]="placeholderAddTask"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+        (input)="onChange($event.target)"
+        [class.inputText-in-use]="!hideDeleteBtn"
+      />
+      <button
+        type="button"
+        class="deleteBtn"
+        (click)="clearInput($event.target)"
+        [hidden]="hideDeleteBtn"
+      >
         <span class="material-symbols-outlined">
-        menu
-      </span>
-    </button>
-    <mat-menu
-      class="title-group"
-      #menuCreateTask="matMenu"
-      yPosition="above"
+          close
+        </span>
+      </button>
+      <button
+        type="button"
+        [matMenuTriggerFor]="menu"
+        class="button-class"
+        aria-label="Меню"
+        [hidden]="hideMenuBtn"
+      >Меню
+      </button>
+      <mat-menu
+        class="title-group"
+        #menu="matMenu"
+        yPosition="above"
+      >
+        <div *ngFor="let groupTitle of groupTitles">
+          <button
+            (click)="changeCurrentGroup(groupTitle)"
+            class="menu-groups-title"
+            [attr.data-groupid]="groupTitle.id"
+          >
+            {{ groupTitle.title }}
+          </button>
+        </div>
+      </mat-menu>
+
+    </div>
+
+    <div
+      [hidden]="hideTaskBtns"
+      class="bottom-menu__btns"
     >
-      <div *ngFor="let groupTitle of groupTitles">
-        <button
-          class="menu-groups-title"
-          [attr.data-groupid]="groupTitle.id"
+      <select class="select-group"
+              formControlName="taskGroup"
+      >
+        <option *ngFor="let groupTitle of groupTitles"
+                [value]="groupTitle.id"
         >
           {{ groupTitle.title }}
-        </button>
-      </div>
-    </mat-menu>
+        </option>
+      </select>
 
-    <button class="icon-btn">
-      <span class="material-symbols-outlined">
-        calendar_month
-      </span>
-    </button>
-    <button class="icon-btn">
-      <span class="material-symbols-outlined">
-        autorenew
-      </span>
-    </button>
-    <input class="input-btn"
-           type="text"
-    />
-    <button class="icon-btn">
-      <span class="material-symbols-outlined">
-        check_circle
-      </span>
-    </button>
-  </div>
+      <button type="button" class="icon-btn">
+        <span class="material-symbols-outlined">
+          calendar_month
+        </span>
+      </button>
+      <button type="button" class="icon-btn">
+        <span class="material-symbols-outlined">
+          autorenew
+        </span>
+      </button>
+      <input class="input-btn"
+             formControlName="price"
+      />
+      <button class="icon-btn" type="submit">
+        <span class="material-symbols-outlined">
+          check_circle
+        </span>
+      </button>
+    </div>
+  </form>
 </div>

@@ -26,7 +26,8 @@ export class TasksService {
   create(task: ITask): Observable<ITask> {
     return this.http.post<ITask>(this.urlNewTask, {
       taskGroupId: task.taskGroupId,
-      text: task.text
+      text: task.text,
+      price: task.price,
     });
   }
 

@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {Component, EventEmitter, Input, Output, TemplateRef, ViewChild,} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {ITask} from 'src/app/models/ITask';
 import {IGroup} from "../../../../../models/IGroup";
@@ -12,10 +12,10 @@ import {IGroup} from "../../../../../models/IGroup";
   imports: [MatCheckboxModule, CommonModule],
 })
 export class TaskItemComponent {
-  @ViewChild('readOnlyTemplate', {static: false})
-  readOnlyTemplate: TemplateRef<any>;
-  @ViewChild('editTemplate', {static: false})
-  editTemplate: TemplateRef<any>;
+  // @ViewChild('readOnlyTemplate', {static: false})
+  // readOnlyTemplate: TemplateRef<any>;
+  // @ViewChild('editTemplate', {static: false})
+  // editTemplate: TemplateRef<any>;
 
   @Input() task: ITask;
   @Input() group: IGroup;

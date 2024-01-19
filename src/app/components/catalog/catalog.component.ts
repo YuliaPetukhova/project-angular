@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {Component, Inject, Optional} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
@@ -10,6 +10,9 @@ import {BottomMenuComponent} from "./bottom-menu/bottom-menu.component";
 import {IGroup} from "../../models/IGroup";
 import {ActivatedRoute} from '@angular/router';
 import {TaskItemComponent} from "./tasks-list/task-item/task-item/task-item.component";
+import {ITask} from "../../models/ITask";
+import {FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 
 @Component({
   selector: 'app-catalog',
@@ -23,7 +26,9 @@ import {TaskItemComponent} from "./tasks-list/task-item/task-item/task-item.comp
     MatDialogModule,
     TasksListComponent,
     BottomMenuComponent,
-    TaskItemComponent
+    TaskItemComponent,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class CatalogComponent {
@@ -33,7 +38,17 @@ export class CatalogComponent {
   URL = "/catalog/";
   DATA = 'currentGroup';
 
-  constructor(private matDialog: MatDialog, tasksService: TasksService, private route: ActivatedRoute) {
+  // myFormTask: FormGroup;
+
+
+  constructor(
+    private matDialog: MatDialog,
+    private tasksService: TasksService,
+    private route: ActivatedRoute,
+    @Optional()
+    @Inject(MAT_DIALOG_DATA)
+    private data: { groups: any; tasks: any; currentTask: ITask }) {
+
     tasksService.getAll().subscribe((result) => {
         this.groups = result.groups;
         this.groupTitles = result.groupTitles;
@@ -45,6 +60,7 @@ export class CatalogComponent {
         })
       }
     );
+
   }
 
   changeCurrentGroup(groupTitle: IGroupTitle) {
@@ -54,6 +70,24 @@ export class CatalogComponent {
     this.currentGroup = (this.groups.find((group => {
       return group.id == groupTitle.id;
     })) as IGroup);
+  }
+
+  onSubmit(myFormTask: FormGroup) {
+    this.tasksService.create({
+      text: myFormTask.value.text as string,
+      taskGroupId: myFormTask.value.taskGroup ?? 1,
+      createdAt: '',
+      doneAt: '',
+      deletedAt: '',
+      price: myFormTask.value.price as number,
+    }).subscribe((result) => {
+      let newTaskGroupId = (this.groups.find((groupId => {
+        return groupId.id == result.taskGroupId;
+      })) as IGroup);
+      console.log(newTaskGroupId);
+      let h = newTaskGroupId.tasks.push(result);
+      console.log(h)
+    });
   }
 
 }
