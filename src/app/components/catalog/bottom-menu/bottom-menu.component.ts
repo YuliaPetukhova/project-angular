@@ -64,7 +64,6 @@ export class BottomMenuComponent {
   }
 
   onSubmit(task) {
-    console.log(task)
     this.createTask.emit(this.myFormTask);
   }
 

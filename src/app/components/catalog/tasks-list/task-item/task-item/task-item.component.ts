@@ -17,25 +17,25 @@ export class TaskItemComponent {
   // @ViewChild('editTemplate', {static: false})
   // editTemplate: TemplateRef<any>;
 
+  editedTask: ITask;
+  tasks: Array<ITask>;
+  statusMessage: string;
+  isNewRecord: boolean;
+
   @Input() task: ITask;
   @Input() group: IGroup;
 
   @Output() onDelete = new EventEmitter<ITask>();
-
   deleteTask(task: ITask) {
     this.onDelete.emit(task);
   }
 
   @Output() onEdit = new EventEmitter<ITask>();
-
   editTask(task: ITask) {
     this.onEdit.emit(task);
   }
 
-  editedTask: ITask;
-  tasks: Array<ITask>;
-  statusMessage: string;
-  isNewRecord: boolean;
+
 
   // editTask(task: ITask) {
   //   this.editedTask = {

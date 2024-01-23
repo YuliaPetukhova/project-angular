@@ -16,9 +16,8 @@ import {IGroup} from "../../../models/IGroup";
 
 export class TasksListComponent implements OnChanges {
   editedTask: ITask;
-  tasks: ITask[];
+  @Input() tasks: ITask[];
   @Input() currentGroup: IGroup;
-
   ngOnChanges(changes) {
   }
 
@@ -27,8 +26,8 @@ export class TasksListComponent implements OnChanges {
 
   onDelete(task: ITask) {
     this.serv.deleteTask(task.id as number).subscribe((data) => {
-      this.tasks.splice(
-        this.tasks.findIndex((filteredTask) => filteredTask.id === task.id),
+      this.currentGroup.tasks.splice(
+        this.currentGroup.tasks.findIndex((filteredTask) => filteredTask.id == data.id),
         1
       );
     });
