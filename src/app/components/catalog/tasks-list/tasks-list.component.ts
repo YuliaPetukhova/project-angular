@@ -33,14 +33,23 @@ export class TasksListComponent implements OnChanges {
     });
   }
 
-  // onEdit(task: ITask) {
-  //   const dialog = this.matDialog.open(TaskFormComponent, {
-  //     data: {
-  //       groups: this.groups,
-  //       tasks: this.tasks,
-  //       currentTask: task,
-  //     },
-  //   });
+  onEdit(task: ITask) {
+    // this.serv.updateTask(task).subscribe((newTask)=> {
+        // this.currentGroup.tasks.replace(task, newTask);
+        // const taskIndex = this.currentGroup.tasks.findIndex((filteredTask) => filteredTask.id === task.id);
+        // this.currentGroup.tasks[taskIndex] = newTask;
+      // }
+    // )
+  }
+
+
+    // const dialog = this.matDialog.open(TaskFormComponent, {
+    //   data: {
+    //     groups: this.groups,
+    //     tasks: this.tasks,
+    //     currentTask: task,
+    //   },
+    // });
   //
   //   dialog.afterClosed().subscribe((result) => {
   //     if (result && result.data && result.data.length > this.groups.length) {

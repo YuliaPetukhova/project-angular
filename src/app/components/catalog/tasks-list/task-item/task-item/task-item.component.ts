@@ -3,6 +3,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {ITask} from 'src/app/models/ITask';
 import {IGroup} from "../../../../../models/IGroup";
+import {SharingService} from "../../../../../services/sharing/sharing.service";
 
 @Component({
   selector: 'app-task-item',
@@ -12,6 +13,9 @@ import {IGroup} from "../../../../../models/IGroup";
   imports: [MatCheckboxModule, CommonModule],
 })
 export class TaskItemComponent {
+
+  constructor(private sharingService: SharingService){}
+
   // @ViewChild('readOnlyTemplate', {static: false})
   // readOnlyTemplate: TemplateRef<any>;
   // @ViewChild('editTemplate', {static: false})
@@ -32,10 +36,10 @@ export class TaskItemComponent {
 
   @Output() onEdit = new EventEmitter<ITask>();
   editTask(task: ITask) {
-    this.onEdit.emit(task);
+    this.sharingService.setDataTask(task);
+
+    // this.onEdit.emit(task);
   }
-
-
 
   // editTask(task: ITask) {
   //   this.editedTask = {
@@ -46,12 +50,12 @@ export class TaskItemComponent {
   //     doneAt: '',
   //     deletedAt: '',
   //   };
-  //   // this.editedTask = new ITask(
-  //   // task.id,
-  //   // task.createdAt,
-  //   // task.taskGroupId,
-  //   //     task.text
-  //   // );
+    // this.editedTask = new ITask(
+    // task.id,
+    // task.createdAt,
+    // task.taskGroupId,
+    //     task.text
+    // );
   // }
   // сохраняем пользователя
   // saveTask() {

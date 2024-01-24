@@ -16,6 +16,7 @@ import {TaskFormComponent} from './components/catalog/task-form/task-form.compon
 import {LoginFormComponent} from './components/main/login-form/login-form.component';
 import {CatalogComponent} from './components/catalog/catalog.component';
 import {IndexComponent} from './components/main/index/index.component';
+import {SharingService} from "./services/sharing/sharing.service";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import {IndexComponent} from './components/main/index/index.component';
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [SharingService],
   bootstrap: [AppComponent],
 })
 export class AppModule {

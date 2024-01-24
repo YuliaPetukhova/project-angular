@@ -5,7 +5,8 @@ import {
   Output,
   ViewEncapsulation,
   Inject,
-  Optional
+  Optional,
+  OnInit
 } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
@@ -15,6 +16,7 @@ import {CommonModule} from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ITask} from "../../../models/ITask";
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {SharingService} from "../../../services/sharing/sharing.service";
 
 
 @Component({
@@ -33,7 +35,7 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
   encapsulation: ViewEncapsulation.None
 })
 
-export class BottomMenuComponent {
+export class BottomMenuComponent implements OnInit{
   hideMenuBtn: boolean = false;
   placeholderAddTask: string = "";
   hideTaskBtns: boolean = true;
@@ -42,6 +44,8 @@ export class BottomMenuComponent {
   ADD_TASK = "Добавить задачу";
   myFormTask: FormGroup;
   task: ITask;
+  dataTask:any;
+  editingTask: ITask;
 
 
   @Input() groupTitles!: IGroupTitle[];
@@ -49,6 +53,7 @@ export class BottomMenuComponent {
   @Output() createTask = new EventEmitter<FormGroup>();
 
   constructor(
+    private sharingService: SharingService,
     @Optional()
     @Inject(MAT_DIALOG_DATA)
     private data: { groups: any; tasks: any; currentTask: ITask }) {
@@ -60,9 +65,23 @@ export class BottomMenuComponent {
         price: new FormControl<number>(5)
       }
     );
-
   }
 
+  ngOnInit(){
+    this.sharingService.currentDataTask.subscribe(data => {
+      if (typeof data === 'object') {
+        this.editingTask = data;
+        console.log(data);
+
+        this.myFormTask = new FormGroup({
+            taskGroup: new FormControl<number>(this.editingTask?.taskGroupId),
+            text: new FormControl<string>(this.editingTask?.text),
+            price: new FormControl<number>(this.editingTask?.price)
+          }
+        );
+      }
+    });
+  }
   onSubmit(task) {
     this.createTask.emit(this.myFormTask);
   }
