@@ -35,17 +35,38 @@ import {SharingService} from "../../../services/sharing/sharing.service";
   encapsulation: ViewEncapsulation.None
 })
 
-export class BottomMenuComponent implements OnInit{
-  hideMenuBtn: boolean = false;
+export class BottomMenuComponent implements OnInit {
   placeholderAddTask: string = "";
-  hideTaskBtns: boolean = true;
-  hideDeleteBtn: boolean = true;
   ENTER_TEXT = "Введите текст";
   ADD_TASK = "Добавить задачу";
   myFormTask: FormGroup;
   task: ITask;
-  dataTask:any;
   editingTask: ITask;
+
+
+  defaultState: boolean = true;
+  focusState: boolean = false;
+  workingState: boolean = false;
+
+  toDefaultState() {
+    this.defaultState = true;
+    this.focusState = this.workingState = false;
+
+    this.placeholderAddTask = this.ADD_TASK;
+  }
+
+  toFocusState() {
+    this.focusState = true;
+    this.defaultState = this.workingState = false;
+
+    this.placeholderAddTask = this.ENTER_TEXT;
+
+  }
+
+  toWorkingState() {
+    this.workingState = true;
+    this.focusState = this.defaultState = false;
+  }
 
 
   @Input() groupTitles!: IGroupTitle[];
@@ -59,31 +80,28 @@ export class BottomMenuComponent implements OnInit{
     private data: { groups: any; tasks: any; currentTask: ITask }) {
     this.placeholderAddTask = this.ADD_TASK;
 
-    this.myFormTask = new FormGroup({
-        taskGroup: new FormControl<number>(1),
-        text: new FormControl<string>(''),
-        price: new FormControl<number>(5)
-      }
-    );
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.sharingService.currentDataTask.subscribe(data => {
       if (typeof data === 'object') {
         this.editingTask = data;
-        console.log(data);
 
-        this.myFormTask = new FormGroup({
-            taskGroup: new FormControl<number>(this.editingTask?.taskGroupId),
-            text: new FormControl<string>(this.editingTask?.text),
-            price: new FormControl<number>(this.editingTask?.price)
-          }
-        );
+        this.toWorkingState();
       }
+
+      this.myFormTask = new FormGroup({
+          taskGroup: new FormControl<number>(this.editingTask?.taskGroupId),
+          text: new FormControl<string>(this.editingTask?.text),
+          price: new FormControl<number>(this.editingTask?.price)
+        }
+      );
     });
   }
+
   onSubmit(task) {
     this.createTask.emit(this.myFormTask);
+    this.toDefaultState();
   }
 
   changeCurrentGroup(groupTitle: IGroupTitle) {
@@ -91,27 +109,29 @@ export class BottomMenuComponent implements OnInit{
   }
 
   onFocus() {
-    this.hideMenuBtn = true;
-    this.placeholderAddTask = this.ENTER_TEXT;
+    if (this.defaultState) {
+      this.toFocusState();
+    }
   }
 
   onBlur() {
-    if (this.hideTaskBtns) {
-      this.hideMenuBtn = false;
-      this.placeholderAddTask = this.ADD_TASK;
+    if (this.focusState) {
+      this.toDefaultState();
     }
   }
 
   onChange(target: any) {
-    this.hideTaskBtns = this.hideDeleteBtn = (target as HTMLInputElement).value.length === 0;
+    if ((target as HTMLInputElement).value.length === 0) {
+      this.toFocusState();
+    } else {
+      this.toWorkingState();
+    }
   }
 
   clearInput(target: any) {
     const textInput = target.closest('div').getElementsByClassName('inputText')[0];
     (textInput as HTMLInputElement).value = '';
-
-    this.hideTaskBtns = this.hideDeleteBtn = true;
-    this.onBlur();
+    this.toDefaultState();
   }
 
 }

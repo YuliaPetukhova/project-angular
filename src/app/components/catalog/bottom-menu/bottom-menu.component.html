@@ -1,4 +1,4 @@
-<div class="bottom-menu" [class.bottom-menu-in-use]="!hideDeleteBtn">
+<div class="bottom-menu" [class.bottom-menu-in-use]="workingState">
   <form [formGroup]="myFormTask" (ngSubmit)="onSubmit(task)">
     <div class="bottom-menu__header">
       <input
@@ -9,13 +9,13 @@
         (focus)="onFocus()"
         (blur)="onBlur()"
         (input)="onChange($event.target)"
-        [class.inputText-in-use]="!hideDeleteBtn"
+        [class.inputText-in-use]="workingState"
       />
       <button
         type="button"
         class="deleteBtn"
         (click)="clearInput($event.target)"
-        [hidden]="hideDeleteBtn"
+        [hidden]="!workingState"
       >
         <span class="material-symbols-outlined">
           close
@@ -26,7 +26,7 @@
         [matMenuTriggerFor]="menu"
         class="button-class"
         aria-label="Меню"
-        [hidden]="hideMenuBtn"
+        [hidden]="!defaultState"
       >Меню
       </button>
       <mat-menu
@@ -48,7 +48,7 @@
     </div>
 
     <div
-      [hidden]="hideTaskBtns"
+      [hidden]="!workingState"
       class="bottom-menu__btns"
     >
       <select class="select-group"

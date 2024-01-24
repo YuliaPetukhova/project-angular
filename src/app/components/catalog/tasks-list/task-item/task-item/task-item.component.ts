@@ -21,10 +21,10 @@ export class TaskItemComponent {
   // @ViewChild('editTemplate', {static: false})
   // editTemplate: TemplateRef<any>;
 
-  editedTask: ITask;
+  // editedTask: ITask;
   tasks: Array<ITask>;
   statusMessage: string;
-  isNewRecord: boolean;
+  // isNewRecord: boolean;
 
   @Input() task: ITask;
   @Input() group: IGroup;
@@ -37,8 +37,6 @@ export class TaskItemComponent {
   @Output() onEdit = new EventEmitter<ITask>();
   editTask(task: ITask) {
     this.sharingService.setDataTask(task);
-
-    // this.onEdit.emit(task);
   }
 
   // editTask(task: ITask) {
