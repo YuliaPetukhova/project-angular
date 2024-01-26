@@ -17,6 +17,8 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular
 import {ITask} from "../../../models/ITask";
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {SharingService} from "../../../services/sharing/sharing.service";
+import {TasksService} from "../../../services/tasks.service";
+import {IGroup} from "../../../models/IGroup";
 
 
 @Component({
@@ -42,7 +44,6 @@ export class BottomMenuComponent implements OnInit {
   myFormTask: FormGroup;
   task: ITask;
   editingTask: ITask;
-
 
   defaultState: boolean = true;
   focusState: boolean = false;
@@ -72,6 +73,7 @@ export class BottomMenuComponent implements OnInit {
   @Input() groupTitles!: IGroupTitle[];
   @Output() menuClick = new EventEmitter<IGroupTitle>();
   @Output() createTask = new EventEmitter<FormGroup>();
+  @Output() updateTask = new EventEmitter<FormGroup>();
 
   constructor(
     private sharingService: SharingService,
@@ -93,15 +95,22 @@ export class BottomMenuComponent implements OnInit {
       this.myFormTask = new FormGroup({
           taskGroup: new FormControl<number>(this.editingTask?.taskGroupId),
           text: new FormControl<string>(this.editingTask?.text),
-          price: new FormControl<number>(this.editingTask?.price)
+          price: new FormControl<number>(this.editingTask?.price),
+          id: new FormControl<any>(this.editingTask?.id),
+          oldTaskGroupId: new FormControl<number>(this.editingTask?.taskGroupId)
         }
       );
     });
   }
 
-  onSubmit(task) {
-    this.createTask.emit(this.myFormTask);
-    this.toDefaultState();
+  onSubmit(task: ITask) {
+    if (this.editingTask) {
+      this.updateTask.emit(this.myFormTask);
+      this.toDefaultState();
+    } else {
+      this.createTask.emit(this.myFormTask);
+      this.toDefaultState();
+    }
   }
 
   changeCurrentGroup(groupTitle: IGroupTitle) {

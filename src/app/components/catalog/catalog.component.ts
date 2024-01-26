@@ -72,7 +72,7 @@ export class CatalogComponent {
     })) as IGroup);
   }
 
-  onSubmit(myFormTask: FormGroup) {
+  onCreate(myFormTask: FormGroup) {
     this.tasksService.create({
       text: myFormTask.value.text as string,
       taskGroupId: myFormTask.value.taskGroup ?? 1,
@@ -83,6 +83,7 @@ export class CatalogComponent {
     }).subscribe((result) => {
       let newTaskGroupId = (this.groups.find((groupId => {
         return groupId.id == result.taskGroupId;
+
       })) as IGroup);
       console.log(newTaskGroupId);
       let h = newTaskGroupId.tasks.push(result);
@@ -90,4 +91,65 @@ export class CatalogComponent {
     });
   }
 
+  // onCreate(myFormTask: FormGroup){
+  //   this.tasksService.create({
+  //     text: myFormTask.value.text as string,
+  //     taskGroupId: myFormTask.value.taskGroup ?? 1,
+  //     createdAt: '',
+  //     doneAt: '',
+  //     deletedAt: '',
+  //     price: myFormTask.value.price as number,
+  //   }).subscribe((result) => {
+  //
+  //     let newTaskGroupId = (this.groups.find((groupId => {
+  //       return groupId.id == result.taskGroupId;
+  //     })) as IGroup);
+  //
+  //     let editingTask = (this.currentGroup.tasks.findIndex((filteredTask) => filteredTask.id == this.data.tasks.id),
+  //       1)
+  //     // console.log(newTaskGroupId);
+  //     let h = newTaskGroupId.tasks.push(result);
+  //     // console.log(h)
+  //
+  //     let changedTask = editingTask.tasks.replace(result);
+  //     // console.log(changedTask)
+  //   });
+  // }
+
+  onUpdate(myFormTask: FormGroup) {
+    this.tasksService.updateTask({
+      id: myFormTask.value.id as number,
+      text: myFormTask.value.text as string,
+      taskGroupId: myFormTask.value.taskGroup ?? 1,
+      createdAt: '',
+      doneAt: '',
+      deletedAt: '',
+      price: myFormTask.value.price as number,
+    }).subscribe((savedTask) => {
+      if (myFormTask.value.oldTaskGroupId !== myFormTask.value.taskGroupId) {
+        const newGroup = (this.groups.find((group => {
+          return group.id == savedTask.taskGroupId;
+        })) as IGroup);
+
+        const oldGroup = (this.groups.find((group => {
+          return group.id == myFormTask.value.oldTaskGroupId;
+        })) as IGroup);
+
+        newGroup.tasks.push(savedTask);
+        oldGroup.tasks.splice(
+          oldGroup.tasks.findIndex((filteredTask) => filteredTask.id == savedTask.id),
+          1
+        );
+
+      } else {
+        let updatedTaskGroup = (this.groups.find((groupId => {
+          return groupId.id == savedTask.taskGroupId;
+        })) as IGroup);
+
+        const updatedTaskIndex = updatedTaskGroup.tasks.findIndex((filteredTask) => filteredTask.id == savedTask.id)
+        updatedTaskGroup.tasks[updatedTaskIndex] = savedTask;
+
+      }
+    });
+  }
 }

@@ -3,6 +3,9 @@
 <app-bottom-menu
   [groupTitles]="groupTitles"
   (menuClick)="changeCurrentGroup($event)"
-  (createTask)="onSubmit($event)"
+  (createTask)="onCreate($event)"
+  (updateTask)="onUpdate($event)"
 >
 </app-bottom-menu>
+
+<!--(createTask)="onSubmit($event)"-->

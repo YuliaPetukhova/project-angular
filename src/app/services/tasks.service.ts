@@ -39,6 +39,7 @@ export class TasksService {
       return this.http.post<ITask>(this.urlUpdateTask + task.id, {
         text: task.text,
         taskGroupId: task.taskGroupId,
+        price: task.price,
       });
 
     // return this.http.post<ITask>(this.urlUpdateTaskGroup + id, {
