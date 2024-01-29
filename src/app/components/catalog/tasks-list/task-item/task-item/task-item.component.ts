@@ -14,64 +14,26 @@ import {SharingService} from "../../../../../services/sharing/sharing.service";
 })
 export class TaskItemComponent {
 
-  constructor(private sharingService: SharingService){}
+  constructor(private sharingService: SharingService) {
+  }
 
-  // @ViewChild('readOnlyTemplate', {static: false})
-  // readOnlyTemplate: TemplateRef<any>;
-  // @ViewChild('editTemplate', {static: false})
-  // editTemplate: TemplateRef<any>;
 
-  // editedTask: ITask;
   tasks: Array<ITask>;
   statusMessage: string;
-  // isNewRecord: boolean;
 
   @Input() task: ITask;
   @Input() group: IGroup;
 
   @Output() onDelete = new EventEmitter<ITask>();
+
   deleteTask(task: ITask) {
     this.onDelete.emit(task);
   }
 
   @Output() onEdit = new EventEmitter<ITask>();
+
   editTask(task: ITask) {
     this.sharingService.setDataTask(task);
   }
 
-  // editTask(task: ITask) {
-  //   this.editedTask = {
-  //     id: 0,
-  //     text: 'this.myFormTask.value.text as string',
-  //     taskGroupId: 1,
-  //     createdAt: '',
-  //     doneAt: '',
-  //     deletedAt: '',
-  //   };
-    // this.editedTask = new ITask(
-    // task.id,
-    // task.createdAt,
-    // task.taskGroupId,
-    //     task.text
-    // );
-  // }
-  // сохраняем пользователя
-  // saveTask() {
-  //   if (this.isNewRecord) {
-  //     // добавляем пользователя
-  //     this.serv.create(this.editedTask).subscribe((data) => {
-  //       // (this.statusMessage = 'Данные успешно добавлены'), this.loadTasks();
-  //     });
-  //     this.isNewRecord = false;
-  //     // this.editedTask = null;
-  //   } else {
-  //     // изменяем пользователя
-  //     this.serv
-  //       .updateTask(this.editedTask.id as number, this.editedTask)
-  //       .subscribe((data) => {
-  //         (this.statusMessage = 'Данные успешно обновлены'), this.serv.getAll();
-  //       });
-  //     // this.editedTask = null;
-  //   }
-  // }
 }

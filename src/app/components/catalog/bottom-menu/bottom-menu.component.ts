@@ -107,9 +107,11 @@ export class BottomMenuComponent implements OnInit {
     if (this.editingTask) {
       this.updateTask.emit(this.myFormTask);
       this.toDefaultState();
+      this.clearForm();
     } else {
       this.createTask.emit(this.myFormTask);
       this.toDefaultState();
+      this.clearForm();
     }
   }
 
@@ -137,9 +139,16 @@ export class BottomMenuComponent implements OnInit {
     }
   }
 
-  clearInput(target: any) {
-    const textInput = target.closest('div').getElementsByClassName('inputText')[0];
-    (textInput as HTMLInputElement).value = '';
+  //
+  // clearInput(target: any) {
+  //   const textInput = target.closest('div').getElementsByClassName('inputText')[0];
+  //   (textInput as HTMLInputElement).value = '';
+  //
+  //   this.toDefaultState();
+  // }
+
+  clearForm(){
+    this.myFormTask.reset();
     this.toDefaultState();
   }
 

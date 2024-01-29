@@ -85,9 +85,8 @@ export class CatalogComponent {
         return groupId.id == result.taskGroupId;
 
       })) as IGroup);
-      console.log(newTaskGroupId);
-      let h = newTaskGroupId.tasks.push(result);
-      console.log(h)
+
+      newTaskGroupId.tasks.push(result);
     });
   }
 
@@ -117,6 +116,8 @@ export class CatalogComponent {
   // }
 
   onUpdate(myFormTask: FormGroup) {
+    const oldTaskGroupId = myFormTask.value.oldTaskGroupId;
+
     this.tasksService.updateTask({
       id: myFormTask.value.id as number,
       text: myFormTask.value.text as string,
@@ -126,13 +127,13 @@ export class CatalogComponent {
       deletedAt: '',
       price: myFormTask.value.price as number,
     }).subscribe((savedTask) => {
-      if (myFormTask.value.oldTaskGroupId !== myFormTask.value.taskGroupId) {
+      if (oldTaskGroupId !== savedTask.taskGroupId) {
         const newGroup = (this.groups.find((group => {
           return group.id == savedTask.taskGroupId;
         })) as IGroup);
 
         const oldGroup = (this.groups.find((group => {
-          return group.id == myFormTask.value.oldTaskGroupId;
+          return group.id == oldTaskGroupId;
         })) as IGroup);
 
         newGroup.tasks.push(savedTask);
@@ -146,7 +147,8 @@ export class CatalogComponent {
           return groupId.id == savedTask.taskGroupId;
         })) as IGroup);
 
-        const updatedTaskIndex = updatedTaskGroup.tasks.findIndex((filteredTask) => filteredTask.id == savedTask.id)
+        const updatedTaskIndex
+          = updatedTaskGroup.tasks.findIndex((filteredTask) => filteredTask.id == savedTask.id)
         updatedTaskGroup.tasks[updatedTaskIndex] = savedTask;
 
       }
