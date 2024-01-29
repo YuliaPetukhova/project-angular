@@ -35,17 +35,12 @@ export class TasksService {
     return this.http.post<ITask>(this.urlCreateTitleGroup, task);
   }
 
-    updateTask(task: ITask): Observable<ITask> {
-      return this.http.post<ITask>(this.urlUpdateTask + task.id, {
-        text: task.text,
-        taskGroupId: task.taskGroupId,
-        price: task.price,
-      });
-
-    // return this.http.post<ITask>(this.urlUpdateTaskGroup + id, {
-    //   id: task.id,
-    //   taskGroupId: task.taskGroupId,
-    // })
+  updateTask(task: ITask): Observable<ITask> {
+    return this.http.post<ITask>(this.urlUpdateTask + task.id, {
+      text: task.text,
+      taskGroupId: task.taskGroupId,
+      price: task.price,
+    });
   }
 
   deleteTask(id: number) {

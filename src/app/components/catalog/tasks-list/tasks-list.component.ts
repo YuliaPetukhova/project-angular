@@ -15,7 +15,6 @@ import {IGroup} from "../../../models/IGroup";
 })
 
 export class TasksListComponent implements OnChanges {
-  editedTask: ITask;
   @Input() tasks: ITask[];
   @Input() currentGroup: IGroup;
 

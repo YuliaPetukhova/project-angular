@@ -1,3 +1,4 @@
+/* Модуль нижнего меню */
 .bottom-menu {
   flex-wrap: wrap;
   position: fixed;
@@ -13,6 +14,7 @@
   bottom: 31px;
 }
 
+/* Модуль кнопок*/
 .button-class {
   width: 30% !important;
   min-width: unset;
@@ -54,11 +56,7 @@ input.inputText:focus {
   border: #f61c65 1px solid;
   margin-bottom: 4px;
 }
-.select-group{
-  outline: none;
-  width: 20%;
-  margin-bottom: 4px;
-}
+
 
 .bottom-menu__header {
   display: flex;
@@ -70,6 +68,13 @@ input.inputText:focus {
   display: flex;
   justify-content: space-between;
   padding-top: 2px;
+}
+
+/* Модуль выбора группы*/
+.select-group {
+  outline: none;
+  width: 20%;
+  margin-bottom: 4px;
 }
 
 .menu-groups-title {

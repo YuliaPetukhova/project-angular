@@ -38,8 +38,6 @@ export class CatalogComponent {
   URL = "/catalog/";
   DATA = 'currentGroup';
 
-  // myFormTask: FormGroup;
-
 
   constructor(
     private matDialog: MatDialog,
@@ -90,30 +88,6 @@ export class CatalogComponent {
     });
   }
 
-  // onCreate(myFormTask: FormGroup){
-  //   this.tasksService.create({
-  //     text: myFormTask.value.text as string,
-  //     taskGroupId: myFormTask.value.taskGroup ?? 1,
-  //     createdAt: '',
-  //     doneAt: '',
-  //     deletedAt: '',
-  //     price: myFormTask.value.price as number,
-  //   }).subscribe((result) => {
-  //
-  //     let newTaskGroupId = (this.groups.find((groupId => {
-  //       return groupId.id == result.taskGroupId;
-  //     })) as IGroup);
-  //
-  //     let editingTask = (this.currentGroup.tasks.findIndex((filteredTask) => filteredTask.id == this.data.tasks.id),
-  //       1)
-  //     // console.log(newTaskGroupId);
-  //     let h = newTaskGroupId.tasks.push(result);
-  //     // console.log(h)
-  //
-  //     let changedTask = editingTask.tasks.replace(result);
-  //     // console.log(changedTask)
-  //   });
-  // }
 
   onUpdate(myFormTask: FormGroup) {
     const oldTaskGroupId = myFormTask.value.oldTaskGroupId;

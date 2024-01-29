@@ -1,13 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  ViewEncapsulation,
-  Inject,
-  Optional,
-  OnInit
-} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, OnInit, Optional, Output, ViewEncapsulation} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
@@ -17,8 +8,6 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular
 import {ITask} from "../../../models/ITask";
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {SharingService} from "../../../services/sharing/sharing.service";
-import {TasksService} from "../../../services/tasks.service";
-import {IGroup} from "../../../models/IGroup";
 
 
 @Component({
@@ -139,15 +128,8 @@ export class BottomMenuComponent implements OnInit {
     }
   }
 
-  //
-  // clearInput(target: any) {
-  //   const textInput = target.closest('div').getElementsByClassName('inputText')[0];
-  //   (textInput as HTMLInputElement).value = '';
-  //
-  //   this.toDefaultState();
-  // }
 
-  clearForm(){
+  clearForm() {
     this.myFormTask.reset();
     this.toDefaultState();
   }

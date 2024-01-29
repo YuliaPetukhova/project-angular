@@ -36,10 +36,6 @@ export class TaskFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // myFormTask = new FormGroup({
-  //   taskGroup: new FormControl<number>(this.currentTask.taskGroupId ?? 0, [Validators.required]),
-  //   text: new FormControl<string>('', [Validators.required]),
-  // });
 
   trackByFn(index, taskGroup: ITask) {
     return taskGroup.id;
