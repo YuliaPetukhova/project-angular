@@ -8,26 +8,16 @@
   font-family: 'Cormorant Garamond', serif;
 }
 
-/*.wrapper{*/
-/*  height: 360px;*/
-/*  background-color: transparent!important;*/
-/*  border: 2px solid lightpink;*/
-/*  backdrop-filter: blur(10px) !important;*/
-/*  box-shadow: 0 0 10px gray;*/
-/*  border-radius: 10px;*/
-/*  padding: 9px 9px;*/
-/*}*/
-
 /deep/ .mat-mdc-dialog-container .mdc-dialog__surface,
 .mat-mdc-dialog-surface.mdc-dialog__surface {
   background-color: transparent !important;
-  backdrop-filter: blur(20px) !important;
+  backdrop-filter: blur(40px) !important;
   box-shadow: 0 0 5px white;
   border-radius: 10px;
 }
 
 .wrapper h1 {
-  font-size: 24px;
+  font-size: 23px;
   text-align: center;
   color: white;
 }
@@ -49,14 +39,14 @@
   outline: none;
   font-size: 16px;
   color: white;
-  padding: 10px 15px 10px 10px;
+  padding: 10px 10px 10px 10px;
 }
 
 .input-box input::placeholder {
   color: white;
 }
 
-.input-box i {
+.input-box img {
   position: absolute;
   right: 10px;
   top: 50%;
@@ -64,26 +54,25 @@
   font-size: 20px;
 }
 
-.close-btn span {
+.close-btn img {
   position: absolute;
-  right: 10px;
+  right: 5px;
+  top: 5px;
 }
 
 .remember-forgot {
   display: flex;
-  justify-content: space-between;
   font-size: 14px;
-  margin: -15px 0 15px;
   color: white;
 }
 
 .remember-forgot label input {
   accent-color: #f61c65;
-  margin-right: 5px;
 }
 
 .remember-forgot a:hover {
   text-decoration: underline;
+  color: lavender;
 }
 
 .login-btn {
@@ -108,7 +97,7 @@
 }
 
 .register-link a:hover {
-  text-decoration: underline!important;
+  text-decoration: underline !important;
   color: lavender;
   font-weight: 500;
 }
