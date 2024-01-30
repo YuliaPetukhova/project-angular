@@ -1,32 +1,54 @@
-<button mat-icon-button matDialogClose style="float: right; margin: 1px">
-  <mat-icon> close</mat-icon>
-</button>
+<div class="mat-mdc-dialog-container mdc-dialog__surface wrapper">
+  <form>
+    <button class="close-btn" matDialogClose>
+      <span class="material-symbols-outlined">
+        close
+      </span>
+    </button>
 
-<header style="margin: 2px 5px">
-  <h1>Вход/Регистрация</h1>
-</header>
+    <h1>Вход/Регистрация</h1>
 
-<div style="margin: 1px 1px">
-  <p>
-    <mat-form-field>
-      <input matInput placeholder="Ваш логин"/>
-      <mat-icon matSuffix>person</mat-icon>
-    </mat-form-field>
-  </p>
-  <p>
-    <mat-form-field>
-      <input matInput placeholder="Ваш email"/>
-      <mat-icon matSuffix>drafts</mat-icon>
-    </mat-form-field>
-  </p>
-  <p>
-    <mat-form-field>
-      <input matInput placeholder="Ваш пароль"/>
-      <mat-icon matSuffix>vpn_key</mat-icon>
-    </mat-form-field>
-  </p>
+    <div class="input-box">
+      <input type="text" placeholder="Ваш логин" required/>
+      <i class="material-symbols-outlined">
+          person
+        </i>
+    </div>
+
+    <div class="input-box">
+      <input matInput placeholder="Ваш email" required/>
+      <i class="material-symbols-outlined">
+          email
+        </i>
+    </div>
+
+    <div class="input-box">
+      <input type="password" placeholder="Ваш пароль" required/>
+      <i class="material-symbols-outlined">
+        key
+      </i>
+    </div>
+
+    <div class="remember-forgot">
+      <label>
+        <input type="checkbox">Запомнить меня</label>
+        <a href="#">Забыли пароль?</a>
+    </div>
+
+    <button class="login-btn" type="submit">Войти</button>
+
+    <div class="register-link">
+      <a routerLink="#">Регистрация</a>
+    </div>
+
+  </form>
 </div>
 
-<div mat-dialog-actions>
-  <button mat-raised-button color="primary">Войти</button>
-</div>
+
+
+
+
+
+
+
+

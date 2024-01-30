@@ -6,8 +6,9 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'page-pattern': "url('../src/img/main-page.jpg')",
+        // 'page-pattern': "url('../src/img/main-page.jpg')",
       }
+
     },
   },
   plugins: [],
