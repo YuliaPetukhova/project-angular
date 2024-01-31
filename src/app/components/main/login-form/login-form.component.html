@@ -7,7 +7,6 @@
     <h1 [hidden]="!loginFormState">{{ LOGIN_HEADER }}</h1>
     <h1 [hidden]="registerFormState">{{ REGISTER_HEADER }}</h1>
 
-
     <div class="input-box">
       <input type="text" placeholder="Ваш логин" required/>
       <img src="assets/icons/user.png" alt="user-icon">
@@ -34,6 +33,9 @@
       <a routerLink="#" [hidden]="!loginFormState">У меня нет аккаунта. <br> {{ REGISTER }}</a>
     </div>
 
+    <div (click)="loginForm()" class="register-link">
+      <a [hidden]="loginFormState">{{ BACK }}</a>
+    </div>
   </form>
 </div>
 

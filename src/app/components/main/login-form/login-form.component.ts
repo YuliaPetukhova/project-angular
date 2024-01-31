@@ -12,6 +12,7 @@ export class LoginFormComponent {
   REGISTER = 'Регистрация';
   REGISTER_HEADER = 'Зарегистрироваться';
   FORGOT = 'Забыли пароль?';
+  BACK = 'Назад';
 
   registerFormState = true;
   loginFormState = true;
@@ -19,6 +20,11 @@ export class LoginFormComponent {
   registerForm(){
     this.registerFormState = false;
     this.loginFormState = false;
+  }
+
+  loginForm(){
+    this.registerFormState = true;
+    this.loginFormState = true;
   }
 }
 
