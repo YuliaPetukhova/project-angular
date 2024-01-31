@@ -60,18 +60,18 @@
   top: 5px;
 }
 
-.remember-forgot {
+.forgot {
   display: flex;
   font-size: 14px;
   color: white;
   padding-bottom: 10px;
 }
 
-.remember-forgot label input {
+.forgot label input {
   accent-color: #f61c65;
 }
 
-.remember-forgot a:hover {
+.forgot a:hover {
   text-decoration: underline;
   color: lavender;
 }

@@ -9,6 +9,7 @@ import {LoginFormComponent} from '../login-form/login-form.component';
 })
 export class IndexComponent {
   title = 'Household';
+  loginBtn = 'Вход';
 
   constructor(private matDialog: MatDialog) {
   }
