@@ -10,8 +10,8 @@
 
 /deep/ .mat-mdc-dialog-container .mdc-dialog__surface,
 .mat-mdc-dialog-surface.mdc-dialog__surface {
-  background-color: transparent !important;
-  backdrop-filter: blur(40px) !important;
+  background-color: transparent;
+  backdrop-filter: blur(40px);
   box-shadow: 0 0 5px white;
   border-radius: 10px;
 }

@@ -22,6 +22,7 @@
   padding: 5px 5px;
   margin: 2px;
   line-height: 1.2;
+  text-wrap: balance;
 }
 
 .description{
