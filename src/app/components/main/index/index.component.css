@@ -1,1 +1,62 @@
+.title{
+  font-size: 20px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  position: fixed;
+  left: 5px;
+  top: 1px;
+  padding: 5px 5px;
+  margin: 2px;
+}
 
+.content{
+  font-size: 35px;
+  color: #47777e;
+  font-weight: 600;
+  display: flex;
+  position: fixed;
+  left: 5px;
+  top: 80px;
+  padding: 5px 5px;
+  margin: 2px;
+  line-height: 1.2;
+}
+
+.description{
+  font-size: 17px;
+  cursor: pointer;
+  color: white;
+  font-weight: 400;
+  display: flex;
+  position: fixed;
+  left: 5px;
+  top: 180px;
+  padding: 5px 5px;
+  margin: 2px;
+}
+
+.btn-grad {
+  background-image: linear-gradient(to right, #4CA1AF 0%, #C4E0E5  51%, #4CA1AF  100%);
+  margin: 2px;
+  padding: 5px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  position: fixed;
+  top: 3px;
+  right: 3px;
+  font-weight: 600;
+}
+
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
