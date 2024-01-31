@@ -31,7 +31,7 @@
     <button class="login-btn" type="submit" [hidden]="registerFormState">{{ REGISTER }}</button>
 
     <div class="register-link" (click)="registerForm()">
-      <a routerLink="#" [hidden]="!loginFormState">{{ REGISTER }}</a>
+      <a routerLink="#" [hidden]="!loginFormState">У меня нет аккаунта. <br> {{ REGISTER }}</a>
     </div>
 
   </form>

@@ -9,8 +9,8 @@ export class LoginFormComponent {
 
   LOGIN_HEADER = 'Вход';
   LOGIN = 'Войти';
-  REGISTER = 'Зарегистрироваться';
-  REGISTER_HEADER = 'Регистрация';
+  REGISTER = 'Регистрация';
+  REGISTER_HEADER = 'Зарегистрироваться';
   FORGOT = 'Забыли пароль?';
 
   registerFormState = true;
