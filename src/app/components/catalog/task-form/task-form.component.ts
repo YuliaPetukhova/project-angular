@@ -28,7 +28,6 @@ export class TaskFormComponent implements OnInit {
 
     this.myFormTask = new FormGroup({
       taskGroup: new FormControl<number>(data.currentTask?.taskGroupId, [Validators.required]),
-      // taskGroup: new FormControl<number>(data.currentTask?.taskGroupId, [Validators.required]),
       text: new FormControl<string>(data.currentTask?.text, [Validators.required]),
     });
   }

@@ -5,7 +5,7 @@ import {IndexComponent} from './components/main/index/index.component';
 
 const routes: Routes = [
   {path: 'main', component: IndexComponent},
-  {path: 'catalog/:id', component: CatalogComponent}
+  {path: 'catalog/:id', component: CatalogComponent},
 ];
 
 @NgModule({

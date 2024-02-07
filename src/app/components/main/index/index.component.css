@@ -1,3 +1,9 @@
+.main-page{
+  background-size: cover!important;
+  background: url("src/img/main-page.jpg") left;
+  width: 100%;
+  height: 100%;
+}
 .title{
   font-size: 20px;
   cursor: pointer;
@@ -9,6 +15,28 @@
   top: 1px;
   padding: 5px 5px;
   margin: 2px;
+}
+
+@media (min-width: 1024px) {
+  .title{
+    font-size: 25px;
+    left: 35px;
+    top: 1px;
+    padding: 1px 5px;
+    margin: 3px;
+  }
+  .content{
+    font-size: 55px!important;
+    top: 160px!important;
+    left: 35px!important;
+  }
+
+  .description{
+    font-size: 25px!important;
+    top: 220px!important;
+    left: 35px!important;
+    padding: 30px 5px!important;
+  }
 }
 
 .content{
