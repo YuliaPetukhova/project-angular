@@ -1,0 +1,59 @@
+
+nav {
+  display: none;
+  list-style: none;
+}
+
+.task-list {
+  padding-bottom: 40px;
+}
+
+@media screen and (min-width: 1024px) {
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+    display: flex;
+    align-items: center;
+  }
+
+  a {
+    cursor: pointer;
+    margin-right: 14px;
+    font-size: 18px;
+  }
+
+  .side-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 16%;
+    background-color: white;
+    box-shadow: 0 0 1px black;
+    transition: all .3s ease;
+  }
+
+  .sidebar-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    padding: 6px 9px;
+  }
+
+  .sidebar-content a {
+    display: flex;
+    align-items: center;
+    margin: 4px 0;
+    border-radius: 8px;
+    transition: .3s;
+  }
+
+  .sidebar-content a:hover {
+    background-color: rgba(246, 28, 101, 0.09);
+  }
+
+
+}

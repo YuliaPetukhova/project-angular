@@ -32,6 +32,7 @@ import {FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
   ],
 })
 export class CatalogComponent {
+
   groups: IGroup[];
   groupTitles: IGroupTitle[];
   currentGroup: IGroup;

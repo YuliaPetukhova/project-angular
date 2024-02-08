@@ -29,7 +29,7 @@ import {SharingService} from "../../../services/sharing/sharing.service";
 export class BottomMenuComponent implements OnInit {
   placeholderAddTask: string = "";
   ENTER_TEXT = "Введите текст";
-  ADD_TASK = "Добавить задачу";
+  ADD_TASK = "Создать задачу/группу";
   myFormTask: FormGroup;
   task: ITask;
   editingTask: ITask;

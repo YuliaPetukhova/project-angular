@@ -1,4 +1,42 @@
-<app-tasks-list [currentGroup]="currentGroup"></app-tasks-list>
+<nav>
+  <div class="side-bar">
+    <div class="sidebar-content">
+      <ul>
+        <li>
+          <a href="#">
+            Группа 2
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Группа 2
+          </a>
+        </li>
+      </ul>
+
+      <div class="bottom-content">
+        <li>
+          <a href="#">
+            <img src="assets/icons/settings.png">
+            Настройки
+          </a>
+        </li>
+        <li>
+          <a href="/main">
+            <img src="assets/icons/logout.png">
+            Выйти
+          </a>
+        </li>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+
+<div class="task-list">
+  <app-tasks-list [currentGroup]="currentGroup"></app-tasks-list>
+</div>
 
 <app-bottom-menu
   [groupTitles]="groupTitles"

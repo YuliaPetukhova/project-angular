@@ -101,3 +101,15 @@ input.inputText:focus {
     padding: 0 0 !important;
   }
 }
+
+@media screen and (min-width: 1024px) {
+  .bottom-menu {
+    width: 84%;
+    right: 0;
+    border-style: solid;
+  }
+
+  .title-group {
+    width: 84vw;
+  }
+}
