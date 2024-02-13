@@ -18,10 +18,13 @@ nav {
     align-items: center;
   }
 
-  a {
+  li {
     cursor: pointer;
-    margin-right: 14px;
-    font-size: 18px;
+    font-size: 16px;
+  }
+
+  img {
+    display: unset;
   }
 
   .side-bar {
@@ -35,6 +38,7 @@ nav {
     transition: all .3s ease;
   }
 
+
   .sidebar-content {
     display: flex;
     flex-direction: column;
@@ -43,16 +47,25 @@ nav {
     padding: 6px 9px;
   }
 
-  .sidebar-content a {
+  .btn-group {
     display: flex;
     align-items: center;
-    margin: 4px 0;
-    border-radius: 8px;
     transition: .3s;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 10px 0;
   }
 
-  .sidebar-content a:hover {
+  .btn-group:hover {
     background-color: rgba(246, 28, 101, 0.09);
+  }
+
+  .sidebar-content li:hover {
+    background-color: rgba(246, 28, 101, 0.09);
+  }
+
+  .bottom-content li {
+    padding: 8px 0;
   }
 
 

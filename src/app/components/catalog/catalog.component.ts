@@ -12,6 +12,7 @@ import {ActivatedRoute} from '@angular/router';
 import {TaskItemComponent} from "./tasks-list/task-item/task-item/task-item.component";
 import {ITask} from "../../models/ITask";
 import {FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
 
 @Component({
@@ -29,6 +30,7 @@ import {FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
     TaskItemComponent,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule
   ],
 })
 export class CatalogComponent {
@@ -38,6 +40,8 @@ export class CatalogComponent {
   currentGroup: IGroup;
   URL = "/catalog/";
   DATA = 'currentGroup';
+  SETTINGS = 'Настройки';
+  LOG_OUT = 'Выйти';
 
 
   constructor(

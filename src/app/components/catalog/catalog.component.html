@@ -1,31 +1,24 @@
 <nav>
   <div class="side-bar">
     <div class="sidebar-content">
-      <ul>
-        <li>
-          <a href="#">
-            Группа 2
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            Группа 2
-          </a>
-        </li>
-      </ul>
+      <div>
+        <div class="btn-group"
+             *ngFor="let groupTitle of groupTitles"
+             (click)="changeCurrentGroup(groupTitle)"
+        >
+          <button>
+            {{ groupTitle.title }}
+          </button>
+        </div>
+      </div>
+
 
       <div class="bottom-content">
         <li>
-          <a href="#">
-            <img src="assets/icons/settings.png">
-            Настройки
-          </a>
+          <a href="#"><img src="assets/icons/settings.png">{{ SETTINGS }}</a>
         </li>
         <li>
-          <a href="/main">
-            <img src="assets/icons/logout.png">
-            Выйти
-          </a>
+          <a href="/main"><img src="assets/icons/logout.png">{{ LOG_OUT }}</a>
         </li>
       </div>
 

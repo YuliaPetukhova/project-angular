@@ -112,4 +112,8 @@ input.inputText:focus {
   .title-group {
     width: 84vw;
   }
+
+  .button-class {
+    display: none;
+  }
 }
