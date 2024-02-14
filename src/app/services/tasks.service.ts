@@ -14,7 +14,6 @@ export class TasksService {
   private urlUpdateTask = 'http://localhost/api/v1/family-task/task/update/';
   private urlDeleteTask = 'http://localhost/api/v1/family-task/task/delete/';
   private urlCreateTitleGroup = 'http://localhost/api/v1/family-task/task-group/create';
-  private error: any;
 
   constructor(private http: HttpClient) {
   }
