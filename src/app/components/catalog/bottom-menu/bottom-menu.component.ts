@@ -3,7 +3,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {IGroupTitle} from "../../../models/IGroupTitle";
-import {CommonModule} from '@angular/common';
+import {CommonModule, AsyncPipe} from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ITask} from "../../../models/ITask";
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -21,7 +21,8 @@ import {SharingService} from "../../../services/sharing/sharing.service";
     MatMenuModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AsyncPipe
   ],
   encapsulation: ViewEncapsulation.None
 })
@@ -59,7 +60,7 @@ export class BottomMenuComponent implements OnInit {
   }
 
 
-  @Input() groupTitles!: IGroupTitle[];
+  @Input() groupTitles!: IGroupTitle[] | undefined;
   @Output() menuClick = new EventEmitter<IGroupTitle>();
   @Output() createTask = new EventEmitter<FormGroup>();
   @Output() updateTask = new EventEmitter<FormGroup>();
@@ -82,14 +83,15 @@ export class BottomMenuComponent implements OnInit {
       }
 
       this.myFormTask = new FormGroup({
-          taskGroup: new FormControl<number>(this.editingTask?.taskGroupId),
-          text: new FormControl<string>(this.editingTask?.text),
-          price: new FormControl<number>(this.editingTask?.price),
           id: new FormControl<any>(this.editingTask?.id),
-          oldTaskGroupId: new FormControl<number>(this.editingTask?.taskGroupId)
+          oldTaskGroupId: new FormControl<number>(this.editingTask?.taskGroupId),
+          price: new FormControl<number>(this.editingTask?.price),
+          taskGroup: new FormControl<number>(this.editingTask?.taskGroupId),
+          text: new FormControl<string>(this.editingTask?.text)
         }
       );
     });
+
   }
 
   onSubmit(task: ITask) {

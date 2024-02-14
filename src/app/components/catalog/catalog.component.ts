@@ -1,4 +1,4 @@
-import {Component, Inject, Optional} from '@angular/core';
+import {Component, Inject, Optional, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
@@ -12,7 +12,9 @@ import {ActivatedRoute} from '@angular/router';
 import {TaskItemComponent} from "./tasks-list/task-item/task-item/task-item.component";
 import {ITask} from "../../models/ITask";
 import {FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {CommonModule} from '@angular/common';
+import {CommonModule, AsyncPipe} from '@angular/common';
+import {ICatalog} from "../../models/ICatalog";
+import {Observable} from 'rxjs';
 
 
 @Component({
@@ -30,10 +32,11 @@ import {CommonModule} from '@angular/common';
     TaskItemComponent,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    AsyncPipe
   ],
 })
-export class CatalogComponent {
+export class CatalogComponent implements OnInit {
 
   groups: IGroup[];
   groupTitles: IGroupTitle[];
@@ -43,6 +46,11 @@ export class CatalogComponent {
   SETTINGS = 'Настройки';
   LOG_OUT = 'Выйти';
 
+  catalog$: Observable<ICatalog>;
+
+  ngOnInit() {
+    this.catalog$ = this.tasksService.getAll();
+  }
 
   constructor(
     private matDialog: MatDialog,
@@ -51,6 +59,7 @@ export class CatalogComponent {
     @Optional()
     @Inject(MAT_DIALOG_DATA)
     private data: { groups: any; tasks: any; currentTask: ITask }) {
+
 
     tasksService.getAll().subscribe((result) => {
         this.groups = result.groups;

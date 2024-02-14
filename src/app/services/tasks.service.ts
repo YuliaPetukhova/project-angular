@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {ITask} from '../models/ITask';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, delay} from 'rxjs';
 import {ICatalog} from "../models/ICatalog";
+
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,9 @@ export class TasksService {
 
 
   getAll(): Observable<ICatalog> {
-    return this.http.get<ICatalog>(this.urlAllTasks);
+    return this.http.get<ICatalog>(this.urlAllTasks).pipe(
+      delay(2000)
+    );
   }
 
   create(task: ITask): Observable<ITask> {
