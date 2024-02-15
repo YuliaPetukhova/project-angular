@@ -1,30 +1,8 @@
-<nav>
-  <div class="side-bar">
-    <div class="sidebar-content">
-      <div>
-        <div class="btn-group"
-             *ngFor="let groupTitle of (catalog$ | async)?.groupTitles"
-             (click)="changeCurrentGroup(groupTitle)"
-        >
-          <button>
-            {{ groupTitle.title }}
-          </button>
-        </div>
-      </div>
-
-
-      <div class="bottom-content">
-        <li>
-          <a href="#"><img src="assets/icons/settings.png" alt="icon-settings">{{ SETTINGS }}</a>
-        </li>
-        <li>
-          <a href="/main"><img src="assets/icons/logout.png" alt="icon-logout">{{ LOG_OUT }}</a>
-        </li>
-      </div>
-
-    </div>
-  </div>
-</nav>
+<app-left-menu
+  [groupTitles]="(catalog$ | async)?.groupTitles"
+  (menuClick)="changeCurrentGroup($event)"
+>
+</app-left-menu>
 
 
 <div class="task-list">

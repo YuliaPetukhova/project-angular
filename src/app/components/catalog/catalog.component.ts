@@ -15,6 +15,7 @@ import {FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule, AsyncPipe} from '@angular/common';
 import {ICatalog} from "../../models/ICatalog";
 import {Observable} from 'rxjs';
+import {LeftMenuComponent} from "./left-menu/left-menu.component";
 
 
 @Component({
@@ -33,23 +34,32 @@ import {Observable} from 'rxjs';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    AsyncPipe
+    AsyncPipe,
+    LeftMenuComponent
   ],
 })
 export class CatalogComponent implements OnInit {
 
   groups: IGroup[];
-  groupTitles: IGroupTitle[];
   currentGroup: IGroup;
   URL = "/catalog/";
   DATA = 'currentGroup';
-  SETTINGS = 'Настройки';
-  LOG_OUT = 'Выйти';
+
 
   catalog$: Observable<ICatalog>;
 
   ngOnInit() {
     this.catalog$ = this.tasksService.getAll();
+    this.catalog$.subscribe((result) => {
+      this.groups = result.groups;
+
+      this.route.params.subscribe(params => {
+        this.currentGroup = (this.groups.find((group => {
+          return group.id == params['id'];
+        })) as IGroup);
+      })
+    });
+
   }
 
   constructor(
@@ -59,20 +69,6 @@ export class CatalogComponent implements OnInit {
     @Optional()
     @Inject(MAT_DIALOG_DATA)
     private data: { groups: any; tasks: any; currentTask: ITask }) {
-
-
-    tasksService.getAll().subscribe((result) => {
-        this.groups = result.groups;
-        this.groupTitles = result.groupTitles;
-
-        this.route.params.subscribe(params => {
-          this.currentGroup = (this.groups.find((group => {
-            return group.id == params['id'];
-          })) as IGroup);
-        })
-      }
-    );
-
   }
 
   changeCurrentGroup(groupTitle: IGroupTitle) {
