@@ -20,11 +20,11 @@
   </td>
 
   <!-- <mat-checkbox class="text-right">Сделано</mat-checkbox> -->
-  <h1 class="text-lg text-left mb-2">{{ task.createdAt }}</h1>
+  <h1 class="text-lg text-left mb-2">{{ task.createdAt | date :'short' }}</h1>
   <p class="text-left text-sm">Группа: {{ task.taskGroupId }}</p>
   <p class="text-left text-lg">
     {{ task.text }}
   </p>
-  <p>Ценность: <span class="text-left text-sm font-bold">{{ task.price }}</span></p>
+  <p>Ценность: <span class="text-left text-sm font-bold">{{ task.price | currency:"USD":"symbol":'1.0' }}</span></p>
 </div>
 
