@@ -4,7 +4,7 @@ import {CatalogComponent} from './components/catalog/catalog.component';
 import {IndexComponent} from './components/main/index/index.component';
 
 const routes: Routes = [
-  {path: 'main', component: IndexComponent},
+  {path: '', component: IndexComponent},
   {path: 'catalog/:id', component: CatalogComponent},
 ];
 

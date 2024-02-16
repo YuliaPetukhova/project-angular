@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {LoginComponent} from '../login/login.component';
+import {ModalComponent} from '../modal/modal.component';
 
 @Component({
   selector: 'app-index',
@@ -15,7 +15,7 @@ export class IndexComponent {
   }
 
   openLoginForm(): void {
-    this.matDialog.open(LoginComponent, {
+    this.matDialog.open(ModalComponent, {
       width: '325px',
     });
   }

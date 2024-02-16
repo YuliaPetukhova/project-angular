@@ -9,7 +9,6 @@ import localeRu from '@angular/common/locales/ru';
 
 registerLocaleData(localeRu);
 
-
 @Component({
   selector: 'app-task-item',
   templateUrl: './task-item.component.html',
