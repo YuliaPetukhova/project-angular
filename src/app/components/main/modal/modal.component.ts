@@ -30,14 +30,6 @@ export class ModalComponent {
   currentForm = this.LOGIN_FORM;
 
   changeForm(currentForm) {
-    console.log(currentForm)
     this.currentForm = currentForm;
-  }
-
-  submitForm() {
-    // this.authService.modal(this.modalForm.value).subscribe({
-    //   next: () => this.router.navigate(['admin']),
-    //   error: (err) => alert(err.message)
-    // });
   }
 }

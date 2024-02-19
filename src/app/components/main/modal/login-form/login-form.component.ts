@@ -1,8 +1,11 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatDialogModule} from '@angular/material/dialog';
 import {LeftMenuComponent} from "../../../catalog/left-menu/left-menu.component";
+import {Component, EventEmitter, Output, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormGroup, FormsModule, FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import {Router, ActivatedRoute} from '@angular/router';
+import {AccountService} from 'src/app/services/account.service';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login-form',
@@ -17,9 +20,10 @@ import {LeftMenuComponent} from "../../../catalog/left-menu/left-menu.component"
     LeftMenuComponent
   ],
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit {
 
-  loginForm: FormGroup;
+  loginForm!: FormGroup;
+  submitted = false;
 
   @Output() changeCurrentForm = new EventEmitter<string>();
 
@@ -27,10 +31,39 @@ export class LoginFormComponent {
     this.changeCurrentForm.emit(currentForm)
   }
 
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private accountService: AccountService,
+    private dialogRef: MatDialogRef<LoginFormComponent>,
+  ) {
+  }
+
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
+
+  get f() {
+    return this.loginForm.controls;
+  }
+
   submitForm() {
-    // this.authService.modal(this.modalForm.value).subscribe({
-    //   next: () => this.router.navigate(['admin']),
-    //   error: (err) => alert(err.message)
-    // });
+    this.submitted = true;
+
+    if (this.loginForm.invalid) {
+      return;
+    }
+    this.accountService.login(this.f.email.value, this.f.password.value)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          this.dialogRef.close();
+          this.router.navigate(['/catalog/1']);
+        }
+      });
   }
 }
