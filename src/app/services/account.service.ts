@@ -14,12 +14,17 @@ export class AccountService {
   private userSubject: BehaviorSubject<IUser | null>;
   public user: Observable<IUser | null>;
 
-  constructor(private router: Router,
-              private http: HttpClient) {
+  constructor(
+    private router: Router,
+    private http: HttpClient
+  ) {
     this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
     this.user = this.userSubject.asObservable();
   }
 
+  public get userValue() {
+    return this.userSubject.value;
+  }
 
   login(email: string, password: string) {
     return this.http.post<IUser>(this.urlLogin, {email, password})

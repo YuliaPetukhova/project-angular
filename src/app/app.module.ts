@@ -12,7 +12,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSelectModule} from '@angular/material/select';
 import {MatMenuModule} from '@angular/material/menu';
 import {HttpClientModule} from '@angular/common/http';
-import {TaskFormComponent} from './components/catalog/task-form/task-form.component';
 import {CatalogComponent} from './components/catalog/catalog.component';
 import {IndexComponent} from './components/main/index/index.component';
 import {SharingService} from "./services/sharing/sharing.service";
@@ -20,7 +19,6 @@ import {SharingService} from "./services/sharing/sharing.service";
 @NgModule({
   declarations: [
     AppComponent,
-    TaskFormComponent,
     IndexComponent
   ],
   imports: [

@@ -1,27 +1,38 @@
-<nav>
-  <div class="side-bar">
+<div class="container">
+
+  <div class="side-bar" [class.active]="shouldHideElement">
+
     <div class="sidebar-content">
       <div>
+
+        <div (click)="toggleElementVisibility()">
+          <div class="tog" [class.active]="shouldHideElement">
+            <i id="toggle-bars">
+              <img src="assets/icons/arrow-forward.png" alt="icon Muhammad Ali">
+            </i>
+            <i id="toggle-cross">
+              <img src="assets/icons/arrow-left.png" alt="icon vectaicon">
+            </i>
+          </div>
+        </div>
+
+
         <div class="btn-group"
              *ngFor="let groupTitle of groupTitles"
              (click)="changeCurrentGroup(groupTitle)"
         >
-          <button>
+          <button class="no-para" [class.active]="shouldHideElement">
+            {{ groupTitle.id }}
+          </button>
+
+          <button class="para" [class.active]="shouldHideElement">
             {{ groupTitle.title }}
           </button>
         </div>
-      </div>
 
-
-      <div class="bottom-content">
-        <li>
-          <a href="#"><img src="assets/icons/settings.png" alt="icon-settings">{{ SETTINGS }}</a>
-        </li>
-        <li>
-          <a href="/main"><img src="assets/icons/logout.png" alt="icon-logout">{{ LOG_OUT }}</a>
-        </li>
       </div>
 
     </div>
   </div>
-</nav>
+
+</div>

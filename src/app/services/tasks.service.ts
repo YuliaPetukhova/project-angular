@@ -21,7 +21,7 @@ export class TasksService {
 
   getAll(): Observable<ICatalog> {
     return this.http.get<ICatalog>(this.urlAllTasks).pipe(
-      delay(2000)
+      delay(1000)
     );
   }
 

@@ -21,8 +21,16 @@ export class LeftMenuComponent {
 
   @Input() groupTitles!: IGroupTitle[] | undefined;
 
+
   changeCurrentGroup(groupTitle: IGroupTitle) {
     this.menuClick.emit(groupTitle)
   }
+
+  shouldHideElement = false;
+
+  toggleElementVisibility() {
+    this.shouldHideElement = !this.shouldHideElement;
+  }
+
 
 }

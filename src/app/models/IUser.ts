@@ -1,6 +1,6 @@
 export class IUser {
   id?: string;
   email?: string;
-  password?: string;
+  user?: string;
   token?: string;
 }

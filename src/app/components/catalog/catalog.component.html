@@ -1,9 +1,10 @@
+<app-top-menu></app-top-menu>
+
 <app-left-menu
   [groupTitles]="(catalog$ | async)?.groupTitles"
   (menuClick)="changeCurrentGroup($event)"
 >
 </app-left-menu>
-
 
 <div class="task-list">
   <app-tasks-list [currentGroup]="currentGroup"></app-tasks-list>

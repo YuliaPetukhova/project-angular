@@ -16,6 +16,8 @@ import {CommonModule, AsyncPipe} from '@angular/common';
 import {ICatalog} from "../../models/ICatalog";
 import {Observable} from 'rxjs';
 import {LeftMenuComponent} from "./left-menu/left-menu.component";
+import {LoginFormComponent} from "../main/modal/login-form/login-form.component";
+import {TopMenuComponent} from "./top-menu/top-menu.component";
 
 
 @Component({
@@ -35,7 +37,9 @@ import {LeftMenuComponent} from "./left-menu/left-menu.component";
     ReactiveFormsModule,
     CommonModule,
     AsyncPipe,
-    LeftMenuComponent
+    LeftMenuComponent,
+    LoginFormComponent,
+    TopMenuComponent
   ],
 })
 export class CatalogComponent implements OnInit {

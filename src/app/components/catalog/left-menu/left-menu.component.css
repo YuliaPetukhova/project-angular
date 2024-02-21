@@ -1,11 +1,19 @@
-nav {
-  display: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: serif;
   list-style: none;
+  font-size: 20px;
 }
 
-@media screen and (min-width: 1024px) {
-  nav {
-    position: fixed;
+.container {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    position: relative;
     top: 0;
     left: 0;
     background-color: white;
@@ -20,6 +28,8 @@ nav {
 
   img {
     display: unset;
+    width: 20px;
+    height: 20px;
   }
 
   .side-bar {
@@ -27,12 +37,19 @@ nav {
     top: 0;
     left: 0;
     height: 100%;
-    width: 16%;
-    background-color: white;
-    box-shadow: 0 0 1px black;
-    transition: all .3s ease;
+    width: 50px;
+    background: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    transition: all 0.5s ease;
   }
 
+  .active.side-bar {
+    width: 150px;
+    transition: all 0.7s ease;
+  }
 
   .sidebar-content {
     display: flex;
@@ -43,24 +60,61 @@ nav {
   }
 
   .sidebar-content li:hover {
-    background-color: rgba(246, 28, 101, 0.09);
+    background-color: rgba(142, 225, 246, 0.47);
   }
 
-  .bottom-content li {
-    padding: 8px 0;
-  }
-
-  .btn-group {
-    display: flex;
-    align-items: center;
-    transition: .3s;
-    cursor: pointer;
-    font-size: 20px;
-    padding: 10px 0;
-  }
 
   .btn-group:hover {
-    background-color: rgba(246, 28, 101, 0.09);
+    background-color: rgba(142, 225, 246, 0.47);
+    cursor: pointer;
   }
 
+
+  .para {
+    display: none;
+    transition: all 0.1s ease;
+  }
+
+  .active.para {
+    display: flex;
+    transition: all 0.1s ease;
+  }
+
+  .no-para {
+    transition: all 0.1s ease;
+  }
+
+  .active.no-para {
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    transition: all 0.1s ease;
+  }
+
+  .tog {
+    top: 0;
+    left: 25px;
+    padding-bottom: 5px;
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .tog:hover {
+    background-color: rgba(142, 225, 246, 0.47);
+  }
+
+
+  .tog #toggle-cross {
+    display: none;
+  }
+
+  .active.tog #toggle-cross {
+    display: block;
+  }
+
+  .active.tog #toggle-bars {
+    display: none;
+  }
 }
