@@ -1,10 +1,12 @@
-<div class="group-title">
-  {{ currentGroup?.title }}
-</div>
-<div *ngFor="let task of currentGroup?.tasks">
-  <app-task-item
-    [task]="task"
-    (onDelete)="onDelete($event)"
-    (onEdit)="onEdit($event)"
-  ></app-task-item>
+<div class="task-list">
+  <div class="group-title">
+    {{ currentGroup?.title }}
+  </div>
+  <div *ngFor="let task of currentGroup?.tasks">
+    <app-task-item
+      [task]="task"
+      (onDelete)="onDelete($event)"
+      (onEdit)="onEdit($event)"
+    ></app-task-item>
+  </div>
 </div>

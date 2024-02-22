@@ -6,10 +6,19 @@
   font-size: large;
 }
 
+.task-list {
+  padding-bottom: 40px;
+  margin-left: 55px;
+}
+
+.expanded-menu.task-list {
+  margin-left: 155px;
+}
+
 
 @media (min-width: 1024px) {
   .group-title {
-    margin-left: 17%;
+    /*margin-left: 17%;*/
     padding: 10px 0 0 0;
   }
 

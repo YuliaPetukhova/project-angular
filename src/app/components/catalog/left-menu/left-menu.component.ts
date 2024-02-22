@@ -30,7 +30,6 @@ export class LeftMenuComponent {
 
   toggleElementVisibility() {
     this.shouldHideElement = !this.shouldHideElement;
+    document.getElementsByClassName('task-list')[0].classList.toggle('expanded-menu');
   }
-
-
 }

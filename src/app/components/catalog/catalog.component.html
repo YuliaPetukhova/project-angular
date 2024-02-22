@@ -6,10 +6,7 @@
 >
 </app-left-menu>
 
-<div class="task-list">
-  <app-tasks-list [currentGroup]="currentGroup"></app-tasks-list>
-</div>
-
+<app-tasks-list [currentGroup]="currentGroup"></app-tasks-list>
 
 <app-bottom-menu
   [groupTitles]="(catalog$ | async)?.groupTitles"
@@ -18,5 +15,3 @@
   (updateTask)="onUpdate($event)"
 >
 </app-bottom-menu>
-
-
