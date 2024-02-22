@@ -14,8 +14,6 @@ import {IGroupTitle} from "../../../models/IGroupTitle";
 })
 
 export class LeftMenuComponent {
-  SETTINGS = 'Настройки';
-  LOG_OUT = 'Выйти';
 
   @Output() menuClick = new EventEmitter<IGroupTitle>();
 
