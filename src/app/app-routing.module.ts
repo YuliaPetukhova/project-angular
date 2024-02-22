@@ -3,8 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {CatalogComponent} from './components/catalog/catalog.component';
 import {IndexComponent} from './components/main/index/index.component';
 
-import { AuthGuard } from './services/auth.guard';
-
+import {AuthGuard} from './services/auth.guard';
 
 
 const routes: Routes = [

@@ -25,10 +25,15 @@ export class LoginFormComponent implements OnInit {
   loginForm!: FormGroup;
   submitted = false;
 
+
   @Output() changeCurrentForm = new EventEmitter<string>();
 
   changeCurrentFormTo(currentForm: string) {
     this.changeCurrentForm.emit(currentForm)
+  }
+
+  changeCurrentFormToRegistration() {
+    this.changeCurrentFormTo('registration')
   }
 
   constructor(
@@ -42,8 +47,8 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      email: [null, Validators.required, Validators.email],
+      password: [null, [Validators.required, Validators.minLength(6)]]
     });
   }
 
@@ -65,5 +70,7 @@ export class LoginFormComponent implements OnInit {
           this.router.navigate(['/catalog/1']);
         }
       });
+
+    this.loginForm.reset();
   }
 }

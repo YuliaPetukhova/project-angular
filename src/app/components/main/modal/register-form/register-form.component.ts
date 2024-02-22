@@ -23,6 +23,7 @@ export class RegisterFormComponent implements OnInit {
   registrationForm!: FormGroup;
   submitted = false;
 
+
   @Output() changeCurrentForm = new EventEmitter<string>();
 
   constructor(
@@ -35,13 +36,17 @@ export class RegisterFormComponent implements OnInit {
 
   ngOnInit() {
     this.registrationForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      email: [null, Validators.required, Validators.email],
+      password: [null, [Validators.required, Validators.minLength(6)]]
     });
   }
 
   changeCurrentFormTo(currentForm: string) {
     this.changeCurrentForm.emit(currentForm)
+  }
+
+  changeCurrentFormToLogin() {
+    this.changeCurrentFormTo('login')
   }
 
   onSubmit() {
@@ -55,12 +60,13 @@ export class RegisterFormComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: () => {
-          this.router.navigate(['/'], {relativeTo: this.route});
+          this.router.navigate([''], {relativeTo: this.route});
         }
       });
+
+    this.registrationForm.reset();
+    this.changeCurrentFormToLogin();
   }
 
-
-
-
 }
+

@@ -1,14 +1,12 @@
-<form class="wrapper" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+<form
+  class="wrapper" [formGroup]="registrationForm"
+  (ngSubmit)="onSubmit()"
+>
   <button class="close-btn" matDialogClose>
     <img src="assets/icons/close.png" alt="close-icon">
   </button>
 
   <h1 class="title">Зарегистрироваться</h1>
-
-  <!--  <div class="input-box">-->
-  <!--    <input type="text" placeholder="Ваш логин" required/>-->
-  <!--    <img src="assets/icons/user.png" alt="user-icon">-->
-  <!--  </div>-->
 
   <div class="input-box">
     <input placeholder="Ваш email" formControlName="email"/>
@@ -22,7 +20,7 @@
 
 
   <button class="login-btn" type="submit">Регистрация</button>
-  <div (click)="changeCurrentFormTo('login')" class="register-link">
+  <div (click)="changeCurrentFormToLogin()" class="register-link">
     <button>У меня есть аккаунт. Войти</button>
   </div>
 
