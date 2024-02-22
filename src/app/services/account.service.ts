@@ -39,7 +39,6 @@ export class AccountService {
     return this.http.post(this.urlRegistration, user);
   }
 
-
   logout() {
     localStorage.removeItem('user');
     this.userSubject.next(null);
