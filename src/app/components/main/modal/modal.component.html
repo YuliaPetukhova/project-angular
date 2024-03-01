@@ -1,8 +1,10 @@
+
 <div class="mat-mdc-dialog-container mdc-dialog__surface wrapper">
   <app-login-form
     *ngIf="currentForm===LOGIN_FORM"
     (changeCurrentForm)="changeForm($event)"
-  ></app-login-form>
+  >
+  </app-login-form>
 
   <app-register-form
     *ngIf="currentForm===REGISTRATION_FORM"

@@ -1,6 +1,6 @@
 <form
-  class="wrapper" [formGroup]="registrationForm"
-  (ngSubmit)="onSubmit()"
+  class="wrapper" [formGroup]="authForm"
+  (ngSubmit)="onSubmit('login')"
 >
   <button class="close-btn" matDialogClose>
     <img src="assets/icons/close.png" alt="close-icon">

@@ -6,6 +6,7 @@ import {LoginFormComponent} from "./login-form/login-form.component";
 import {RegisterFormComponent} from "./register-form/register-form.component";
 import {LeftMenuComponent} from "../../catalog/left-menu/left-menu.component";
 import {BottomMenuComponent} from "../../catalog/bottom-menu/bottom-menu.component";
+import {BaseAuthFormComponent} from "./base-auth-form/base-auth-form.component";
 
 @Component({
   selector: 'app-modal',
@@ -20,7 +21,8 @@ import {BottomMenuComponent} from "../../catalog/bottom-menu/bottom-menu.compone
     LoginFormComponent,
     RegisterFormComponent,
     LeftMenuComponent,
-    BottomMenuComponent
+    BottomMenuComponent,
+    BaseAuthFormComponent
   ],
 })
 export class ModalComponent {

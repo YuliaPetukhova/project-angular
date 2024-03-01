@@ -1,11 +1,12 @@
 import {LeftMenuComponent} from "../../../catalog/left-menu/left-menu.component";
-import {Component, EventEmitter, Output, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormGroup, FormsModule, FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
-import {Router, ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
 import {first} from 'rxjs/operators';
+import {BaseAuthFormComponent} from "../base-auth-form/base-auth-form.component";
 
 @Component({
   selector: 'app-login-form',
@@ -20,48 +21,24 @@ import {first} from 'rxjs/operators';
     LeftMenuComponent
   ],
 })
-export class LoginFormComponent implements OnInit {
-
-  loginForm!: FormGroup;
-  submitted = false;
-
-
-  @Output() changeCurrentForm = new EventEmitter<string>();
-
-  changeCurrentFormTo(currentForm: string) {
-    this.changeCurrentForm.emit(currentForm)
-  }
-
-  changeCurrentFormToRegistration() {
-    this.changeCurrentFormTo('registration')
-  }
+export class LoginFormComponent extends BaseAuthFormComponent {
 
   constructor(
-    private formBuilder: FormBuilder,
+    formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
     private dialogRef: MatDialogRef<LoginFormComponent>,
   ) {
+    super(formBuilder);
   }
 
-  ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      email: [null, Validators.required, Validators.email],
-      password: [null, [Validators.required, Validators.minLength(6)]]
-    });
-  }
 
   get f() {
-    return this.loginForm.controls;
+    return this.authForm.controls;
   }
 
-  submitForm() {
-    this.submitted = true;
-
-    if (this.loginForm.invalid) {
-      return;
-    }
+  override sendRequest() {
     this.accountService.login(this.f.email.value, this.f.password.value)
       .pipe(first())
       .subscribe({
@@ -70,7 +47,5 @@ export class LoginFormComponent implements OnInit {
           this.router.navigate(['/catalog/1']);
         }
       });
-
-    this.loginForm.reset();
   }
 }
