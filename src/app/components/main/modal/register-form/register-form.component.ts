@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
 import {first} from 'rxjs/operators';
 import {BaseAuthFormComponent} from "../base-auth-form/base-auth-form.component";
+import {AlertService} from "../../../../services/alert.service";
 
 @Component({
   imports: [
@@ -23,11 +24,12 @@ export class RegisterFormComponent extends BaseAuthFormComponent {
 
   constructor(
     formBuilder: FormBuilder,
+    alertService: AlertService,
     private route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
   ) {
-    super(formBuilder);
+    super(formBuilder, alertService);
   }
 
 
@@ -37,10 +39,12 @@ export class RegisterFormComponent extends BaseAuthFormComponent {
       .subscribe({
         next: () => {
           this.router.navigate([''], {relativeTo: this.route});
+        },
+        error: error => {
+          this.alertService.error();
         }
       });
   }
-
 
 
 }

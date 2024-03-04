@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Output, OnInit} from '@angular/core';
 import {RegisterFormComponent} from "../register-form/register-form.component";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AlertService} from 'src/app/services/alert.service';
 
 @Component({
   imports: [
@@ -18,11 +19,13 @@ export class BaseAuthFormComponent implements OnInit {
 
   authForm: FormGroup;
   submitted = false;
+  loading = false;
 
   @Output() changeCurrentForm = new EventEmitter<string>();
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    protected alertService: AlertService
   ) {
 
   }
@@ -46,10 +49,9 @@ export class BaseAuthFormComponent implements OnInit {
     this.changeCurrentFormTo('registration')
   }
 
-  onSubmit(toForm: string|null = null) {
+  onSubmit(toForm: string | null = null) {
     this.submitted = true;
 
-    // debugger;
     if (this.authForm.invalid) {
       return;
     }
@@ -63,6 +65,6 @@ export class BaseAuthFormComponent implements OnInit {
     }
   }
 
-  sendRequest() {}
+  sendRequest() {
+  }
 }
-

@@ -19,7 +19,7 @@ import {SharingService} from "./services/sharing/sharing.service";
 @NgModule({
   declarations: [
     AppComponent,
-    IndexComponent
+    IndexComponent,
   ],
   imports: [
     CatalogComponent,

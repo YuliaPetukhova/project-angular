@@ -7,6 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AccountService} from 'src/app/services/account.service';
 import {first} from 'rxjs/operators';
 import {BaseAuthFormComponent} from "../base-auth-form/base-auth-form.component";
+import {AlertService} from "../../../../services/alert.service";
 
 @Component({
   selector: 'app-login-form',
@@ -25,12 +26,13 @@ export class LoginFormComponent extends BaseAuthFormComponent {
 
   constructor(
     formBuilder: FormBuilder,
+    alertService: AlertService,
     private route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
     private dialogRef: MatDialogRef<LoginFormComponent>,
   ) {
-    super(formBuilder);
+    super(formBuilder, alertService);
   }
 
 
@@ -45,6 +47,9 @@ export class LoginFormComponent extends BaseAuthFormComponent {
         next: () => {
           this.dialogRef.close();
           this.router.navigate(['/catalog/1']);
+        },
+        error: (error) => {
+          this.alertService.error();
         }
       });
   }

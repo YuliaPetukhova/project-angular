@@ -5,6 +5,7 @@ import {ITask} from 'src/app/models/ITask';
 import {TaskItemComponent} from './task-item/task-item/task-item.component';
 import {TasksService} from 'src/app/services/tasks.service';
 import {IGroup} from "../../../models/IGroup";
+import {AlertService} from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-tasks-list',
@@ -21,17 +22,24 @@ export class TasksListComponent implements OnChanges {
   ngOnChanges(changes) {
   }
 
-  constructor(private serv: TasksService) {
+  constructor(
+    private serv: TasksService,
+    private alertService: AlertService) {
   }
 
   onDelete(task: ITask) {
-    this.serv.deleteTask(task.id as number).subscribe((data) => {
-      this.currentGroup.tasks.splice(
-        this.currentGroup.tasks.findIndex((filteredTask) => filteredTask.id == data.id),
-        1
-      );
+    this.serv.deleteTask(task.id as number).subscribe({
+      next: (data) => {
+        this.currentGroup.tasks.splice(
+          this.currentGroup.tasks.findIndex((filteredTask) => filteredTask.id == data.id),
+          1)
+      },
+      error: (error) => {
+        this.alertService.error();
+      }
     });
   }
+
 
   onEdit(task: ITask) {
     // this.serv.updateTask(task).subscribe((newTask)=> {
