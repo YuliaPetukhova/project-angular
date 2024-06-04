@@ -26,7 +26,7 @@ export class AccountService {
     return this.userSubject.value;
   }
 
-  login(email: string, password: string) {
+  login(email: string, password: string): Observable<IUser> {
     return this.http.post<IUser>(this.urlLogin, {email, password})
       .pipe(map(user => {
         localStorage.setItem('user', JSON.stringify(user));
@@ -35,14 +35,13 @@ export class AccountService {
       }));
   }
 
-  register(user: IUser) {
+  register(user: IUser): Observable<IUser> {
     return this.http.post(this.urlRegistration, user);
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('user');
     this.userSubject.next(null);
     this.router.navigate(['']);
   }
-
 }

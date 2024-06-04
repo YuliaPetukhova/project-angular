@@ -1,6 +1,6 @@
 import {LeftMenuComponent} from "../../../catalog/left-menu/left-menu.component";
-import {Component} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {Component, OnDestroy} from '@angular/core';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -8,6 +8,7 @@ import {AccountService} from 'src/app/services/account.service';
 import {first} from 'rxjs/operators';
 import {BaseAuthFormComponent} from "../base-auth-form/base-auth-form.component";
 import {AlertService} from "../../../../services/alert.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-login-form',
@@ -19,10 +20,12 @@ import {AlertService} from "../../../../services/alert.service";
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    LeftMenuComponent
+    LeftMenuComponent,
+    NgOptimizedImage
   ],
 })
-export class LoginFormComponent extends BaseAuthFormComponent {
+export class LoginFormComponent extends BaseAuthFormComponent implements OnDestroy {
+  private subscription?: Subscription;
 
   constructor(
     formBuilder: FormBuilder,
@@ -35,22 +38,25 @@ export class LoginFormComponent extends BaseAuthFormComponent {
     super(formBuilder, alertService);
   }
 
-
   get f() {
     return this.authForm.controls;
   }
 
-  override sendRequest() {
-    this.accountService.login(this.f.email.value, this.f.password.value)
+  override sendRequest(): void {
+    this.subscription = this.accountService.login(this.f.email.value, this.f.password.value)
       .pipe(first())
       .subscribe({
-        next: () => {
+        next: (): void  => {
           this.dialogRef.close();
           this.router.navigate(['/catalog/1']);
         },
-        error: (error) => {
+        error: (error): void => {
           this.alertService.error();
         }
       });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

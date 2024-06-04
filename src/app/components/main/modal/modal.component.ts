@@ -26,12 +26,12 @@ import {BaseAuthFormComponent} from "./base-auth-form/base-auth-form.component";
   ],
 })
 export class ModalComponent {
-  LOGIN_FORM = 'login';
-  REGISTRATION_FORM = 'registration';
+  LOGIN_FORM: string = 'login';
+  REGISTRATION_FORM: string = 'registration';
 
-  currentForm = this.LOGIN_FORM;
+  currentForm: string = this.LOGIN_FORM;
 
-  changeForm(currentForm) {
+  changeForm(currentForm): void {
     this.currentForm = currentForm;
   }
 }

@@ -18,8 +18,8 @@ import {AlertService} from 'src/app/services/alert.service';
 export class BaseAuthFormComponent implements OnInit {
 
   authForm: FormGroup;
-  submitted = false;
-  loading = false;
+  submitted: boolean = false;
+  loading: boolean = false;
 
   @Output() changeCurrentForm = new EventEmitter<string>();
 
@@ -30,26 +30,26 @@ export class BaseAuthFormComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.authForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(4)]]
     });
   }
 
-  changeCurrentFormTo(currentForm: string) {
+  changeCurrentFormTo(currentForm: string): void {
     this.changeCurrentForm.emit(currentForm)
   }
 
-  changeCurrentFormToLogin() {
+  changeCurrentFormToLogin(): void {
     this.changeCurrentFormTo('login')
   }
 
-  changeCurrentFormToRegistration() {
+  changeCurrentFormToRegistration(): void {
     this.changeCurrentFormTo('registration')
   }
 
-  onSubmit(toForm: string | null = null) {
+  onSubmit(toForm: string | null = null): void {
     this.submitted = true;
 
     if (this.authForm.invalid) {
@@ -65,6 +65,6 @@ export class BaseAuthFormComponent implements OnInit {
     }
   }
 
-  sendRequest() {
+  sendRequest(): void {
   }
 }
