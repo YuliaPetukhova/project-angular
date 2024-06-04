@@ -49,10 +49,9 @@ export class CatalogComponent implements OnInit {
   URL = "/catalog/";
   DATA = 'currentGroup';
 
-
-
   catalog$: Observable<ICatalog>;
 
+  task: ITask;
   ngOnInit() {
     this.catalog$ = this.tasksService.getAll();
 
@@ -61,9 +60,7 @@ export class CatalogComponent implements OnInit {
         this.groups = result.groups;
 
         this.route.params.subscribe(params => {
-          this.currentGroup = (this.groups.find((group => {
-            return group.id == params['id'];
-          })) as IGroup);
+          this.task = servuce.findTaskById(params['id']);
         })
       },
       error: (error) => {

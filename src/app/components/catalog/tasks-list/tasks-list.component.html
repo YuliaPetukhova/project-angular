@@ -1,7 +1,7 @@
 <div class="task-list">
-  <div class="group-title">
+  <h1 class="group-title">
     {{ currentGroup?.title }}
-  </div>
+  </h1>
   <div *ngFor="let task of currentGroup?.tasks">
     <app-task-item
       [task]="task"

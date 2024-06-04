@@ -15,6 +15,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {CatalogComponent} from './components/catalog/catalog.component';
 import {IndexComponent} from './components/main/index/index.component';
 import {SharingService} from "./services/sharing/sharing.service";
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import {SharingService} from "./services/sharing/sharing.service";
     MatMenuModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgbModule,
   ],
   providers: [SharingService],
   bootstrap: [AppComponent],

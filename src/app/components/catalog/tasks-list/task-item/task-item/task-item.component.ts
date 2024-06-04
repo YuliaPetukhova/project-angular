@@ -6,6 +6,7 @@ import {IGroup} from "../../../../../models/IGroup";
 import {SharingService} from "../../../../../services/sharing/sharing.service";
 import {registerLocaleData} from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(localeRu);
 
@@ -14,7 +15,7 @@ registerLocaleData(localeRu);
   templateUrl: './task-item.component.html',
   styleUrls: ['./task-item.component.css'],
   standalone: true,
-  imports: [MatCheckboxModule, CommonModule],
+  imports: [MatCheckboxModule, CommonModule, NgbRatingModule],
   providers: [
     {provide: LOCALE_ID, useValue: 'ru'}
   ]
@@ -26,7 +27,6 @@ export class TaskItemComponent {
 
 
   tasks: Array<ITask>;
-  statusMessage: string;
 
   @Input() task: ITask;
   @Input() group: IGroup;

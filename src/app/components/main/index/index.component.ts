@@ -8,8 +8,8 @@ import {ModalComponent} from '../modal/modal.component';
   styleUrls: ['./index.component.css'],
 })
 export class IndexComponent {
-  title = 'Household';
-  loginBtn = 'Вход';
+  title: string = 'Household';
+  loginBtn: string = 'Вход';
 
   constructor(private matDialog: MatDialog) {
   }

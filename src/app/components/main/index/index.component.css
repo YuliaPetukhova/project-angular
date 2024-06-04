@@ -1,6 +1,6 @@
 .main-page{
   background-size: cover!important;
-  background: url("src/img/main-page.jpg") left;
+  background: url(src/img/main-page.jpg) left;
   width: 100%;
   height: 100%;
 }
@@ -50,7 +50,7 @@
   padding: 5px 5px;
   margin: 2px;
   line-height: 1.2;
-  text-wrap: balance;
+  text-wrap: normal;
 }
 
 .description{

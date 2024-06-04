@@ -1,14 +1,15 @@
 .group-title {
   padding: 0;
+  margin-left: 4px;
   display: flex;
-  margin-bottom: 2px;
   font-weight: bold;
-  font-size: large;
+  font-size: 25px;
 }
 
 .task-list {
   padding-bottom: 40px;
-  margin-left: 55px;
+  margin: 0 4px;
+
 }
 
 .expanded-menu.task-list {
@@ -20,6 +21,11 @@
   .group-title {
     /*margin-left: 17%;*/
     padding: 10px 0 0 0;
+  }
+
+  .task-list {
+    padding-bottom: 40px;
+    margin-left: 55px;
   }
 
 }

@@ -9,8 +9,8 @@ import {map} from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AccountService {
-  private urlRegistration = 'http://localhost/api/v1/family-auth/registration';
-  private urlLogin = 'http://localhost/api/v1/family-auth/login';
+  private urlRegistration: string = 'http://localhost/api/v1/family-auth/registration';
+  private urlLogin: string= 'http://localhost/api/v1/family-auth/login';
   private userSubject: BehaviorSubject<IUser | null>;
   public user: Observable<IUser | null>;
 
