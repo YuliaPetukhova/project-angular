@@ -1,73 +1,62 @@
-.main-page{
-  background-size: cover!important;
-  background: url(src/img/main-page.jpg) left;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.main-page {
+  background: url(src/img/main-page.jpg) center;
   width: 100%;
   height: 100%;
 }
-.title{
+
+.header {
+  padding: 5px 5px;
+}
+
+.header .container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
   font-size: 20px;
-  cursor: pointer;
   color: white;
   font-weight: bold;
-  display: flex;
-  position: fixed;
-  left: 5px;
-  top: 1px;
   padding: 5px 5px;
   margin: 2px;
 }
 
-@media (min-width: 1024px) {
-  .title{
-    font-size: 25px;
-    left: 35px;
-    top: 1px;
-    padding: 1px 5px;
-    margin: 3px;
-  }
-  .content{
-    font-size: 55px!important;
-    top: 160px!important;
-    left: 35px!important;
-  }
-
-  .description{
-    font-size: 25px!important;
-    top: 220px!important;
-    left: 35px!important;
-    padding: 30px 5px!important;
-  }
+.main-content {
+  padding-top: 100px;
+  padding-bottom: 200px;
 }
 
-.content{
-  font-size: 35px;
+.main-info {
+  max-width: 811px;
+}
+
+.main-title {
+  font-size: 65px;
   color: #47777e;
   font-weight: 600;
   display: flex;
-  position: fixed;
-  left: 5px;
-  top: 80px;
   padding: 5px 5px;
   margin: 2px;
   line-height: 1.2;
   text-wrap: normal;
 }
 
-.description{
-  font-size: 17px;
-  cursor: pointer;
+.main-text {
+  font-size: 35px;
   color: white;
   font-weight: 400;
   display: flex;
-  position: fixed;
-  left: 5px;
-  top: 180px;
   padding: 5px 5px;
   margin: 2px;
 }
 
 .btn-grad {
-  background-image: linear-gradient(to right, #4CA1AF 0%, #C4E0E5  51%, #4CA1AF  100%);
+  background-image: linear-gradient(to right, #4CA1AF 0%, #C4E0E5 51%, #4CA1AF 100%);
   margin: 2px;
   padding: 5px 45px;
   text-align: center;
@@ -88,4 +77,81 @@
   background-position: right center; /* change the direction of the change here */
   color: #fff;
   text-decoration: none;
+}
+
+.footer {
+  text-align: center;
+  background-color: #FBD3E9;
+}
+
+.rights {
+  margin-bottom: 4px;
+  font-size: 18px;
+  line-height: 100%;
+}
+
+
+@media screen and (max-width: 1225px) {
+  .container {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .header .container {
+    justify-content: space-between;
+    max-width: 600px;
+    margin: 0;
+  }
+
+  .logo {
+    padding: 1px 5px;
+    margin: 3px;
+  }
+
+  .main-title {
+    font-size: 55px;
+  }
+
+  .main-text {
+    font-size: 25px;
+    padding: 30px 5px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .main-text {
+    max-width: 400px;
+  }
+
+  .main-title {
+    font-size: 70px;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .main-content {
+    padding-top: 60px;
+    padding-bottom: 50px;
+  }
+
+  .main-title {
+    font-size: 55px;
+  }
+}
+
+@media screen and (max-width: 399px) {
+  .main-title {
+    font-size: 35px;
+    padding: 0 20px;
+  }
+
+  .main-text {
+    font-size: 20px;
+    padding: 20px 20px;
+  }
+
+  .logo {
+    padding: 1px 5px;
+    margin: 3px;
+  }
 }
