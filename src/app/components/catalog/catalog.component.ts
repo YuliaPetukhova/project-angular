@@ -60,7 +60,7 @@ export class CatalogComponent implements OnInit {
         this.groups = result.groups;
 
         this.route.params.subscribe(params => {
-          this.task = servuce.findTaskById(params['id']);
+          this.task = service.findTaskById(params['id']);
         })
       },
       error: (error) => {
