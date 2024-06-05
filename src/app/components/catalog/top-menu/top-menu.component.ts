@@ -21,5 +21,4 @@ export class TopMenuComponent {
   constructor(private accountService: AccountService) {
     this.user = this.accountService.userValue;
   }
-
 }

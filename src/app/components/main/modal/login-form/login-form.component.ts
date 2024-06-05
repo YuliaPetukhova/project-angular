@@ -51,7 +51,7 @@ export class LoginFormComponent extends BaseAuthFormComponent implements OnDestr
           this.router.navigate(['/catalog/1']);
         },
         error: (error): void => {
-          this.alertService.error();
+          // this.alertService.error();
         }
       });
   }

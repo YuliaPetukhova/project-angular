@@ -21,13 +21,12 @@ export class BaseAuthFormComponent implements OnInit {
   submitted: boolean = false;
   loading: boolean = false;
 
-  @Output() changeCurrentForm = new EventEmitter<string>();
+  @Output() changeCurrentForm: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
     private formBuilder: FormBuilder,
     protected alertService: AlertService
   ) {
-
   }
 
   ngOnInit(): void {
@@ -57,7 +56,6 @@ export class BaseAuthFormComponent implements OnInit {
     }
 
     this.sendRequest();
-
     this.authForm.reset();
 
     if (toForm) {

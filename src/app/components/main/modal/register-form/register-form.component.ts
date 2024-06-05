@@ -1,4 +1,4 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -7,7 +7,7 @@ import {AccountService} from 'src/app/services/account.service';
 import {first} from 'rxjs/operators';
 import {BaseAuthFormComponent} from "../base-auth-form/base-auth-form.component";
 import {AlertService} from "../../../../services/alert.service";
-import {Subscription} from "rxjs";
+
 
 @Component({
   imports: [
@@ -22,8 +22,7 @@ import {Subscription} from "rxjs";
   styleUrls: ['../modal.component.css'],
   templateUrl: './register-form.component.html'
 })
-export class RegisterFormComponent extends BaseAuthFormComponent implements OnDestroy {
-  private subscription?: Subscription;
+export class RegisterFormComponent extends BaseAuthFormComponent{
 
   constructor(
     formBuilder: FormBuilder,
@@ -36,19 +35,16 @@ export class RegisterFormComponent extends BaseAuthFormComponent implements OnDe
   }
 
   override sendRequest(): void {
-    this.subscription = this.accountService.register(this.authForm.value)
+    this.accountService.register(this.authForm.value)
       .pipe(first())
       .subscribe({
         next: (): void => {
           this.router.navigate([''], {relativeTo: this.route});
         },
         error: (error): void => {
-          this.alertService.error()
+          // this.alertService.error()
         }
       });
   }
 
-  ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
-  }
 }

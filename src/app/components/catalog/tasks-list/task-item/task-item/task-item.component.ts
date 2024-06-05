@@ -7,7 +7,6 @@ import {SharingService} from "../../../../../services/sharing/sharing.service";
 import {registerLocaleData} from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
-
 registerLocaleData(localeRu);
 
 @Component({
@@ -21,26 +20,22 @@ registerLocaleData(localeRu);
   ]
 })
 export class TaskItemComponent {
-
   constructor(private sharingService: SharingService) {
   }
-
 
   tasks: Array<ITask>;
 
   @Input() task: ITask;
   @Input() group: IGroup;
+  @Output() onDelete: EventEmitter<ITask> = new EventEmitter<ITask>();
 
-  @Output() onDelete = new EventEmitter<ITask>();
-
-  deleteTask(task: ITask) {
+  deleteTask(task: ITask): void {
     this.onDelete.emit(task);
   }
 
-  @Output() onEdit = new EventEmitter<ITask>();
+  @Output() onEdit: EventEmitter<ITask> = new EventEmitter<ITask>();
 
-  editTask(task: ITask) {
+  editTask(task: ITask): void {
     this.sharingService.setDataTask(task);
   }
-
 }

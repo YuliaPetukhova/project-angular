@@ -11,11 +11,12 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSelectModule} from '@angular/material/select';
 import {MatMenuModule} from '@angular/material/menu';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {CatalogComponent} from './components/catalog/catalog.component';
 import {IndexComponent} from './components/main/index/index.component';
 import {SharingService} from "./services/sharing/sharing.service";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ErrorInterceptor} from "./services/error.interceptor";
 
 
 @NgModule({
@@ -40,7 +41,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     NgbModule,
   ],
-  providers: [SharingService],
+  providers: [
+    {provide: SharingService},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {

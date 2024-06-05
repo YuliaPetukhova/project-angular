@@ -19,7 +19,7 @@ export class TasksListComponent implements OnChanges {
   @Input() tasks: ITask[];
   @Input() currentGroup: IGroup;
 
-  ngOnChanges(changes) {
+  ngOnChanges(changes): void {
   }
 
   constructor(
@@ -27,21 +27,20 @@ export class TasksListComponent implements OnChanges {
     private alertService: AlertService) {
   }
 
-  onDelete(task: ITask) {
+  onDelete(task: ITask): void {
     this.serv.deleteTask(task.id as number).subscribe({
-      next: (data) => {
+      next: (data: ITask): void => {
         this.currentGroup.tasks.splice(
-          this.currentGroup.tasks.findIndex((filteredTask) => filteredTask.id == data.id),
+          this.currentGroup.tasks.findIndex((filteredTask: ITask) => filteredTask.id == data.id),
           1)
       },
-      error: (error) => {
+      error: (error): void => {
         this.alertService.error();
       }
     });
   }
 
-
-  onEdit(task: ITask) {
+  onEdit(task: ITask): void {
     // this.serv.updateTask(task).subscribe((newTask)=> {
     //     this.currentGroup.tasks.replace(task, newTask);
     //     const taskIndex = this.currentGroup.tasks.findIndex((filteredTask) => filteredTask.id === task.id);
@@ -49,5 +48,4 @@ export class TasksListComponent implements OnChanges {
     //   }
     // )
   }
-
 }

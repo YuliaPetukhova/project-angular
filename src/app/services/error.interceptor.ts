@@ -8,6 +8,7 @@ import {
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {AccountService} from 'src/app/services/account.service';
+import { delayRetryPipe } from './extensions';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -16,14 +17,20 @@ export class ErrorInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(request).pipe(catchError(err => {
-      if ([401, 403, 500-599].includes(err.status) && this.accountService.userValue) {
-        this.accountService.logout();
-      }
-debugger;
-      const error = err.error?.message || err.statusText;
-      console.error(err);
-      return throwError(() => error);
-    }))
+    // jwt токен авторизации
+    const token = this.accountService.accessToken;
+    if (!!token)
+      request = request.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
+
+    return next.handle(request).pipe(delayRetryPipe());
+
+    // return next.handle(request).pipe(catchError(err => {
+    //   if ([401, 403, 500-599].includes(err.status) && this.accountService.userValue) {
+    //     this.accountService.logout();
+    //   }
+    //   const error = err.error?.message || err.statusText;
+    //   console.error(err);
+    //   return throwError(() => error);
+    // }))
   }
 }

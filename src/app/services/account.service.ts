@@ -13,6 +13,7 @@ export class AccountService {
   private urlLogin: string= 'http://localhost/api/v1/family-auth/login';
   private userSubject: BehaviorSubject<IUser | null>;
   public user: Observable<IUser | null>;
+  public accessToken: string = '';
 
   constructor(
     private router: Router,

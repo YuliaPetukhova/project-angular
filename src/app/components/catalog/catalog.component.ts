@@ -20,7 +20,6 @@ import {LoginFormComponent} from "../main/modal/login-form/login-form.component"
 import {TopMenuComponent} from "./top-menu/top-menu.component";
 import {AlertService} from 'src/app/services/alert.service';
 
-
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
@@ -46,17 +45,16 @@ import {AlertService} from 'src/app/services/alert.service';
 export class CatalogComponent implements OnInit {
   groups: IGroup[];
   currentGroup: IGroup;
-  URL = "/catalog/";
-  DATA = 'currentGroup';
-
+  URL: string = "/catalog/";
+  DATA: string = 'currentGroup';
   catalog$: Observable<ICatalog>;
-
   task: ITask;
-  ngOnInit() {
+
+  ngOnInit(): void {
     this.catalog$ = this.tasksService.getAll();
 
     this.catalog$.subscribe({
-      next: (result) => {
+      next: (result: ICatalog): void => {
         this.groups = result.groups;
 
         this.route.params.subscribe(params => {
@@ -65,11 +63,10 @@ export class CatalogComponent implements OnInit {
           })) as IGroup);
         })
       },
-      error: (error) => {
+      error: (error): void => {
         this.alertService.error();
       }
     });
-
   }
 
   constructor(
@@ -82,8 +79,8 @@ export class CatalogComponent implements OnInit {
     private data: { groups: any; tasks: any; currentTask: ITask }) {
   }
 
-  changeCurrentGroup(groupTitle: IGroupTitle) {
-    const url = this.URL + groupTitle.id;
+  changeCurrentGroup(groupTitle: IGroupTitle): void {
+    const url: string = this.URL + groupTitle.id;
     history.pushState(this.DATA, "", url);
 
     this.currentGroup = (this.groups.find((group => {
@@ -91,7 +88,7 @@ export class CatalogComponent implements OnInit {
     })) as IGroup);
   }
 
-  onCreate(myFormTask: FormGroup) {
+  onCreate(myFormTask: FormGroup): void {
     this.tasksService.create({
       text: myFormTask.value.text as string,
       taskGroupId: myFormTask.value.taskGroup ?? 1,
@@ -100,21 +97,20 @@ export class CatalogComponent implements OnInit {
       deletedAt: '',
       price: myFormTask.value.price as number,
     }).subscribe({
-      next: (result) => {
-        let newTaskGroupId = (this.groups.find((groupId => {
+      next: (result: ITask): void => {
+        let newTaskGroupId: IGroup = (this.groups.find((groupId => {
           return groupId.id == result.taskGroupId;
 
         })) as IGroup);
         newTaskGroupId.tasks.push(result);
       },
-      error: (error) => {
+      error: (error): void => {
         this.alertService.error();
       }
     });
   }
 
-
-  onUpdate(myFormTask: FormGroup) {
+  onUpdate(myFormTask: FormGroup): void {
     const oldTaskGroupId = myFormTask.value.oldTaskGroupId;
 
     this.tasksService.updateTask({
@@ -126,39 +122,36 @@ export class CatalogComponent implements OnInit {
       deletedAt: '',
       price: myFormTask.value.price as number,
     }).subscribe({
-      next: (savedTask) => {
+      next: (savedTask: ITask): void => {
         if (oldTaskGroupId !== savedTask.taskGroupId) {
-          const newGroup = (this.groups.find((group => {
+          const newGroup: IGroup = (this.groups.find((group => {
             return group.id == savedTask.taskGroupId;
           })) as IGroup);
 
-          const oldGroup = (this.groups.find((group => {
+          const oldGroup: IGroup = (this.groups.find((group => {
             return group.id == oldTaskGroupId;
           })) as IGroup);
 
           newGroup.tasks.push(savedTask);
           oldGroup.tasks.splice(
-            oldGroup.tasks.findIndex((filteredTask) => filteredTask.id == savedTask.id),
+            oldGroup.tasks.findIndex((filteredTask: ITask) => filteredTask.id == savedTask.id),
             1
           );
 
         } else {
-          let updatedTaskGroup = (this.groups.find((groupId => {
+          let updatedTaskGroup: IGroup = (this.groups.find((groupId => {
             return groupId.id == savedTask.taskGroupId;
           })) as IGroup);
 
-          const updatedTaskIndex
-            = updatedTaskGroup.tasks.findIndex((filteredTask) => filteredTask.id == savedTask.id)
+          const updatedTaskIndex: number
+            = updatedTaskGroup.tasks.findIndex((filteredTask: ITask) => filteredTask.id == savedTask.id)
           updatedTaskGroup.tasks[updatedTaskIndex] = savedTask;
 
         }
       },
-      error: (error) => {
+      error: (error): void => {
         this.alertService.error();
       }
     })
-
-
   }
 }
-

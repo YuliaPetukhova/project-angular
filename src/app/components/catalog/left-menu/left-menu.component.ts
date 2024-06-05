@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {IGroupTitle} from "../../../models/IGroupTitle";
 
-
 @Component({
   selector: 'app-left-menu',
   templateUrl: './left-menu.component.html',
@@ -14,19 +13,16 @@ import {IGroupTitle} from "../../../models/IGroupTitle";
 })
 
 export class LeftMenuComponent {
-
-  @Output() menuClick = new EventEmitter<IGroupTitle>();
-
+  @Output() menuClick: EventEmitter<IGroupTitle> = new EventEmitter<IGroupTitle>();
   @Input() groupTitles!: IGroupTitle[] | undefined;
 
-
-  changeCurrentGroup(groupTitle: IGroupTitle) {
+  changeCurrentGroup(groupTitle: IGroupTitle): void {
     this.menuClick.emit(groupTitle)
   }
 
-  shouldHideElement = false;
+  shouldHideElement: boolean = false;
 
-  toggleElementVisibility() {
+  toggleElementVisibility(): void {
     this.shouldHideElement = !this.shouldHideElement;
     document.getElementsByClassName('task-list')[0].classList.toggle('expanded-menu');
   }

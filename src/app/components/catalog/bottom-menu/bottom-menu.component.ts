@@ -9,7 +9,6 @@ import {ITask} from "../../../models/ITask";
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {SharingService} from "../../../services/sharing/sharing.service";
 
-
 @Component({
   selector: 'app-bottom-menu',
   templateUrl: './bottom-menu.component.html',
@@ -29,41 +28,38 @@ import {SharingService} from "../../../services/sharing/sharing.service";
 
 export class BottomMenuComponent implements OnInit {
   placeholderAddTask: string = "";
-  ENTER_TEXT = "Введите текст";
-  ADD_TASK = "Создать задачу/группу";
+  ENTER_TEXT: string = "Введите текст";
+  ADD_TASK: string = "Создать задачу/группу";
   myFormTask: FormGroup;
   task: ITask;
   editingTask: ITask;
-
   defaultState: boolean = true;
   focusState: boolean = false;
   workingState: boolean = false;
 
-  toDefaultState() {
+  toDefaultState(): void {
     this.defaultState = true;
     this.focusState = this.workingState = false;
 
     this.placeholderAddTask = this.ADD_TASK;
   }
 
-  toFocusState() {
+  toFocusState(): void {
     this.focusState = true;
     this.defaultState = this.workingState = false;
 
     this.placeholderAddTask = this.ENTER_TEXT;
-
   }
 
-  toWorkingState() {
+  toWorkingState(): void {
     this.workingState = true;
     this.focusState = this.defaultState = false;
   }
 
-
   @Input() groupTitles!: IGroupTitle[] | undefined;
-  @Output() menuClick = new EventEmitter<IGroupTitle>();
-  @Output() createTask = new EventEmitter<FormGroup>();
-  @Output() updateTask = new EventEmitter<FormGroup>();
+  @Output() menuClick: EventEmitter<IGroupTitle> = new EventEmitter<IGroupTitle>();
+  @Output() createTask: EventEmitter<FormGroup<any>> = new EventEmitter<FormGroup>();
+  @Output() updateTask: EventEmitter<FormGroup<any>> = new EventEmitter<FormGroup>();
 
   constructor(
     private sharingService: SharingService,
@@ -71,10 +67,9 @@ export class BottomMenuComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA)
     private data: { groups: any; tasks: any; currentTask: ITask }) {
     this.placeholderAddTask = this.ADD_TASK;
-
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.sharingService.currentDataTask.subscribe(data => {
       if (typeof data === 'object') {
         this.editingTask = data;
@@ -91,10 +86,9 @@ export class BottomMenuComponent implements OnInit {
         }
       );
     });
-
   }
 
-  onSubmit(task: ITask) {
+  onSubmit(task: ITask): void {
     if (this.editingTask) {
       this.updateTask.emit(this.myFormTask);
       this.toDefaultState();
@@ -106,23 +100,23 @@ export class BottomMenuComponent implements OnInit {
     }
   }
 
-  changeCurrentGroup(groupTitle: IGroupTitle) {
+  changeCurrentGroup(groupTitle: IGroupTitle): void {
     this.menuClick.emit(groupTitle)
   }
 
-  onFocus() {
+  onFocus(): void {
     if (this.defaultState) {
       this.toFocusState();
     }
   }
 
-  onBlur() {
+  onBlur(): void {
     if (this.focusState) {
       this.toDefaultState();
     }
   }
 
-  onChange(target: any) {
+  onChange(target: any): void {
     if ((target as HTMLInputElement).value.length === 0) {
       this.toFocusState();
     } else {
@@ -130,10 +124,8 @@ export class BottomMenuComponent implements OnInit {
     }
   }
 
-
-  clearForm() {
+  clearForm(): void {
     this.myFormTask.reset();
     this.toDefaultState();
   }
-
 }

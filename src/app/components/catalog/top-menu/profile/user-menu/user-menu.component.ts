@@ -4,7 +4,6 @@ import {MatButtonModule} from '@angular/material/button';
 import {AccountService} from 'src/app/services/account.service';
 import {IUser} from 'src/app/models/IUser';
 
-
 @Component({
   selector: 'app-user-menu',
   standalone: true,
@@ -20,7 +19,7 @@ export class UserMenuComponent {
     this.accountService.user.subscribe(x => this.user = x);
   }
 
-  logout() {
+  logout(): void {
     this.accountService.logout();
   }
 }
