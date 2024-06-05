@@ -19,7 +19,7 @@ export class TasksListComponent implements OnChanges {
   @Input() tasks: ITask[];
   @Input() currentGroup: IGroup;
 
-  ngOnChanges(changes): void {
+  ngOnChanges(changes: any): void {
   }
 
   constructor(
@@ -36,11 +36,13 @@ export class TasksListComponent implements OnChanges {
       },
       error: (error): void => {
         this.alertService.error();
+        console.log(error)
       }
     });
   }
 
   onEdit(task: ITask): void {
+    console.log(task);
     // this.serv.updateTask(task).subscribe((newTask)=> {
     //     this.currentGroup.tasks.replace(task, newTask);
     //     const taskIndex = this.currentGroup.tasks.findIndex((filteredTask) => filteredTask.id === task.id);
