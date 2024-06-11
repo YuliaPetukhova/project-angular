@@ -1,7 +1,7 @@
 import { Observable, of, throwError } from "rxjs";
 import { delay, mergeMap, retryWhen } from "rxjs/operators";
 
-export function delayRetryPipe<T>(delayMs = 1000, maxRetry = 3)
+export function delayRetryPipe<T>(delayMs = 1000, maxRetry = 2)
 {
   let retries = maxRetry;
   let subError: any[] = [];
@@ -15,7 +15,8 @@ export function delayRetryPipe<T>(delayMs = 1000, maxRetry = 3)
             subError.push(error);
             return --retries > 0
               ? of(error)
-              : throwError({ error: `Превышено максимальное количество попыток ${maxRetry}`, subError })
+              : throwError(
+                { error: `Произошла ошибка. Превышено максимальное количество запросов на сервер ${maxRetry}`, subError })
           })
         )
       )

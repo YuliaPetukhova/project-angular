@@ -2,7 +2,7 @@
   display: none;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (max-width: 1440px) {
   .topnav {
     display: flex;
     background-color: #e865a7;
@@ -26,14 +26,6 @@
     cursor: pointer;
   }
 
-  .topnav-right h1 {
-    color: white;
-  }
-
-  .menu {
-    padding-top: 10px;
-  }
-
   .mat-mdc-menu-item {
     padding: 0 7px;
   }
@@ -41,5 +33,56 @@
   .cdk-overlay-connected-position-bounding-box .cdk-overlay-pane {
     right: 0;
   }
+}
 
+@media screen and (max-width: 767px) {
+  .topnav {
+    height: 75px;
+  }
+
+  /* Стиль ссылок внутри панели навигации */
+  .topnav-right div {
+    padding: 5px 10px;
+  }
+
+  .menu {
+    padding-top: 8px;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .topnav {
+    height: 70px;
+    padding-top: 5px;
+  }
+
+  /* Стиль ссылок внутри панели навигации */
+  .topnav-right div {
+    padding: 5px 5px;
+    font-size: 15px;
+  }
+
+  .mat-mdc-menu-item {
+    padding: 0 7px;
+  }
+}
+
+@media screen and (max-width: 399px) {
+  .topnav {
+    height: 70px;
+  }
+
+  /* Стиль ссылок внутри панели навигации */
+  .topnav-right div {
+    padding: 0 5px;
+    font-size: 14px;
+  }
+
+  .menu {
+    padding-top: 5px;
+  }
+
+  .mat-mdc-menu-item {
+    padding: 0 5px;
+  }
 }

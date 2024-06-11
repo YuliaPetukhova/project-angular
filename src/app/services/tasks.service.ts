@@ -3,21 +3,21 @@ import {ITask} from '../models/ITask';
 import {HttpClient} from '@angular/common/http';
 import {Observable, delay} from 'rxjs';
 import {ICatalog} from "../models/ICatalog";
+import {AlertService} from "./alert.service";
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class TasksService {
-  private urlAllTasks = 'http://localhost/api/v1/family-task/task-group/groups';
-  private urlNewTask = 'http://localhost/api/v1/family-task/task/create';
-  private urlUpdateTask = 'http://localhost/api/v1/family-task/task/update/';
-  private urlDeleteTask = 'http://localhost/api/v1/family-task/task/delete/';
-  private urlCreateTitleGroup = 'http://localhost/api/v1/family-task/task-group/create';
+  private urlAllTasks: string = 'http://localhost/api/v1/family-task/task-group/groups';
+  private urlNewTask: string = 'http://localhost/api/v1/family-task/task/create';
+  private urlUpdateTask: string = 'http://localhost/api/v1/family-task/task/update/';
+  private urlDeleteTask: string = 'http://localhost/api/v1/family-task/task/delete/';
+  private urlCreateTitleGroup: string = 'http://localhost/api/v1/family-task/task-group/create';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private alertService: AlertService) {
   }
-
 
   getAll(): Observable<ICatalog> {
     return this.http.get<ICatalog>(this.urlAllTasks).pipe(
@@ -46,6 +46,8 @@ export class TasksService {
   }
 
   deleteTask(id: number) {
+    this.alertService.success('Задача успешно удалена');
+
     return this.http.post<ITask>(this.urlDeleteTask + id, {});
   }
 }

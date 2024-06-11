@@ -6,7 +6,7 @@ export class SharingService {
   private dataTask = new BehaviorSubject("")
   currentDataTask = this.dataTask.asObservable();
 
-  setDataTask(data) {
+  setDataTask(data): void {
     this.dataTask.next(data)
   }
 }

@@ -22,7 +22,7 @@ import {AlertService} from "../../../../services/alert.service";
   styleUrls: ['../modal.component.css'],
   templateUrl: './register-form.component.html'
 })
-export class RegisterFormComponent extends BaseAuthFormComponent{
+export class RegisterFormComponent extends BaseAuthFormComponent {
 
   constructor(
     formBuilder: FormBuilder,
@@ -42,7 +42,7 @@ export class RegisterFormComponent extends BaseAuthFormComponent{
           this.router.navigate([''], {relativeTo: this.route});
         },
         error: (error): void => {
-          // this.alertService.error()
+          this.alertService.error(error.error);
         }
       });
   }

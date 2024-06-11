@@ -35,8 +35,7 @@ export class TasksListComponent implements OnChanges {
           1)
       },
       error: (error): void => {
-        this.alertService.error();
-        console.log(error)
+        this.alertService.error(error);
       }
     });
   }

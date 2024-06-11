@@ -17,6 +17,7 @@ import {IndexComponent} from './components/main/index/index.component';
 import {SharingService} from "./services/sharing/sharing.service";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ErrorInterceptor} from "./services/error.interceptor";
+import {AlertComponent} from "./components/main/alert/alert.component";
 
 
 @NgModule({
@@ -24,23 +25,24 @@ import {ErrorInterceptor} from "./services/error.interceptor";
     AppComponent,
     IndexComponent,
   ],
-  imports: [
-    CatalogComponent,
-    AppRoutingModule,
-    MatButtonModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatDialogModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    MatSelectModule,
-    MatMenuModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    NgbModule,
-  ],
+    imports: [
+        CatalogComponent,
+        AppRoutingModule,
+        MatButtonModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatDialogModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        MatSelectModule,
+        MatMenuModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        NgbModule,
+        AlertComponent,
+    ],
   providers: [
     {provide: SharingService},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

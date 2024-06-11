@@ -18,7 +18,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // jwt токен авторизации
-    const token = this.accountService.accessToken;
+    const token: string = this.accountService.accessToken;
     if (!!token)
       request = request.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
 

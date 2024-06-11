@@ -64,7 +64,7 @@ export class CatalogComponent implements OnInit {
         })
       },
       error: (error): void => {
-        this.alertService.error();
+        this.alertService.error(error.error);
       }
     });
   }
@@ -100,12 +100,12 @@ export class CatalogComponent implements OnInit {
       next: (result: ITask): void => {
         let newTaskGroupId: IGroup = (this.groups.find((groupId => {
           return groupId.id == result.taskGroupId;
-
         })) as IGroup);
         newTaskGroupId.tasks.push(result);
+        this.alertService.success('Задача успешно создана');
       },
       error: (error): void => {
-        this.alertService.error();
+        this.alertService.error(error.error);
       }
     });
   }
@@ -137,6 +137,7 @@ export class CatalogComponent implements OnInit {
             oldGroup.tasks.findIndex((filteredTask: ITask) => filteredTask.id == savedTask.id),
             1
           );
+          this.alertService.success('Задача успешно обновлена');
 
         } else {
           let updatedTaskGroup: IGroup = (this.groups.find((groupId => {
@@ -150,7 +151,7 @@ export class CatalogComponent implements OnInit {
         }
       },
       error: (error): void => {
-        this.alertService.error();
+        this.alertService.error(error.error);
       }
     })
   }

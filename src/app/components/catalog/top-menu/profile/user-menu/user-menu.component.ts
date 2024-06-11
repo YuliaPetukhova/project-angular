@@ -3,11 +3,12 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {AccountService} from 'src/app/services/account.service';
 import {IUser} from 'src/app/models/IUser';
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-user-menu',
   standalone: true,
-  imports: [MatButtonModule, MatMenuModule],
+  imports: [MatButtonModule, MatMenuModule, NgOptimizedImage],
   templateUrl: 'user-menu.component.html',
   styleUrls: ['user-menu.component.css'],
 })
