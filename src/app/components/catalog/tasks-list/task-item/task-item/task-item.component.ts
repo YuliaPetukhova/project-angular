@@ -1,8 +1,8 @@
 import {CommonModule, CurrencyPipe, DecimalPipe, DatePipe} from '@angular/common';
 import {Component, EventEmitter, Input, Output, NgModule, LOCALE_ID} from '@angular/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {ITask} from 'src/app/models/ITask';
-import {IGroup} from "../../../../../models/IGroup";
+import {ITask} from 'src/app/store/models/ITask';
+import {IGroup} from "../../../../../store/models/IGroup";
 import {SharingService} from "../../../../../services/sharing/sharing.service";
 import {registerLocaleData} from '@angular/common';
 import localeRu from '@angular/common/locales/ru';

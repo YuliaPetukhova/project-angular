@@ -2,10 +2,10 @@ import {Component, EventEmitter, Inject, Input, OnInit, Optional, Output, ViewEn
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
-import {IGroupTitle} from "../../../models/IGroupTitle";
+import {IGroupTitle} from "../../../store/models/IGroupTitle";
 import {CommonModule, AsyncPipe} from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {ITask} from "../../../models/ITask";
+import {ITask} from "../../../store/models/ITask";
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {SharingService} from "../../../services/sharing/sharing.service";
 

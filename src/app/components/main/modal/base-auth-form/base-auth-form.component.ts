@@ -3,6 +3,9 @@ import {RegisterFormComponent} from "../register-form/register-form.component";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AlertService} from 'src/app/services/alert.service';
+import {Store} from '@ngrx/store';
+import {selectError, selectIsLoading, selectToken} from 'src/app/store/login/login.selectors';
+import {login} from 'src/app/store/login/login.actions';
 
 @Component({
   imports: [
@@ -20,13 +23,21 @@ export class BaseAuthFormComponent implements OnInit {
   authForm: FormGroup;
   submitted: boolean = false;
   loading: boolean = false;
+  token: string = '';
+  error: string = '';
+  user: string = '';
+  email: string = '';
 
   @Output() changeCurrentForm: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
     private formBuilder: FormBuilder,
-    protected alertService: AlertService
+    protected alertService: AlertService,
+    private store: Store,
   ) {
+    this.store.select(selectToken).subscribe(token => (this.token = token));
+    this.store.select(selectError).subscribe(error => (this.error = error));
+    this.store.select(selectIsLoading).subscribe(loading => (this.loading = loading));
   }
 
   ngOnInit(): void {
@@ -54,6 +65,9 @@ export class BaseAuthFormComponent implements OnInit {
     if (this.authForm.invalid) {
       return;
     }
+
+    this.store.dispatch
+    (login({user: this.authForm.controls.email.value, password: this.authForm.controls.password.value}));
 
     this.sendRequest();
     this.authForm.reset();

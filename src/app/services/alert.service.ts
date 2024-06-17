@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ErrorInterceptor} from "./error.interceptor";
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {IUser} from "../models/IUser";
+import {IUser} from "../store/models/IUser";
 import getDocumentElement from "@popperjs/core/lib/dom-utils/getDocumentElement";
 
 @Injectable({providedIn: 'root'})

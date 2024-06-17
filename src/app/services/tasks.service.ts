@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {ITask} from '../models/ITask';
+import {ITask} from '../store/models/ITask';
 import {HttpClient} from '@angular/common/http';
 import {Observable, delay} from 'rxjs';
-import {ICatalog} from "../models/ICatalog";
+import {ICatalog} from "../store/models/ICatalog";
 import {AlertService} from "./alert.service";
 
 

@@ -9,6 +9,7 @@ import {first} from 'rxjs/operators';
 import {BaseAuthFormComponent} from "../base-auth-form/base-auth-form.component";
 import {AlertService} from "../../../../services/alert.service";
 import {Subscription} from "rxjs";
+import {provideStore, Store} from "@ngrx/store";
 
 @Component({
   selector: 'app-login-form',
@@ -30,12 +31,13 @@ export class LoginFormComponent extends BaseAuthFormComponent implements OnDestr
   constructor(
     formBuilder: FormBuilder,
     alertService: AlertService,
+    store: Store,
     private route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
     private dialogRef: MatDialogRef<LoginFormComponent>,
   ) {
-    super(formBuilder, alertService);
+    super(formBuilder, alertService, store);
   }
 
   get f() {

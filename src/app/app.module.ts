@@ -18,31 +18,41 @@ import {SharingService} from "./services/sharing/sharing.service";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ErrorInterceptor} from "./services/error.interceptor";
 import {AlertComponent} from "./components/main/alert/alert.component";
-
+import {EffectsModule} from '@ngrx/effects';
+import {StoreModule} from '@ngrx/store';
+import {loginReducer} from './store/login/login.reducer';
+import {LoginEffects} from './store/login/login.effects';
+import {reducers} from './store/login/login.init';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from './store/environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
   ],
-    imports: [
-        CatalogComponent,
-        AppRoutingModule,
-        MatButtonModule,
-        MatIconModule,
-        MatFormFieldModule,
-        MatInputModule,
-        FormsModule,
-        MatDialogModule,
-        BrowserAnimationsModule,
-        BrowserModule,
-        MatSelectModule,
-        MatMenuModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        NgbModule,
-        AlertComponent,
-    ],
+  imports: [
+    CatalogComponent,
+    AppRoutingModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    MatSelectModule,
+    MatMenuModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    NgbModule,
+    AlertComponent,
+    StoreModule.forRoot({login: loginReducer}),
+    EffectsModule.forRoot([LoginEffects]),
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+  ],
   providers: [
     {provide: SharingService},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {AccountService} from 'src/app/services/account.service';
-import {IUser} from 'src/app/models/IUser';
+import {IUser} from 'src/app/store/models/IUser';
 import {NgOptimizedImage} from "@angular/common";
 
 @Component({

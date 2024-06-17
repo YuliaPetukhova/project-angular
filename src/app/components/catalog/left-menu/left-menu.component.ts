@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {IGroupTitle} from "../../../models/IGroupTitle";
+import {IGroupTitle} from "../../../store/models/IGroupTitle";
 
 @Component({
   selector: 'app-left-menu',

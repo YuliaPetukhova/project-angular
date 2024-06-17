@@ -1,10 +1,10 @@
 import {Component, Input, OnChanges} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {ITask} from 'src/app/models/ITask';
+import {ITask} from 'src/app/store/models/ITask';
 import {TaskItemComponent} from './task-item/task-item/task-item.component';
 import {TasksService} from 'src/app/services/tasks.service';
-import {IGroup} from "../../../models/IGroup";
+import {IGroup} from "../../../store/models/IGroup";
 import {AlertService} from 'src/app/services/alert.service';
 
 @Component({

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {IUser} from '../models/IUser';
+import {IUser} from '../store/models/IUser';
 import {Router} from '@angular/router';
 import {map} from 'rxjs/operators';
 
