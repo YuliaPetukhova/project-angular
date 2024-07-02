@@ -5,7 +5,6 @@ import {Observable, delay} from 'rxjs';
 import {ICatalog} from "../store/models/ICatalog";
 import {AlertService} from "./alert.service";
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -20,6 +19,7 @@ export class TasksService {
   }
 
   getAll(): Observable<ICatalog> {
+    this.alertService.success('Задачи успешно загружены');
     return this.http.get<ICatalog>(this.urlAllTasks).pipe(
       delay(1000)
     );
@@ -51,4 +51,3 @@ export class TasksService {
     return this.http.post<ITask>(this.urlDeleteTask + id, {});
   }
 }
-
