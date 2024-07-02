@@ -1,12 +1,11 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ITask } from 'src/app/models/task';
-import { TaskItemComponent } from './task-item/task-item/task-item.component';
-import { TasksService } from 'src/app/services/tasks.service';
-import { IGroups } from 'src/app/models/groups';
-import { TaskFormComponent } from '../task-form/task-form.component';
-import { MatDialog } from '@angular/material/dialog';
+import {Component, Input, OnChanges} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {ITask} from 'src/app/store/models/ITask';
+import {TaskItemComponent} from './task-item/task-item/task-item.component';
+import {TasksService} from 'src/app/services/tasks.service';
+import {IGroup} from "../../../store/models/IGroup";
+import {AlertService} from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-tasks-list',
@@ -15,50 +14,39 @@ import { MatDialog } from '@angular/material/dialog';
   standalone: true,
   imports: [MatCheckboxModule, CommonModule, TaskItemComponent],
 })
-export class TasksListComponent {
-  editedTask: ITask;
-  @Input() groups: IGroups[];
+
+export class TasksListComponent implements OnChanges {
   @Input() tasks: ITask[];
+  @Input() currentGroup: IGroup;
 
-  constructor(private serv: TasksService, private matDialog: MatDialog) {}
+  ngOnChanges(changes: any): void {
+  }
 
-  onDelete(task: ITask) {
-    this.serv.deleteTask(task.id as number).subscribe((data) => {
-      this.tasks.splice(
-        this.tasks.findIndex((filteredTask) => filteredTask.id === task.id),
-        1
-      );
+  constructor(
+    private serv: TasksService,
+    private alertService: AlertService) {
+  }
+
+  onDelete(task: ITask): void {
+    this.serv.deleteTask(task.id as number).subscribe({
+      next: (data: ITask): void => {
+        this.currentGroup.tasks.splice(
+          this.currentGroup.tasks.findIndex((filteredTask: ITask) => filteredTask.id == data.id),
+          1)
+      },
+      error: (error): void => {
+        this.alertService.error(error);
+      }
     });
   }
 
-  onEdit(task: ITask) {
-    const dialog = this.matDialog.open(TaskFormComponent, {
-      data: {
-        groups: this.groups,
-        tasks: this.tasks,
-        currentTask: task,
-      },
-    });
-
-    dialog.afterClosed().subscribe((result) => {
-      if (result && result.data && result.data.length > this.groups.length) {
-        this.groups = result.data;
-      }
-    });
-
-    // this.serv.updateTask(task).subscribe((newTask) => {
-    //   // this.tasks.replace(task, newTask); js array replace element
-    //   // const taskIndex = this.tasks.findIndex((filteredTask) => filteredTask.id === task.id);
-    //   // this.tasks[taskIndex] = newTask;
-    // }
+  onEdit(task: ITask): void {
+    console.log(task);
+    // this.serv.updateTask(task).subscribe((newTask)=> {
+    //     this.currentGroup.tasks.replace(task, newTask);
+    //     const taskIndex = this.currentGroup.tasks.findIndex((filteredTask) => filteredTask.id === task.id);
+    //     this.currentGroup.tasks[taskIndex] = newTask;
+    //   }
     // )
-    // this.editedTask = {
-    //     id: 0,
-    //     text: 'this.myFormTask.value.text as string',
-    //     taskGroupId: 1,
-    //     createdAt: '',
-    //     doneAt: '',
-    //     deletedAt: '',
-    //   };
   }
 }

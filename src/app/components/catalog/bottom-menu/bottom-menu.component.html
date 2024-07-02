@@ -1,44 +1,89 @@
-<div class="bottom-menu" [class.bottom-menu-in-use]="!hideDeleteBtn">
-  <div class="bottom-menu__header">
-    <input
-      class="inputText"
-      type="text"
-      [placeholder]="placeholderAddTask"
-      (focus)="onFocus()"
-      (blur)="onBlur()"
-      (input)="onChange($event.target)"
-      [class.inputText-in-use]="!hideDeleteBtn"
-    />
-    <button
-      class="deleteBtn"
-      (click)="clearInput($event.target)"
-      [hidden]="hideDeleteBtn"
-    >
-      <mat-icon>close</mat-icon>
-    </button>
-    <button
-      class="button-class"
-      aria-label="Меню"
-      [hidden]="hideMenuBtn"
-    >Menu
-    </button>
-  </div>
-
-  <div
-    [hidden]="hideTaskBtns"
-    class="bottom-menu__btns"
+<div class="bottom-menu" [class.bottom-menu-in-use]="workingState">
+  <form [formGroup]="myFormTask" (ngSubmit)="onSubmit(task)"
   >
-    <button class="icon-btn">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <button class="icon-btn">
-      <mat-icon>calendar_today</mat-icon>
-    </button>
-    <button class="icon-btn">
-      <mat-icon>cached</mat-icon>
-    </button>
-    <button class="icon-btn">
-      <mat-icon>check</mat-icon>
-    </button>
-  </div>
+    <div class="bottom-menu__header">
+      <input
+        class="inputText"
+        type="text"
+        formControlName="text"
+        [placeholder]="placeholderAddTask"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+        (input)="onChange($event.target)"
+        [class.inputText-in-use]="workingState"
+      />
+      <button
+        type="button"
+        class="deleteBtn"
+        [hidden]="!workingState"
+        (click)="clearForm()"
+      >
+        <span class="material-symbols-outlined">
+          close
+        </span>
+      </button>
+
+      <button
+        type="button"
+        [matMenuTriggerFor]="menu"
+        class="button-class"
+        aria-label="Меню"
+        [hidden]="!defaultState"
+      >Меню
+      </button>
+      <mat-menu
+        class="title-group"
+        #menu="matMenu"
+        yPosition="above"
+      >
+        <div *ngFor="let groupTitle of groupTitles">
+          <button
+            (click)="changeCurrentGroup(groupTitle)"
+            class="menu-groups-title"
+            [attr.data-groupid]="groupTitle.id"
+          >
+            {{ groupTitle.title }}
+          </button>
+        </div>
+      </mat-menu>
+
+    </div>
+
+    <div
+      [hidden]="!workingState"
+      class="bottom-menu__btns"
+    >
+      <select class="select-group"
+              formControlName="taskGroup"
+      >
+        <option *ngFor="let groupTitle of groupTitles"
+                [value]="groupTitle.id"
+        >
+          {{ groupTitle.title }}
+        </option>
+      </select>
+
+      <button type="button" class="icon-btn">
+        <span class="material-symbols-outlined">
+          calendar_month
+        </span>
+      </button>
+      <button type="button" class="icon-btn">
+        <span class="material-symbols-outlined">
+          autorenew
+        </span>
+      </button>
+
+      <input class="input-btn"
+             type="number"
+             formControlName="price"
+      />
+
+      <button class="icon-btn" type="submit">
+        <span class="material-symbols-outlined">
+          check_circle
+        </span>
+      </button>
+    </div>
+  </form>
 </div>

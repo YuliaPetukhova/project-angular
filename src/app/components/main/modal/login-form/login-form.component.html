@@ -1,0 +1,27 @@
+<form class="wrapper" [formGroup]="authForm" (ngSubmit)="onSubmit()">
+  <button class="close-btn" matDialogClose>
+    <img ngSrc="assets/icons/close.png" alt="close-icon" height="30" width="30">
+  </button>
+
+  <h1>Вход</h1>
+
+  <div class="input-box">
+    <input type="email" formControlName="email"  placeholder="Ваш email"/>
+    <img ngSrc="assets/icons/email.png" alt="email-icon" height="30" width="30">
+  </div>
+
+  <div class="input-box">
+    <input type="password" formControlName="password" placeholder="Ваш пароль"/>
+    <img ngSrc="assets/icons/key.png" alt="key-icon" height="30" width="30">
+  </div>
+
+  <button class="login-btn" type="submit" [disabled]="loading">Войти</button>
+
+  <div class="register-link" (click)="changeCurrentFormToRegistration()">
+    <button>У меня нет аккаунта. <br>Зарегистрироваться</button>
+  </div>
+
+</form>
+
+<div *ngIf="error">{{ error }}</div>
+<div *ngIf="token">Welcome, {{ user }}! Your token is {{ token }}</div>

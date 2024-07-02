@@ -1,0 +1,18 @@
+.alert {
+  width: 70%;
+  text-align: center;
+  margin-left: 15em;
+  position: fixed;
+  display: block;
+  margin-right: auto;
+  color: white;
+}
+
+.alert-success {
+  background-color: #69d069;
+}
+
+.alert-error {
+  background-color: #d54949;
+}
+

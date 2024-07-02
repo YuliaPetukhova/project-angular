@@ -1,27 +1,30 @@
-<div>{{ statusMessage }}</div>
-<div class="py-4 px-6 border rounded flex flex-col mb-2">
-  <td>
+
+<div class="task-card">
+  <div>
     <input
       type="button"
       value="Изменить"
-      style="color: blueviolet;"
+      style="color: green;"
       (click)="editTask(task)"
     />
-  </td>
-  <td>
+
     <input
       type="button"
       value="Удалить"
-      style="color: red;"
+      style="color: firebrick;"
       (click)="deleteTask(task)"
     />
-  </td>
+  </div>
 
   <!-- <mat-checkbox class="text-right">Сделано</mat-checkbox> -->
-  <h1 class="text-lg text-left mb-2">{{ task.createdAt }}</h1>
-  <p class="text-left text-sm">{{ task.taskGroupId }}</p>
-  <p class="text-left text-sm">Price: <span class="text-xl">10</span></p>
-  <p class="text-left text-lg">
-    {{ task.text }}
-  </p>
+  <div class="content-card">
+    <p>{{ task.createdAt | date :'short' }}</p>
+    <p>Группа: {{ task.taskGroupId }}</p>
+    <p>
+      {{ task.text }}
+    </p>
+    <p>Ценность: <span class="price">{{ task.price | currency:"USD":"symbol":'1.0' }}</span></p>
+  </div>
+
 </div>
+

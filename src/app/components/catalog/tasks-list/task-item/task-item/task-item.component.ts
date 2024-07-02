@@ -1,83 +1,41 @@
-import { CommonModule } from '@angular/common';
-import {
-  EventEmitter,
-  OnInit,
-  Output,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
-import { Component, Input } from '@angular/core';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ITask } from 'src/app/models/task';
-import { TasksService } from 'src/app/services/tasks.service';
+import {CommonModule, CurrencyPipe, DecimalPipe, DatePipe} from '@angular/common';
+import {Component, EventEmitter, Input, Output, NgModule, LOCALE_ID} from '@angular/core';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {ITask} from 'src/app/store/models/ITask';
+import {IGroup} from "../../../../../store/models/IGroup";
+import {SharingService} from "../../../../../services/sharing/sharing.service";
+import {registerLocaleData} from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+registerLocaleData(localeRu);
 
 @Component({
   selector: 'app-task-item',
   templateUrl: './task-item.component.html',
   styleUrls: ['./task-item.component.css'],
   standalone: true,
-  imports: [MatCheckboxModule, CommonModule],
+  imports: [MatCheckboxModule, CommonModule, NgbRatingModule],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'ru'}
+  ]
 })
 export class TaskItemComponent {
-  @ViewChild('readOnlyTemplate', { static: false })
-  readOnlyTemplate: TemplateRef<any>;
-  @ViewChild('editTemplate', { static: false })
-  editTemplate: TemplateRef<any>;
+  constructor(private sharingService: SharingService) {
+  }
+
+  tasks: Array<ITask>;
 
   @Input() task: ITask;
+  @Input() group: IGroup;
+  @Output() onDelete: EventEmitter<ITask> = new EventEmitter<ITask>();
 
-  @Output() onDelete = new EventEmitter<ITask>();
-  deleteTask(task: ITask) {
+  deleteTask(task: ITask): void {
     this.onDelete.emit(task);
   }
 
-  @Output() onEdit = new EventEmitter<ITask>();
-  editTask(task: ITask) {
-    this.onEdit.emit(task);
+  @Output() onEdit: EventEmitter<ITask> = new EventEmitter<ITask>();
+
+  editTask(task: ITask): void {
+    this.sharingService.setDataTask(task);
   }
-
-  // constructor(private serv: TasksService) {
-  //   this.tasks = [];
-  // }
-
-  editedTask: ITask;
-  tasks: Array<ITask>;
-  statusMessage: string;
-  isNewRecord: boolean;
-
-  // editTask(task: ITask) {
-  //   this.editedTask = {
-  //     id: 0,
-  //     text: 'this.myFormTask.value.text as string',
-  //     taskGroupId: 1,
-  //     createdAt: '',
-  //     doneAt: '',
-  //     deletedAt: '',
-  //   };
-  //   // this.editedTask = new ITask(
-  //   // task.id,
-  //   // task.createdAt,
-  //   // task.taskGroupId,
-  //   //     task.text
-  //   // );
-  // }
-  // сохраняем пользователя
-  // saveTask() {
-  //   if (this.isNewRecord) {
-  //     // добавляем пользователя
-  //     this.serv.create(this.editedTask).subscribe((data) => {
-  //       // (this.statusMessage = 'Данные успешно добавлены'), this.loadTasks();
-  //     });
-  //     this.isNewRecord = false;
-  //     // this.editedTask = null;
-  //   } else {
-  //     // изменяем пользователя
-  //     this.serv
-  //       .updateTask(this.editedTask.id as number, this.editedTask)
-  //       .subscribe((data) => {
-  //         (this.statusMessage = 'Данные успешно обновлены'), this.serv.getAll();
-  //       });
-  //     // this.editedTask = null;
-  //   }
-  // }
 }

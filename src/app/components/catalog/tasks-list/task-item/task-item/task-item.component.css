@@ -1,0 +1,40 @@
+
+.task-card {
+  padding: 2px 2px;
+  border-radius: 2px;
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 5px 0 0 5px;
+  background-color: white;
+  font-size: 16px;
+}
+
+.content-card{
+  margin-top: 10px;
+}
+
+input{
+  padding-right: 10px;
+}
+
+input:hover{
+  background-color: rgba(128, 128, 128, 0.09);
+}
+
+p{
+  margin: 0 2px;
+}
+
+.price{
+  font-weight: bold;
+}
+
+@media screen and (min-width: 1024px) {
+  .task-card {
+    padding: 5px 5px 10px 5px;
+    margin-bottom: 5px;
+  }
+
+}

@@ -1,40 +1,17 @@
-<app-tasks-list [tasks]="tasks" [groups]="groups"></app-tasks-list>
+<app-top-menu></app-top-menu>
 
-<!--<div class="flex flex-wrap fixed bottom-1 justify-items-center pl-14 m-1 pr-2">-->
-<!--  <button-->
-<!--    class="mr-3"-->
-<!--    mat-raised-button-->
-<!--    aria-label="Menu icon"-->
-<!--    [matMenuTriggerFor]="aboveMenu"-->
-<!--  >-->
-<!--    <mat-icon> format_list_numbered</mat-icon>-->
-<!--  </button>-->
-<!--  <mat-menu #aboveMenu="matMenu" yPosition="above">-->
-<!--    <button mat-menu-item>Посуда</button>-->
-<!--    <button mat-menu-item>Мусор</button>-->
-<!--  </mat-menu>-->
+<app-left-menu
+  [groupTitles]="(catalog$ | async)?.groupTitles"
+  (menuClick)="changeCurrentGroup($event)"
+>
+</app-left-menu>
 
-<!--  <mat-dialog-actions style="flex-direction: column; padding: 0">-->
-<!--    <button-->
-<!--      class="mr-3"-->
-<!--      mat-mini-fab-->
-<!--      color="accent"-->
-<!--      aria-label="Open dialog"-->
-<!--      (click)="openDialog()"-->
-<!--    >-->
-<!--      <mat-icon>add</mat-icon>-->
-<!--    </button>-->
-<!--  </mat-dialog-actions>-->
+<app-tasks-list [currentGroup]="currentGroup"></app-tasks-list>
 
-<!--  <button-->
-<!--    class="mr-3"-->
-<!--    mat-raised-button-->
-<!--    aria-label="Menu check-list"-->
-<!--  >-->
-<!--    <mat-icon>playlist_add_check</mat-icon>-->
-<!--  </button>-->
-<!--</div>-->
-
-<app-bottom-menu>
-
+<app-bottom-menu
+  [groupTitles]="(catalog$ | async)?.groupTitles"
+  (menuClick)="changeCurrentGroup($event)"
+  (createTask)="onCreate($event)"
+  (updateTask)="onUpdate($event)"
+>
 </app-bottom-menu>

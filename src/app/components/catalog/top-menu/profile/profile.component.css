@@ -1,0 +1,11 @@
+img {
+  display: unset;
+  padding: 3px 3px;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+p {
+  color: white;
+}

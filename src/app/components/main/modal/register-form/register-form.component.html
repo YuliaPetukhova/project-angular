@@ -1,0 +1,27 @@
+<form
+  class="wrapper" [formGroup]="authForm"
+  (ngSubmit)="onSubmit('login')"
+>
+  <button class="close-btn" matDialogClose>
+    <img ngSrc="assets/icons/close.png" alt="close-icon" height="30" width="30">
+  </button>
+
+  <h1 class="title">Зарегистрироваться</h1>
+
+  <div class="input-box">
+    <input placeholder="Ваш email" formControlName="email" type="email"/>
+    <img ngSrc="assets/icons/email.png" alt="email-icon" height="30" width="30">
+  </div>
+
+  <div class="input-box">
+    <input type="password" formControlName="password" placeholder="Ваш пароль"/>
+    <img ngSrc="assets/icons/key.png" alt="key-icon" height="30" width="30">
+  </div>
+
+
+  <button class="login-btn" type="submit">Регистрация</button>
+  <div (click)="changeCurrentFormToLogin()" class="register-link">
+    <button>У меня есть аккаунт. Войти</button>
+  </div>
+
+</form>

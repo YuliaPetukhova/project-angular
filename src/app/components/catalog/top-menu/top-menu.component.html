@@ -1,0 +1,18 @@
+<div>
+  <div class="topnav">
+    <div class="topnav-right">
+
+      <div [matMenuTriggerFor]="menu">
+        <app-profile></app-profile>
+      </div>
+
+      <div class="menu cdk-overlay-connected-position-bounding-box cdk-overlay-pane">
+        <mat-menu #menu="matMenu">
+          <app-user-menu></app-user-menu>
+        </mat-menu>
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -1,15 +1,24 @@
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { TasksListComponent } from './tasks-list/tasks-list.component';
-import { ITask } from 'src/app/models/task';
-import { TasksService } from 'src/app/services/tasks.service';
-import { TaskFormComponent } from './task-form/task-form.component';
-import { IGroups } from 'src/app/models/groups';
-import { BottomMenuComponent} from "./bottom-menu/bottom-menu.component";
+import {Component, Inject, Optional, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {TasksListComponent} from './tasks-list/tasks-list.component';
+import {TasksService} from 'src/app/services/tasks.service';
+import {IGroupTitle} from 'src/app/store/models/IGroupTitle';
+import {BottomMenuComponent} from "./bottom-menu/bottom-menu.component";
+import {IGroup} from "../../store/models/IGroup";
+import {ActivatedRoute} from '@angular/router';
+import {TaskItemComponent} from "./tasks-list/task-item/task-item/task-item.component";
+import {ITask} from "../../store/models/ITask";
+import {FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {CommonModule, AsyncPipe} from '@angular/common';
+import {ICatalog} from "../../store/models/ICatalog";
+import {Observable} from 'rxjs';
+import {LeftMenuComponent} from "./left-menu/left-menu.component";
+import {LoginFormComponent} from "../main/modal/login-form/login-form.component";
+import {TopMenuComponent} from "./top-menu/top-menu.component";
+import {AlertService} from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-catalog',
@@ -22,32 +31,128 @@ import { BottomMenuComponent} from "./bottom-menu/bottom-menu.component";
     MatIconModule,
     MatDialogModule,
     TasksListComponent,
-    BottomMenuComponent
+    BottomMenuComponent,
+    TaskItemComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    AsyncPipe,
+    LeftMenuComponent,
+    LoginFormComponent,
+    TopMenuComponent
   ],
 })
-export class CatalogComponent {
-  tasks: ITask[];
-  groups: IGroups [];
+export class CatalogComponent implements OnInit {
+  groups: IGroup[];
+  currentGroup: IGroup;
+  URL: string = "/catalog/";
+  DATA: string = 'currentGroup';
+  catalog$: Observable<ICatalog>;
+  task: ITask;
 
-  constructor(private matDialog: MatDialog, tasksService: TasksService) {
-    tasksService.getAll().subscribe((result) => {
-      this.tasks = result.groups;
-      this.groups = result.groupTitles;
+  ngOnInit(): void {
+    this.catalog$ = this.tasksService.getAll();
+
+    this.catalog$.subscribe({
+      next: (result: ICatalog): void => {
+        this.groups = result.groups;
+
+        this.route.params.subscribe(params => {
+          this.currentGroup = (this.groups.find((group => {
+            return group.id == params['id'];
+          })) as IGroup);
+        })
+      },
+      error: (error): void => {
+        this.alertService.error(error.error);
+      }
     });
   }
 
-  openDialog(): void {
-    const dialog = this.matDialog.open(TaskFormComponent, {
-      data: {
-        groups: this.groups,
-        tasks: this.tasks,
-      },
-    });
+  constructor(
+    private matDialog: MatDialog,
+    private tasksService: TasksService,
+    private route: ActivatedRoute,
+    private alertService: AlertService,
+    @Optional()
+    @Inject(MAT_DIALOG_DATA)
+    private data: { groups: any; tasks: any; currentTask: ITask }) {
+  }
 
-    dialog.afterClosed().subscribe((result) => {
-      if (result && result.data && result.data.length > this.groups.length) {
-        this.groups = result.data;
+  changeCurrentGroup(groupTitle: IGroupTitle): void {
+    const url: string = this.URL + groupTitle.id;
+    history.pushState(this.DATA, "", url);
+
+    this.currentGroup = (this.groups.find((group => {
+      return group.id == groupTitle.id;
+    })) as IGroup);
+  }
+
+  onCreate(myFormTask: FormGroup): void {
+    this.tasksService.create({
+      text: myFormTask.value.text as string,
+      taskGroupId: myFormTask.value.taskGroup ?? 1,
+      createdAt: '',
+      doneAt: '',
+      deletedAt: '',
+      price: myFormTask.value.price as number,
+    }).subscribe({
+      next: (result: ITask): void => {
+        let newTaskGroupId: IGroup = (this.groups.find((groupId => {
+          return groupId.id == result.taskGroupId;
+        })) as IGroup);
+        newTaskGroupId.tasks.push(result);
+        this.alertService.success('Задача успешно создана');
+      },
+      error: (error): void => {
+        this.alertService.error(error.error);
       }
     });
+  }
+
+  onUpdate(myFormTask: FormGroup): void {
+    const oldTaskGroupId = myFormTask.value.oldTaskGroupId;
+
+    this.tasksService.updateTask({
+      id: myFormTask.value.id as number,
+      text: myFormTask.value.text as string,
+      taskGroupId: myFormTask.value.taskGroup ?? 1,
+      createdAt: '',
+      doneAt: '',
+      deletedAt: '',
+      price: myFormTask.value.price as number,
+    }).subscribe({
+      next: (savedTask: ITask): void => {
+        if (oldTaskGroupId !== savedTask.taskGroupId) {
+          const newGroup: IGroup = (this.groups.find((group => {
+            return group.id == savedTask.taskGroupId;
+          })) as IGroup);
+
+          const oldGroup: IGroup = (this.groups.find((group => {
+            return group.id == oldTaskGroupId;
+          })) as IGroup);
+
+          newGroup.tasks.push(savedTask);
+          oldGroup.tasks.splice(
+            oldGroup.tasks.findIndex((filteredTask: ITask) => filteredTask.id == savedTask.id),
+            1
+          );
+          this.alertService.success('Задача успешно обновлена');
+
+        } else {
+          let updatedTaskGroup: IGroup = (this.groups.find((groupId => {
+            return groupId.id == savedTask.taskGroupId;
+          })) as IGroup);
+
+          const updatedTaskIndex: number
+            = updatedTaskGroup.tasks.findIndex((filteredTask: ITask) => filteredTask.id == savedTask.id)
+          updatedTaskGroup.tasks[updatedTaskIndex] = savedTask;
+
+        }
+      },
+      error: (error): void => {
+        this.alertService.error(error.error);
+      }
+    })
   }
 }
